@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { usersAPI } from "api/api";
 
 //Action type
@@ -75,7 +76,7 @@ const userReducer = (state = initialState, action) => {
 //Экшены — это структуры, которые передают данные из приложения в store.
 // Они являются единственными источниками информации для store. Мы отправляете их в стор, используя метод store.dispatch().
 
-// Action creator чистая функция которая возвращает экшен
+// Action creator чистая функция которая возвращает action
 export const followSuccess 		=   (userId) 		=> ({ type: FOLLOW, userId })
 export const unfollowSuccess    =   (userId) 		=> ({ type: UNFOLLOW, userId })
 export const setUsers 			=   (users) 		=> ({ type: SET_USERS, users })

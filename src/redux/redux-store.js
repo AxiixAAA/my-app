@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import authReducer from "./auth-reducer";
@@ -29,8 +30,7 @@ let reducers = combineReducers({
 //   Единственный способ изменить его состояние — путем отправки экшенов. 
 //   Можем также подписаться на изменения его состояния, чтобы обновить пользовательский интерфейс.
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));
-
-// @ts-ignore
+ 
 window.store = store;
 
 export default store;

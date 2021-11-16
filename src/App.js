@@ -35,7 +35,7 @@ class App extends Component {
             <Route
               // Добавляем параметр к profile через :  необходимо для работы с withRouter ? - данный параметр не обязателен
               path="/profile/:userId?"
-              // @ts-ignore
+              // 
               render={() => <ProfileContainer />}
             />
 
