@@ -8,8 +8,11 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 ReactDOM.render(
+// StrictMode — инструмент для обнаружения потенциальных проблем в приложении.
+// Строгий режим активирует дополнительные проверки и предупреждения для своих потомков.
   <React.StrictMode>
     <BrowserRouter>
+{/* Provider - выступает в роле проводника, в качестве аргумента мы передаём созданный нами store, теперь этот store будет доступен в child компонетнте App */}
       <Provider store={store}>
         <App />
       </Provider>
@@ -18,7 +21,5 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+//reportWebVitals(console. log); Эта функция запускается, когда окончательные значения для любого из показателей завершили вычисление на странице. Вы можете использовать его для записи любых результатов на консоль или для отправки на конкретную конечную точку.
 reportWebVitals();
