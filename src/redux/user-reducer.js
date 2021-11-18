@@ -34,7 +34,7 @@ const userReducer = (state = initialState, action) => {
 				return { ...u, followed: true };
 			}
 			return u;
-			})};
+		})}
 
 		//Отписаться
 		case UNFOLLOW:
@@ -45,7 +45,7 @@ const userReducer = (state = initialState, action) => {
 				return { ...u, followed: false };
 			}
 			return u;
-			})}
+		})}
 
 		//Инициализировать пользователей
 		case SET_USERS: {return { ...state, users:action.users }}

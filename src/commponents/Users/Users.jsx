@@ -5,67 +5,62 @@ import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
 
-    let pagesCount = Math.ceil(
-        props.totalUsersCount / props.pageSize
-      );
-  
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
     let pages = [];
-      for (let i = 1; i < pagesCount; i++) {
-        pages.push(i);
-      }
+    for (let i = 1; i < pagesCount; i++) {pages.push(i)}
 
-  return <div>
-    <div className={s.spisok}>
-      {pages.map((p) => {
-        return <span className={props.currentPage === p && s.selectedPage }
-          onClick={(e) => {props.onPageChanged(p); }}>{p}</span>
-      })};
+    return <div>
+        {/* Список пользователей */}
+        <div className={s.spisok}>
+            {pages.map((p) => {
+                return <span className={props.currentPage === p && s.selectedPage }
+                onClick={() => {props.onPageChanged(p); }}>{p}</span>})}
+        </div>
 
+        {props.users.map((u) => (
+        // Блок со всеми данными по пользователю 
+        <div key={u.id}>
+            {/* Фото/follow/unfollow */}
+            <span>
+                <div>
+                {/* Жмякаем на мини фотографию, и переходим на профиль пользователя */}
+                <NavLink to={'/profile/' + u.id}>
+                    <img 
+                    src={u.photos.small != null ? u.photos.small : userPhoto}
+                    alt="картинка"
+                    className={s.userPhoto}
+                    />
+                </NavLink>
+                </div>
+                {/* follow /  unfollow*/}
+                <div>
+                    {u.followed
+                    ?
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => { props.unfollow(u.id) }}>    
+                        Удалить
+                    </button>
+                    :
+                    <button disabled={props.followingInProgress.some(id => id === u.id)} onClick={() => { props.follow(u.id) }}>
+                        <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="add_16__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="add_16__add_16"><path id="add_16__Rectangle-2" d="M0 0h16v16H0z"></path><path d="M9 9v4a1 1 0 01-2 0V9H3a1 1 0 110-2h4V3a1 1 0 112 0v4h4a1 1 0 010 2H9z" id="add_16__Mask" fill="currentColor"></path></g></g></svg>
+                        Добавить
+                    </button>
+                    }
+                </div>
+            </span>
+            {/* Всё что находится под follow /  unfollow */}
+            <span>
+                <span>
+                    <div>{u.name}</div>
+                    <div>{u.status}</div>
+                </span>
+                <span>
+                    <div>{"u.location.country"}</div>
+                    <div>{"u.location.city"}</div>
+                </span>
+            </span>
+        </div>
+        ))}
     </div>
-
-    {props.users.map((u) => (
-      <div key={u.id}>
-        <span>
-          <div >
-          <NavLink to={'/profile/' + u.id}>
-            <img
-              src={u.photos.small != null ? u.photos.small : userPhoto}
-              alt="картинка"
-              className={s.userPhoto}
-            />
-          </NavLink>
-          </div>
-
-          <div  >
-            {u.followed
-              ? <button disabled={props.followingInProgress
-                .some(id => id === u.id)}
-                onClick={() => { props.unfollow(u.id)}}>
-                
-                Удалить</button>
-
-              :<button disabled={props.followingInProgress
-                .some(id => id === u.id)} 
-                onClick={() => { props.follow(true, u.id);}}>
-                <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="add_16__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="add_16__add_16"><path id="add_16__Rectangle-2" d="M0 0h16v16H0z"></path><path d="M9 9v4a1 1 0 01-2 0V9H3a1 1 0 110-2h4V3a1 1 0 112 0v4h4a1 1 0 010 2H9z" id="add_16__Mask" fill="currentColor"></path></g></g></svg>
-                Добавить
-                </button>}
-
-          </div>
-        </span>
-        <span>
-          <span>
-            <div>{u.name}</div>
-            <div>{u.status}</div>
-          </span>
-          <span>
-            <div>{"u.location.country"}</div>
-            <div>{"u.location.city"}</div>
-          </span>
-        </span>
-      </div>
-    ))}
-  </div>
 }
 
 export default Users;
