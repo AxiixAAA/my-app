@@ -31,6 +31,7 @@ class ProfileContainer extends React.Component {
   }
 }
 
+// mapStateToProps - отслеживает измениния в state .profilePage.profile если они произошли, то указанные переменные перерисуются 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   status: state.profilePage.status,
