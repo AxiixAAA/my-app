@@ -8,14 +8,15 @@ import DialogsContainer from "./commponents/Dialogs/DialogsContainer";
 import Navbar from "./commponents/Navbar/Navbar";
 import LoginPage from "commponents/Login/Login";
 import { connect } from "react-redux";
-import { initializApp } from "redux/app-reducer";
+import { initializeApp } from "redux/app-reducer";
 import Preloader from "commponents/Common/Preloader/Preloader";
+import { compose } from "redux";
 
 
 class App extends Component {
   
   componentDidMount() {
-    this.props.initializApp();
+    this.props.initializeApp();
    }
 
   render(){
@@ -53,8 +54,8 @@ const mapStateToProps = (state) => ({
   initialized: state.app.initialized
 })
 
-export default withRouter(connect(mapStateToProps, {initializApp})(App)); 
+// export default withRouter(connect(mapStateToProps, {initializApp})(App)); 
 
-  //   export default compose(
-  //   withRouter,
-  //   connect(null, {initializApp})(App));
+export default compose(
+withRouter,
+connect(mapStateToProps, { initializeApp}))(App);

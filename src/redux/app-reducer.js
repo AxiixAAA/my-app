@@ -26,7 +26,7 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS});
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Диспатчим Авторизованного пользователя
-export const  initializApp = () => (dispatch) => {
+export const  initializeApp = () => (dispatch) => {
   let promise = dispatch(getAuthUserData());
   Promise.all([promise]) 
   .then(() => {
