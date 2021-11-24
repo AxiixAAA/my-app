@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { usersAPI } from "api/api";
+import {updateObjectInArray} from "../commponents/utils/object-helpers";
 
 //Action type
 const FOLLOW 						= "FOLLOW";
@@ -25,27 +26,19 @@ let initialState = {
 //Следом после изменения всех reducer, возвращается новый актуальный state
 const userReducer = (state = initialState, action) => {
 	switch (action.type) {
+
 		//Подписаться
 		case FOLLOW:
 		return {
 			...state,
-			users: state.users.map((u) => {
-			if (u.id === action.userId) {
-				return { ...u, followed: true };
-			}
-			return u;
-		})}
-
+			users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
+		}
 		//Отписаться
 		case UNFOLLOW:
 		return {
 			...state,
-			users: state.users.map((u) => {
-			if (u.id === action.userId) {
-				return { ...u, followed: false };
-			}
-			return u;
-		})}
+			users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
+		}
 
 		//Инициализировать пользователей
 		case SET_USERS: {return { ...state, users:action.users }}
@@ -87,44 +80,39 @@ export const toggleFollowingProgress = (isFetching, userId) => ({ type: TOGGLE_I
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи 
 // Получить пользователей
-export const getUsers  = (page,pageSize) => {
-	return (dispatch) =>{
-		dispatch(toggleIsFetching(true));
-		dispatch(setCurrentPage(page));
+export const getUsers  = (page,pageSize) => { // Thank Creater 
+	return async (dispatch) =>{               // Thank - благодаря замыканиям в Thank Creater,
+		dispatch(toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
+		dispatch(setCurrentPage(page));       // Thank - работает как-то иначе
 
-		usersAPI.getUsers (page,pageSize).then(data => {
-			dispatch(toggleIsFetching(false));
-			dispatch(setUsers(data.items));
-			dispatch(setTotalUsersCount(data.totalCount));
-		});
+		let data = await usersAPI.getUsers (page,pageSize);
+		dispatch(toggleIsFetching(false));
+		dispatch(setUsers(data.items));
+		dispatch(setTotalUsersCount(data.totalCount));
 	}
+}
+
+// Общая функция для подписки и отписки 
+const followUnfollowFlow = async (dispatch, userId, apiMethod, actionCreater) => {
+    dispatch(toggleFollowingProgress(true, userId));
+        let response = await apiMethod(userId)
+        if (response.data.resultCode === 0) {
+            dispatch(actionCreater(userId)); 
+        }
+        dispatch(toggleFollowingProgress(false, userId));
 }
 
 // Подписаться
 export const follow = (userId) => {
-    return (dispatch) =>{
-		dispatch(toggleFollowingProgress(true, userId));
-		usersAPI.follow(userId)
-		.then(response => {
-			if (response.data.resultCode === 0) {
-				dispatch(followSuccess(userId)); 
-			}
-			dispatch(toggleFollowingProgress(false, userId));
-		});
+    return async (dispatch) =>{
+        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
     }
  }
 
  // Отписаться
 export const unfollow = (userId) => {
-  return (dispatch) =>{
-    dispatch(toggleFollowingProgress(true, userId));
-    usersAPI.unfollow(userId)
-        .then(response => {
-          if (response.data.resultCode === 0) {
-            dispatch(unfollowSuccess(userId)); 
-          }
-          dispatch(toggleFollowingProgress(false, userId));
-        });
+  return async (dispatch) =>{
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
 	}
 }
 

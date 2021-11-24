@@ -27,11 +27,11 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS});
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Диспатчим Авторизованного пользователя
 export const  initializeApp = () => (dispatch) => {
-  let promise = dispatch(getAuthUserData());
-  Promise.all([promise]) 
-  .then(() => {
-  dispatch(initializedSuccess());
-  })
+    let promise = dispatch(getAuthUserData());
+    Promise.all([promise]) 
+    .then(() => {
+    dispatch(initializedSuccess());
+    })
 }
 
 export default appReducer;

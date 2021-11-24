@@ -1,0 +1,10 @@
+.spisok{
+    width: 800px;
+    cursor: pointer;
+    margin-left: 5px;
+}
+
+.selectedPage{
+    color: aqua;
+    margin: 5px;
+}
