@@ -18,7 +18,7 @@ let Users = ({user,followingInProgress,unfollow,follow}) => {
                 </NavLink>
                 </div>
                 {/* follow /  unfollow*/}
-                <div>
+                <div className={s.button}>
                     {user.followed
                     ?
                     <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {unfollow(user.id) }}>    
