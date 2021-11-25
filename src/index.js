@@ -11,7 +11,8 @@ ReactDOM.render(
 // StrictMode — инструмент для обнаружения потенциальных проблем в приложении.
 // Строгий режим активирует дополнительные проверки и предупреждения для своих потомков.
   <React.StrictMode>
-    <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
+    {/* <HashRouter > */}
 {/* Provider - выступает в роле проводника, в качестве аргумента мы передаём созданный нами store, теперь этот store будет доступен в child компонетнте App */}
       <Provider store={store}>
         <App />

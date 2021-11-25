@@ -4,9 +4,9 @@ import userPhoto from "../../assets/images/avatar.png";
 import { NavLink } from "react-router-dom";
 
 let Users = ({user,followingInProgress,unfollow,follow}) => {
-    return <>
+    return <div className={s.UserContainer}>
             {/* Фото/follow/unfollow */}
-            <span>
+          
                 <div>
                 {/* Жмякаем на мини фотографию, и переходим на профиль пользователя */}
                 <NavLink to={'/profile/' + user.id}>
@@ -17,6 +17,12 @@ let Users = ({user,followingInProgress,unfollow,follow}) => {
                     />
                 </NavLink>
                 </div>
+                <span>
+                    
+                <span>
+                    <div className={s.UserName}>{user.name}</div>
+                    {/* <div>{user.status}</div> */}
+                </span>
                 {/* follow /  unfollow*/}
                 <div className={s.button}>
                     {user.followed
@@ -31,19 +37,15 @@ let Users = ({user,followingInProgress,unfollow,follow}) => {
                     </button>
                     }
                 </div>
-            </span>
+           
             {/* Всё что находится под follow /  unfollow */}
-            <span>
-                <span>
-                    <div>{user.name}</div>
-                    <div>{user.status}</div>
-                </span>
-                <span>
+            
+                {/* <span>
                     <div>{"u.location.country"}</div>
                     <div>{"u.location.city"}</div>
-                </span>
+                </span> */}
             </span>
-        </>
+        </div>
 }
 
 
