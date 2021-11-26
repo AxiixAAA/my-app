@@ -6,14 +6,15 @@ const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE ";
 const SET_STATUS = "SET_STATUS ";
 const DELETE_POST = "DELETE_POST";
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
 // kolhoz state
 let initialState = {
   posts: [
     { id: 1, message: "Привет мир!", likesCount: 12 },
-    { id: 2, message: "Здраствуй сынок!", likesCount: 11 },
-    { id: 3, message: "Привет Pa!", likesCount: 15 },
-    { id: 4, message: "Salam!", likesCount: 111 },
+    { id: 2, message: "Здраcтвуй!", likesCount: 11 },
+    { id: 3, message: "Salamaleikum!", likesCount: 15 },
+    { id: 4, message: "Yo!", likesCount: 111 },
   ],
   
   profile: null,
@@ -45,6 +46,9 @@ const profileReducer = (state = initialState, action) => {
         // Получить статус пользователя
         case SET_STATUS: return{...state,status: action.status}
 
+        //
+        case SAVE_PHOTO_SUCCESS: return{...state,profile:{...state.profile, photos: action.photos}}
+
         default: return state;
     };
 };
@@ -54,6 +58,7 @@ export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostT
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile});
 export const setStatus = (status) => ({ type: SET_STATUS, status});
 export const deletePost = (postId) => ({type:  DELETE_POST, postId})
+export const savePhotoSuccess = (photos) => ({type:  SAVE_PHOTO_SUCCESS, photos})
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Поучаем все данные о пользователе
@@ -72,8 +77,17 @@ export const getStatus = (userId) => async (dispatch) => {
 // Изменяем статус
 export const updateStatus = (status) => async (dispatch) => {
     let response = await profileAPI.updateStatus(status);
-        if (response.data.resultCode === 0){
-        dispatch(setStatus(status))}
+    if (response.data.resultCode === 0){
+        dispatch(setStatus(status))
+    }
+}
+
+// Изменяем фото профиля
+export const savePhoto = (file) => async (dispatch) => {
+    let response = await profileAPI.savePhoto(file);
+    if (response.data.resultCode === 0){
+        dispatch(savePhotoSuccess(response.data.data.photos))
+    }
 }
 
 export default profileReducer;
