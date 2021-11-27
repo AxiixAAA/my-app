@@ -21,16 +21,16 @@ const ProfileStatusWithHooks = (props) => {
         setEditMode(false);
         props.updateStatus(status);
     }
-    // при каждом напечатанном символе мв отправляем значение в state
+    // при каждом напечатанном символе мы отправляем значение в state
     const onStatusChange = (e) =>{
-        setStatus(e.carrentTarget.value);
+        setStatus(e.currentTarget.value);
      }
 
     return (
         <div>
             { !editMode &&
                 <div>
-                    <span onClick={activateEditMode}>{props.status || "-----"}</span>
+                   <b>Status</b> <span onClick={activateEditMode}>{props.status || "-----"}</span>
                 </div>
             }
             { editMode &&
