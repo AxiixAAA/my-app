@@ -54,12 +54,14 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 }
 
 const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
-    return <div className={s.ProfileData}>
+debugger
+return <div className={s.ProfileData}>
 
     <div className={s.ProfileData_Top}>
         <div className={s.ProfileData_NameAndOnline}>
             <div>{profile.fullName}</div>
             <span><Online /></span>
+            
         </div>
             <div><ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></div>
     </div>
@@ -84,10 +86,10 @@ const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
         })}
     </div>
-    {isOwner && <div> <button onClick={goToEditMode}>edit</button> </div>}
+    {isOwner && <div> <button onClick={goToEditMode}>Редактировать</button> </div>}
  </div>
 } 
-
+debugger
 
 const Contact = ({contactTitle, contactValue}) => {
    return <div className={s.Contact}>

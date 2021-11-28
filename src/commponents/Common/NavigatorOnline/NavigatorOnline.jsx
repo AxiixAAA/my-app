@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 
 
 export const Online = () =>{
+
     const [isOnline, set_isOnline] = useState(true);
     let interval = null;
    
@@ -16,8 +17,9 @@ export const Online = () =>{
           clearInterval(interval) // for component unmount stop the interval
        }
     },[])
-    
+    debugger
+
     return( <div>
-        {isOnline !== true ? "online" : "ofline"}
+        {isOnline === true ? "online" : "ofline" }
     </div> ) 
 }

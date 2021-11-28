@@ -32,6 +32,22 @@
 .ProfileDataForm b {
     color: #848484;
 }
+.ProfileData button{
+    width: 100%;
+    margin-top: 7px;
+    padding-bottom: 5px;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px wheat;
+    border: none;
+    background-color: #1F1F1F;
+    color: #848484;
+}
+.ProfileData button:hover{
+    color: white;
+    box-shadow: 0px 0px 2px rgb(252, 242, 223);
+}
 .ProfileData_Top{
     border-bottom: 1px solid #2B2B2B;
     color: #EBEBEB;
