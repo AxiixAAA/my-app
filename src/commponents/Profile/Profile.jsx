@@ -12,7 +12,6 @@ const Profile = (props) => {
                         saveProfile={props.saveProfile}
                         status={props.status}
                         updateStatus={props.updateStatus} 
-                        isAuth={props.isAuth}
         />     
         <MyPostsContainer />
     </div>

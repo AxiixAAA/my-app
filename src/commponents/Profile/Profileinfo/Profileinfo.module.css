@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&family=Space+Mono&display=swap');
+
+
 .mainFoto{
     max-width: 210px;
     box-shadow: 0px 0px 2px wheat;
@@ -16,7 +20,6 @@
     border-radius: 20px;
     background-color: #1F1F1F;
     padding: 15px;
-    z-index: -1;
 
     width: 500px;
     position: relative;
@@ -27,18 +30,19 @@
     color: #848484;
 }
 .Top{
-    display: flex;
-    justify-content: space-between;
     border-bottom: 1px solid #2B2B2B;
     color: #EBEBEB;
     font-size: 19px;
     font-family:Arial;
-    width: 100%;
-    padding-bottom: 30px;
+    padding-bottom: 7px;
 }
 .Top span {
     font-size: 14px;
     color: #9D9D9D;
+}
+.nameAndOnline{
+    display: flex;
+    justify-content: space-between;
 }
 .Content{
     border-bottom: 1px solid #2B2B2B;
@@ -47,25 +51,29 @@
     background-color: #2B2B2B;
 }
 .profileStatus{
-    position: relative;
-    top: -204px; left: 22px;
-    color: ivory;
-    z-index: 1;
-    display: inline-block;
-    width: 498px;
-    text-align: left;
+    color: #EBEBEB;
     cursor: pointer;
-    height: 25px;
+    width: 500px;
+    height: 26px; 
+    font-size: 14px;
+    line-height: 26px;
+    padding-left: 2px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
 }
 
 .ProfileStatusActiv input{
     border: none;
+    box-shadow: 0px 0px 2px wheat;
+
     background-color: #2B2B2B;
     color: #EBEBEB;
-    width: 494px;
+    width: 496px;
     border-radius: 0px;
     outline:none;
-    font-size: 16px;
-    height: 15px;
+    font-size: 14px;
     height: 24px;
-}
+    line-height: 24px;
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 1px;
+} 

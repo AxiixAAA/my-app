@@ -9,7 +9,6 @@ import { Online } from 'commponents/Common/NavigatorOnline/NavigatorOnline';
 
 
 const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile,isAuth}) => {
-    debugger
     let [editMode, setEditMode] = useState(false);
     
     
@@ -40,13 +39,13 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
             {/* Загрузить новое фото */}
             {isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} className={s.NewPhoto} />}
             {/* Статус */}
-            <span className={s.profileStatus}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} /></span> 
+            {/* <span className={s.profileStatus}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} /></span>  */}
             {/* Форма */}
             <div className={s.ProfileDataForm}>
                 {editMode 
                     // @ts-ignore
                     ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
-                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner} isAuth={isAuth}/>}
+                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>}
             </div>
     
         </div>
@@ -54,17 +53,21 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
   
 }
 
-const ProfileData = ({profile,isOwner, goToEditMode,isAuth}) =>{
+const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
     return <>
     <div className={s.Top}>
-        <div>{profile.fullName}</div>
-        <div>
-        <Online />
+        <div className={s.nameAndOnline}>
+            <div>{profile.fullName}</div>
+            <span><Online /></span>
         </div>
-
+            <div><ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></div>
     </div>
+
     <div className={s.Content}>
         <div>
+            <div></div>
+            <div></div>
+            <div></div>
             <b>Looking for a job:</b> {profile.lookingForAJob ? "Yes" : "No"}
         </div>
         
