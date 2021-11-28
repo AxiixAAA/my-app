@@ -7,8 +7,8 @@ import { ProfileDataFormReduxForm } from './ProfileDataForm';
 
 
 
-const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile}) => {
-    
+const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile,isAuth}) => {
+    debugger
     let [editMode, setEditMode] = useState(false);
     
     
@@ -45,7 +45,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
                 {editMode 
                     // @ts-ignore
                     ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
-                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner} />}
+                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner} isAuth={isAuth}/>}
             </div>
     
         </div>
@@ -53,10 +53,16 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
   
 }
 
-const ProfileData = ({profile,isOwner, goToEditMode}) =>{
+const ProfileData = ({profile,isOwner, goToEditMode,isAuth}) =>{
     return <>
     <div className={s.Top}>
-        {profile.fullName}
+        <div>{profile.fullName}</div>
+        <div>
+        {isAuth
+         ? <span>online</span>
+         : <span>ofline</span> }
+        </div>
+
     </div>
     <div className={s.Content}>
         <div>
