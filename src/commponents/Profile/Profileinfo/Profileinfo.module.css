@@ -24,33 +24,31 @@
     width: 500px;
     position: relative;
     top: -267px; left: 260px;
-    color: red;
+    
+    font-size: 13px;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    padding-top: 5px;
 }
 .ProfileDataForm b {
     color: #848484;
 }
-.Top{
+.ProfileData_Top{
     border-bottom: 1px solid #2B2B2B;
     color: #EBEBEB;
     font-size: 19px;
     font-family:Arial;
-    padding-bottom: 7px;
+    padding: 7px 0px 5px 0px;
 }
-.Top span {
+.ProfileData_Top span {
     font-size: 14px;
     color: #9D9D9D;
 }
-.nameAndOnline{
+.ProfileData_NameAndOnline{
     display: flex;
     justify-content: space-between;
 }
-.Content{
-    border-bottom: 1px solid #2B2B2B;
-}
-.profileStatus:hover{
-    background-color: #2B2B2B;
-}
-.profileStatus{
+
+.ProfileStatus{
     color: #EBEBEB;
     cursor: pointer;
     width: 500px;
@@ -60,6 +58,9 @@
     padding-left: 2px;
     font-family: 'Space Mono', monospace;
     letter-spacing: 1px;
+}
+.ProfileStatus:hover{
+    background-color:#2B2B2B;
 }
 
 .ProfileStatusActiv input{
@@ -76,4 +77,42 @@
     line-height: 24px;
     font-family: 'Space Mono', monospace;
     letter-spacing: 1px;
+    
 } 
+.ProfileData_Content{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #2B2B2B;
+    padding-top: 15px ;
+}
+.ProfileData_ContentName{
+    width: 40%;
+    color: #858585;
+}
+.ProfileData_ContentData{
+    width: 60%;
+    color: #F53838;
+}
+.ProfileData_ContentName div, .ProfileData_ContentData div{
+    margin-bottom: 15px;
+}
+.ProfileDataFooter {
+    padding-top: 10px;
+}
+.Contact{
+    display: flex;
+    justify-content: space-between;
+}
+.contactTitle{
+    color: #F53838;
+    width: 20%;
+    padding-left: 60px;
+    margin-bottom: 3px;
+}
+.contactValue{
+    color: beige;
+    width: 80%;
+}
+.contactValue:hover{
+    text-decoration:  underline;
+}

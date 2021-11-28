@@ -54,33 +54,30 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 }
 
 const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
-    return <>
-    <div className={s.Top}>
-        <div className={s.nameAndOnline}>
+    return <div className={s.ProfileData}>
+
+    <div className={s.ProfileData_Top}>
+        <div className={s.ProfileData_NameAndOnline}>
             <div>{profile.fullName}</div>
             <span><Online /></span>
         </div>
             <div><ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></div>
     </div>
 
-    <div className={s.Content}>
-        <div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <b>Looking for a job:</b> {profile.lookingForAJob ? "Yes" : "No"}
+    <div className={s.ProfileData_Content}>
+        <div className={s.ProfileData_ContentName}>
+            <div><b>Ищу работу:</b></div>
+            <div><b>Мои профессиональные навыки:</b></div>
+            <div><b>Обо мне:</b></div>
+            
         </div>
-        
-        {profile.lookingForAJob &&
-        <div>
-            <b>My professional skills:</b> {profile.lookingForAJobDescription}
-        </div>
-        }
-        <div>
-            <b>About me:</b> {profile.aboutMe}
+        <div className={s.ProfileData_ContentData}>
+            <div>{profile.lookingForAJob ? "Yes" : "No"}</div>
+            <div>{profile.lookingForAJobDescription}</div>
+            <div>{profile.aboutMe}</div>
         </div>
     </div>
-    <div>
+    <div className={s.ProfileDataFooter}>
         {/* Contacts - обьект, по нему нужно итерироваться, делаем это при помощи Object.keys()  */}
         {/* .map(key => мы хотим на базе каждого ключа, мы хотим отрисовать компонент  Contact*/}
        <b>Contacts:</b> {Object.keys(profile.contacts).map(key => {
@@ -88,12 +85,15 @@ const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
         })}
     </div>
     {isOwner && <div> <button onClick={goToEditMode}>edit</button> </div>}
- </>
+ </div>
 } 
 
 
 const Contact = ({contactTitle, contactValue}) => {
-   return <div className={s.contact}> {contactTitle}: {contactValue} </div>
+   return <div className={s.Contact}>
+        <div className={s.contactTitle}> {contactTitle}:</div>
+        <div className={s.contactValue}> <a href={contactValue}> {contactValue} </a> </div>
+    </div>
 }
 
 export default Profileinfo
