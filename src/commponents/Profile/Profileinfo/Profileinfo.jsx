@@ -4,6 +4,7 @@ import s from './Profileinfo.module.css';
 import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from "../../../assets/images/avatar.png";
 import { ProfileDataFormReduxForm } from './ProfileDataForm';
+import { Online } from 'commponents/Common/NavigatorOnline/NavigatorOnline';
 
 
 
@@ -58,9 +59,7 @@ const ProfileData = ({profile,isOwner, goToEditMode,isAuth}) =>{
     <div className={s.Top}>
         <div>{profile.fullName}</div>
         <div>
-        {isAuth
-         ? <span>online</span>
-         : <span>ofline</span> }
+        <Online />
         </div>
 
     </div>
