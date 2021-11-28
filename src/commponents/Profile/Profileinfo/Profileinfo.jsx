@@ -32,37 +32,45 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 
     return (
         <div>
-            <div className={s.Kartinka}> </div>
-            <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
-            {isOwner && <input type={"file"} onChange={onMainPhotoSelected} />}
-            {editMode 
-                // @ts-ignore
-                ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
-                : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner} />}
-            <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+            {/* Основное фото */}
+            <div className={s.Kartinka}> 
+                 <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
+            </div>
+            {/* Загрузить новое фото */}
+            {isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} className={s.NewPhoto} />}
+            {/* Статус */}
+            <span className={s.profileStatus}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} /></span> 
+            {/* Форма */}
+            <div className={s.ProfileDataForm}>
+                {editMode 
+                    // @ts-ignore
+                    ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
+                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner} />}
+            </div>
+    
         </div>
     )
   
 }
 
 const ProfileData = ({profile,isOwner, goToEditMode}) =>{
-    return <div>
-    {isOwner && <div> <button onClick={goToEditMode}>edit</button> </div>}
-    <div>
-        <b>Full name:</b> {profile.fullName}
+    return <>
+    <div className={s.Top}>
+        {profile.fullName}
     </div>
-
-    <div>
-        <b>Looking for a job:</b> {profile.lookingForAJob ? "Yes" : "No"}
-    </div>
-    
-    {profile.lookingForAJob &&
-    <div>
-        <b>My professional skills:</b> {profile.lookingForAJobDescription}
-    </div>
-    }
-    <div>
-        <b>About me:</b> {profile.aboutMe}
+    <div className={s.Content}>
+        <div>
+            <b>Looking for a job:</b> {profile.lookingForAJob ? "Yes" : "No"}
+        </div>
+        
+        {profile.lookingForAJob &&
+        <div>
+            <b>My professional skills:</b> {profile.lookingForAJobDescription}
+        </div>
+        }
+        <div>
+            <b>About me:</b> {profile.aboutMe}
+        </div>
     </div>
     <div>
         {/* Contacts - обьект, по нему нужно итерироваться, делаем это при помощи Object.keys()  */}
@@ -71,7 +79,8 @@ const ProfileData = ({profile,isOwner, goToEditMode}) =>{
            return <Contact key={key} contactTitle={key} contactValue={profile.contacts[key]} />
         })}
     </div>
- </div>
+    {isOwner && <div> <button onClick={goToEditMode}>edit</button> </div>}
+ </>
 } 
 
 

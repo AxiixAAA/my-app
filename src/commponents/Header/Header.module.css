@@ -1,16 +1,16 @@
 .header {
-  grid-area: h;
-  background-color: #1F1F1F;
-  border-radius:0px 0px 20px 20px;
-  box-shadow: 0px 0px 2px wheat;
-
+    grid-area: h;
+    background-color: #1F1F1F;
+    border-radius:0px 0px 20px 20px;
+    box-shadow: 0px 0px 2px wheat;
+    margin-bottom: 15px;
 }
 .header img {
-  width: 40px;
-  border-radius:50px;
-  margin: 10px 0 0 10px;
+    width: 40px;
+    border-radius:50px;
+    margin: 10px 0 0 10px;
 }
 .loginBlock{
-  float: right;
-  color: aqua;
+    float: right;
+    color: aqua;
 }
