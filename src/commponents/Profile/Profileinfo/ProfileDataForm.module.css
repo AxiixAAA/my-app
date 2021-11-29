@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&family=Space+Mono&display=swap');
+
+.Container{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+    color: #717171;
+    font-size: 13px;
+    border-bottom: 1px solid #2B2B2B;
+    margin-bottom: 20px;
+}
+
+.Name{
+    width: 40%;
+}
+.Data{
+    width: auto;
+}
+.Name div{
+    display: block;
+    padding: 10px 0px;
+}
+.Data input[type='checkbox']{
+    width: 20px;
+    margin-left: 0;
+}
+.Data input, .Data textarea, .contact input{
+    border: 1px solid #2B2B2B;
+    height: 30px;
+    background-color: #1F1F1F;
+    color: #717171;
+    font-size: 13px;
+    font-family: 'Space Mono', monospace;
+    padding-left: 10px;
+    width: 300px;
+    outline: none;
+}   
+.Data input:focus, .Data textarea:focus, .contact input:focus{
+    color: #9D9D9D;
+}
+.Data textarea{
+    height: 50px;
+    resize:none;
+}
+.button button{
+    width: 100%;
+    margin-top: 7px;
+    padding-bottom: 5px;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px wheat;
+    border: none;
+    background-color: #1F1F1F;
+    color: #848484;
+}
+.button button:hover, .NewPhotoText:hover{
+    color: white;
+    box-shadow: 0px 0px 2px rgb(252, 242, 223);
+}
+
+.contact{
+    display: flex;
+    justify-content:space-between;
+
+    color: #717171;
+    font-size: 13px;
+} 
+.contactLeft{
+    width: 30%;
+}
+.contactRigth{
+    width: 70%;
+    margin-bottom: 5px;
+}
