@@ -2,12 +2,45 @@
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+2:wght@200&family=Space+Mono&display=swap');
 
 
-.mainFoto{
+.container{
+    display: flex;
+    justify-content: space-between;
+}
+.Kartinka{
+    align-self: flex-start;
     max-width: 210px;
+    min-height: 250px;
     box-shadow: 0px 0px 2px wheat;
     padding: 15px;
     border-radius: 20px;
     background-color: #1F1F1F;
+}
+.Kartinka img{
+    border-radius: 10px;
+}
+.NewPhotoText{
+    display: inline-block;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 7px;
+    width: 210px;
+    font-family: 'Space Mono', monospace;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px wheat;
+
+    background-color: #1F1F1F;
+    color: #848484;
+}
+.NewPhotoText :hover{
+    color: white;
+    box-shadow: 0px 0px 2px rgb(252, 242, 223);
+}
+.Kartinka input[type='file']{
+    display: none;
+}
+.mainFoto{
+    max-width: 210px;
 }
 .contact{
     margin-left: 15px;
@@ -20,10 +53,7 @@
     border-radius: 20px;
     background-color: #1F1F1F;
     padding: 15px;
-
     width: 500px;
-    position: relative;
-    top: -267px; left: 260px;
     
     font-size: 13px;
     font-family: 'Open Sans', 'Helvetica Neue', sans-serif;

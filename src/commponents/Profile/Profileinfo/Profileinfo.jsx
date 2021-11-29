@@ -31,16 +31,17 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
     }
 
     return (
-        <div>
+        <div className={s.container}>
             {/* Основное фото */}
-            <div className={s.Kartinka}> 
+            <div className={s.Kartinka}>
+                
                  <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
-            </div>
-            {/* Загрузить новое фото */}
-            {isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} className={s.NewPhoto} />}
-            {/* Статус */}
-            {/* <span className={s.profileStatus}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} /></span>  */}
-            {/* Форма */}
+                 {/* Загрузить новое фото */}
+                 <div className={s.NewPhoto}>{isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} id={"img"}/>}</div>
+                 <label  className={s.NewPhotoText} htmlFor={"img"}>обновить фотографию</label>
+                 
+           </div>
+            {/* Form */}
             <div className={s.ProfileDataForm}>
                 {editMode 
                     // @ts-ignore
