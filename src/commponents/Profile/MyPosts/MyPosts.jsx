@@ -6,6 +6,8 @@ import { Field, reduxForm } from "redux-form";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 
+
+
 const maxLength10 = maxLengthCreator(10);
 
 const MyPosts = React.memo(props => {
@@ -17,8 +19,7 @@ let onAddPost = (values) => {
 }
 
 return (
-    <div>
-      My posts
+    <div className={s.container}>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
       <div className={s.posts}>
         {postsElements}
@@ -31,9 +32,14 @@ const AddNewPostForm = (props) => {
     return(
         <form onSubmit={props.handleSubmit}>
         <div>
-            <div><Field name="newPostText" component={Textarea}
-                        validate={[required, maxLength10]}
-                        placeholder={"Post Message"} /></div>
+            <div className={s.AddNewPostForm}>
+                <div className={s.miniManePhoto}>
+           
+                </div>
+                <Field name="newPostText" component={Textarea}
+                       validate={[required, maxLength10]}
+                       placeholder={"Что у вас нового ?"} />
+            </div>
             <div><button>Опубликовать</button></div>
         </div>
         </form>
