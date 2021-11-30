@@ -5,6 +5,7 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
+import UserSmallPhotoContainer from "../../Common/UserSmallPhoto/UserSmallPhotoContainer";
 
 
 
@@ -34,7 +35,7 @@ const AddNewPostForm = (props) => {
         <div>
             <div className={s.AddNewPostForm}>
                 <div className={s.miniManePhoto}>
-           
+                <UserSmallPhotoContainer />
                 </div>
                 <Field name="newPostText" component={Textarea}
                        validate={[required, maxLength10]}

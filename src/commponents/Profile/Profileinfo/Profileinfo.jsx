@@ -8,7 +8,8 @@ import { Online } from 'commponents/Common/NavigatorOnline/NavigatorOnline';
 
 
 
-const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile,isAuth}) => {
+const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile}) => {
+    
     let [editMode, setEditMode] = useState(false);
     
     
@@ -55,7 +56,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 }
 
 const ProfileData = ({profile,isOwner, goToEditMode,status,updateStatus}) =>{
-debugger
+
 return <div className={s.ProfileData}>
 
     <div className={s.ProfileData_Top}>
@@ -90,7 +91,6 @@ return <div className={s.ProfileData}>
     {isOwner && <div> <button onClick={goToEditMode}>Редактировать</button> </div>}
  </div>
 } 
-debugger
 
 const Contact = ({contactTitle, contactValue}) => {
    return <div className={s.Contact}>
