@@ -7,8 +7,8 @@ import Post from "./Post/Post";
 import UserSmallPhotoContainer from "../../Common/UserSmallPhoto/UserSmallPhotoContainer";
 
 const MyPosts = React.memo(props => {
-
-let postsElements = props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount} fullName={p.profile}/>);
+// debugger
+let postsElements = props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount} fullName={props.fullName}/>);
 
 let onAddPost = (values) => {
     props.addPost(values.newPostText);

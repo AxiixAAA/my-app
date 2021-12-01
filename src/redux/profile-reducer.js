@@ -12,10 +12,7 @@ const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 // kolhoz state
 let initialState = {
   posts: [
-    { id: 1, fullName: "Slavik", message: "Привет мир!", likesCount: 12 },
-    { id: 2, fullName: "",   message: "Здраcтвуй!", likesCount: 11 },
-    { id: 3, fullName: null, message: "Salamaleikum!", likesCount: 15 },
-    { id: 4, fullName: null, message: "Yo!", likesCount: 111 },
+    { id: 1, fullName: null, message: "Привет мир!", likesCount: 12 },
   ],
   
   profile: null,
@@ -29,9 +26,9 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST: {
             let newPost = {
                 id: 5,
-                fullName: action.fullName,
                 message: action.newPostText,
                 likesCount: 0,
+                fullName:action.fullName,
             }
             return {
                 ...state,

@@ -40,8 +40,12 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
                 
                  <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
                  {/* Загрузить новое фото */}
+                 {isOwner 
+                    ? <label  className={s.NewPhotoText} htmlFor={"img"}>обновить фотографию</label>
+                    : <label> </label>
+                 }
                  <div className={s.NewPhoto}>{isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} id={"img"}/>}</div>
-                 <label  className={s.NewPhotoText} htmlFor={"img"}>обновить фотографию</label>
+                 
                  
            </div>
             {/* Form */}
@@ -54,7 +58,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 
             </div>
             <div> 
-                <MyPostsContainer profile={profile}/>
+                <MyPostsContainer />
             </div>
         </div>
     )
