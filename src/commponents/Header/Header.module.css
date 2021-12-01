@@ -4,7 +4,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px;
+    padding-right: 10px;
+    z-index: 1;
 
     background-color: #1F1F1F;
     border-radius:0px 0px 20px 20px;
@@ -16,27 +17,21 @@
     border-radius:50px;
     margin-right: 5px;
 }
-.Ugolok{
-    width: 0; 
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid #717171;
-}
-.Ugolok:hover{
-    border-top: 10px solid rgb(199, 199, 199);
-}
+
 .header button{
 
 }
 .Logo{
     display: flex;
     align-items: center;
-
+    cursor: pointer;
     font-family: 'Arvo', serif;
     font-size: 25px;
     color: #24A2A1;
 
+}
+.Logo:hover{
+    color: #44e0e0;
 }
 .Logo svg{
     fill: #D80540;
@@ -45,9 +40,18 @@
     width: 50px;
     margin-right: 7px;
 }
-.loginBlock{
-    float: right;
-    color: aqua;
+.loginBlock button{
+
+    font-family: 'Space Mono', monospace;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px wheat;
+    border: none;
+    background-color: #1F1F1F;
+    color: #848484;
+}
+.loginBlock button:hover{
+    color: white;
+    box-shadow: 0px 0px 2px rgb(252, 242, 223);
 }
 .HeaderRigth{
     display: flex;
