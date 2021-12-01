@@ -1,15 +1,10 @@
 // @ts-nocheck
 import { Textarea } from "commponents/Common/FormsControls/FormsControls";
-import { maxLengthCreator, required } from "commponents/utils/validators/validators";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import UserSmallPhotoContainer from "../../Common/UserSmallPhoto/UserSmallPhotoContainer";
-
-
-
-const maxLength10 = maxLengthCreator(10);
 
 const MyPosts = React.memo(props => {
 
@@ -38,7 +33,6 @@ const AddNewPostForm = (props) => {
                 <UserSmallPhotoContainer />
                 </div>
                 <Field name="newPostText" component={Textarea}
-                       validate={[required, maxLength10]}
                        placeholder={"Что у вас нового ?"} />
             </div>
             <div><button>Опубликовать</button></div>

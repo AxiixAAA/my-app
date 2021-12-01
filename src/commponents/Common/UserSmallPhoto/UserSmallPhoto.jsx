@@ -6,7 +6,7 @@ import Preloader from "../Preloader/Preloader";
 const UserSmallPhoto = ({profile}) => {
     // Необходимое условие без которого будет падать ошибка из за того что  profile не успеет обработаться
     if (!profile) {
-        return <Preloader />
+        return <div> . . .</div>
       }
   return (
     <div >

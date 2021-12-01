@@ -40,7 +40,7 @@
 }
 .Data textarea{
     height: 50px;
-    resize:none;
+    resize:none; /*указывает, может ли размер элемента изменяться пользователем.*/
 }
 .button button{
     width: 100%;
