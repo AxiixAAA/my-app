@@ -1,5 +1,4 @@
 import React from "react";
-import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import Profileinfo from "./Profileinfo/Profileinfo";
 
 const Profile = (props) => {
@@ -13,7 +12,7 @@ const Profile = (props) => {
                         status={props.status}
                         updateStatus={props.updateStatus} 
         />     
-        <MyPostsContainer />
+        
     </div>
   );
 };

@@ -5,16 +5,20 @@
 .container{
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
 }
-.Kartinka{
+.Kartinka, .ProfileBoxFriends{
     align-self: flex-start;
-    max-width: 210px;
-    min-height: 250px;
+    width: 210px;
+    height: 250px;
     box-shadow: 0px 0px 2px wheat;
     padding: 15px;
     border-radius: 20px;
     background-color: #1F1F1F;
     
+}
+.ProfileBoxFriends{
+    margin-top: -108px;
 }
 .Kartinka img{
     border-radius: 10px;

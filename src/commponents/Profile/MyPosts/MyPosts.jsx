@@ -8,7 +8,7 @@ import UserSmallPhotoContainer from "../../Common/UserSmallPhoto/UserSmallPhotoC
 
 const MyPosts = React.memo(props => {
 
-let postsElements = props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount}/>);
+let postsElements = props.posts.map( p => <Post key={p.id} message={p.message} likesCount={p.likesCount} fullName={p.profile}/>);
 
 let onAddPost = (values) => {
     props.addPost(values.newPostText);
@@ -18,6 +18,7 @@ return (
     <div className={s.container}>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
       <div className={s.posts}>
+          {/* Post */}
         {postsElements}
       </div>
     </div>
@@ -30,12 +31,16 @@ const AddNewPostForm = (props) => {
         <div>
             <div className={s.AddNewPostForm}>
                 <div className={s.miniManePhoto}>
-                <UserSmallPhotoContainer />
+                    <UserSmallPhotoContainer />
                 </div>
-                <Field name="newPostText" component={Textarea}
-                       placeholder={"Что у вас нового ?"} />
+                <div>
+                    <Field name="newPostText" component={Textarea}
+                           placeholder={"Что у вас нового ?"} />
+                </div>
+                <div>
+                     <button>Опубликовать</button>
+                </div>
             </div>
-            <div><button>Опубликовать</button></div>
         </div>
         </form>
     )

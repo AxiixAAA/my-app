@@ -1,3 +1,4 @@
+// @ts-nocheck
 import Preloader from 'commponents/Common/Preloader/Preloader';
 import React, { useState } from 'react';
 import s from './Profileinfo.module.css';
@@ -5,6 +6,7 @@ import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 import userPhoto from "../../../assets/images/avatar.png";
 import { ProfileDataFormReduxForm } from './ProfileDataForm';
 import { Online } from 'commponents/Common/NavigatorOnline/NavigatorOnline';
+import MyPostsContainer from '../MyPosts/MyPostsContainer';
 
 
 
@@ -45,11 +47,15 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
             {/* Form */}
             <div className={s.ProfileDataForm}>
                 {editMode 
-                    // @ts-ignore
                     ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
                     : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>}
             </div>
-    
+            <div className={s.ProfileBoxFriends}>
+
+            </div>
+            <div> 
+                <MyPostsContainer profile={profile}/>
+            </div>
         </div>
     )
   

@@ -17,7 +17,6 @@ export const Online = () =>{
           clearInterval(interval) // for component unmount stop the interval
        }
     },[])
-    debugger
 
     return( <div>
         {isOnline === true ? "online" : "ofline" }
