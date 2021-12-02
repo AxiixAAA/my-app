@@ -1,3 +1,4 @@
+import Search from "commponents/Common/Search/Search";
 import React from "react";
 import { Redirect,Route } from "react-router-dom";
 import { AddMessageFormRedux } from "./AddMessageForm/AddMessageForm";
@@ -27,7 +28,8 @@ let Dialogs = (props) => {
 
   return (
     <div className={s.dialogs}>
-    <div className={s.PoiskovickDialogs}><textarea  placeholder="Поиск" ></textarea></div>   
+    {/* <div className={s.PoiskovickDialogs}><textarea  placeholder="Поиск" ></textarea></div>  */}
+    <Search />
 
       <div className={s.dialogsItems}>
           {dialogsElements}

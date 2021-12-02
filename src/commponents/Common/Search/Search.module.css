@@ -1,0 +1,19 @@
+.PoiskovickDialogs textarea{
+    width: 100%;
+    height:40px;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 5px 0px 0px 25px;
+
+    border:none;
+    border-radius: 20px;
+
+    font-size: 15px;
+    line-height: 200%;
+    
+    background-color: #1F1F1F;
+    color: wheat;
+
+    resize: none;
+    outline:none;
+}

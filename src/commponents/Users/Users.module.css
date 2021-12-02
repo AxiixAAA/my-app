@@ -1,3 +1,17 @@
+.userPosition{
+    display: flex;
+    justify-content:space-between;
+}
+.userContainer{
+    display: flex;
+    flex-direction: column;
+
+    width: 70%;
+    box-shadow: 0px 0px 2px wheat;
+    background-color: #1F1F1F;
+    /* padding: 15px; */
+    border-radius: 20px;
+}
 .spisok{
     width: 800px;
     cursor: pointer;
@@ -10,10 +24,10 @@
 }
 
 .userPhoto{
-    width: 95px;
-    height: 95px;
+    width: 80px;
+    height: 80px;
     border-radius: 100%;
-    margin: 5px;
+    margin: 10px 10px 5px 0px;
 }
 
 .button button{
@@ -38,7 +52,8 @@
 }
 .UserContainer{
     display: flex;
-    border-bottom: 2px solid #2B2B2B;
+    border-bottom: 1px solid #2B2B2B;
+    margin: 0px 15px;
 }
 .UserContainer:nth-last-child(-n+1){
     border-bottom: none;
@@ -46,7 +61,10 @@
 .UserName{
     margin-top: 10px;
     margin-bottom: 28px;
-    font-size: 18px;
+    font-size: 15px;
+    color: #F53838;
+    font-family: Arial;
+    font-weight: 400;
 }
 .UserName:hover{
     cursor: pointer;
