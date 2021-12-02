@@ -5,8 +5,6 @@ import { AddMessageFormRedux } from "./AddMessageForm/AddMessageForm";
 // import containerDialogs from "./DialogItem.jsx/containerDialogs/containerDialogs";
 import DialogItem from "./DialogItem.jsx/DialogItem";
 import s from "./Dialogs.module.css";
-import Komponenta1 from "./KomponentyDialogs/Komponenta1";
-import Komponenta2 from "./KomponentyDialogs/Komponenta2";
 import Message from "./Message.jsx/Message";
 
 
@@ -15,10 +13,9 @@ import Message from "./Message.jsx/Message";
 
 let Dialogs = (props) => {
 
-
   let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map( d => <DialogItem name={d.name} key={d.id} id={d.id} /> );
+  let dialogsElements = state.dialogs.map( d => <DialogItem name={d.name} icon={d.icon} key={d.id} id={d.id} /> );
   let messagesElements = state.messages.map( m => <Message message={m.message} key={m.id} />)
  
   
@@ -30,14 +27,7 @@ let Dialogs = (props) => {
 
   return (
     <div className={s.dialogs}>
-    <div className={s.PoiskovickDialogs}><textarea  placeholder="Поиск" ></textarea></div>
-
-
-    <div>
-        <Route component={Komponenta1} />
-        <Route component={Komponenta2} />
-    </div>    
-
+    <div className={s.PoiskovickDialogs}><textarea  placeholder="Поиск" ></textarea></div>   
 
       <div className={s.dialogsItems}>
           {dialogsElements}

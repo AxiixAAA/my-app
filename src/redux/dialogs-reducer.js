@@ -3,11 +3,11 @@ const SEND_MESSAGE = "SEND-MESSAGE";
 //state
 let initialState = {
     dialogs: [
-        { id: 1, name: "Вячеслав Тарасов" },
-        { id: 2, name: "Олег Чипчик" },
-        { id: 3, name: "Sveta" },
-        { id: 4, name: "Sasha" },
-        { id: 5, name: "Slava" },
+        { id: 1, icon: null, name: "Вячеслав Тарасов" },
+        { id: 2, icon: null, name: "Олег Чипчик" },
+        { id: 3, icon: null, name: "Sveta" },
+        { id: 4, icon: null, name: "Sasha" },
+        { id: 5, icon: null, name: "Slava" },
     ],
     messages: [
         { id: 1, message: "1" },

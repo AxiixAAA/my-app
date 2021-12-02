@@ -1,14 +1,27 @@
 import React from "react";
 import s from "./DialogItem.module.css";
-import {NavLink} from "react-router-dom";
+import avatar from "../../../assets/images/avatar.png";
+import { NavLink, Route } from "react-router-dom";
+// import Message from "../Message.jsx/Message";
+// import {NavLink} from "react-router-dom";
 
 let DialogItem = (props) => {
-    let path = "/dialogs/" + props.id;
-  
+     
     return (
-      <div className={s.dialog + " " + s.active}>
-        <NavLink to={path}>{props.name}</NavLink>
-      </div>
+        <div className={s.DialogItem}>
+            <NavLink to="/message">
+            <div className={s.containerDialogs}>
+                <div>
+                    <img 
+                    src={props.icon  != null ? props.icon  : avatar}
+                    alt="картинка"
+                    className={s.messageIcon}
+                    />
+                </div>
+                <div className={s.messageFullName}>{props.name}</div>
+            </div>
+            </NavLink>
+        </div>
     );
   }
 
