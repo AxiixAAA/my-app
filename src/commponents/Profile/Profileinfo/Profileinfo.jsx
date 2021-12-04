@@ -75,7 +75,7 @@ return <div className={s.ProfileData}>
             <span><Online /></span>
             
         </div>
-            <div><ProfileStatusWithHooks status={status} updateStatus={updateStatus}/></div>
+            <div><ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/></div>
     </div>
 
     <div className={s.ProfileData_Content}>

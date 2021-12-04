@@ -1,5 +1,6 @@
 import React from "react";
 import Profileinfo from "./Profileinfo/Profileinfo";
+import ProfileStatusWithHooks from "./Profileinfo/ProfileStatusWithHooks";
 
 const Profile = (props) => {
   return (
@@ -12,7 +13,6 @@ const Profile = (props) => {
                         status={props.status}
                         updateStatus={props.updateStatus} 
         />     
-        
     </div>
   );
 };

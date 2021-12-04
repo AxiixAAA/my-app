@@ -97,7 +97,7 @@
     display: flex;
     justify-content: space-between;
 }
-
+/* СТАТУС */
 .ProfileStatus{
     color: #EBEBEB;
     cursor: pointer;
@@ -129,6 +129,10 @@
     letter-spacing: 1px;
     
 } 
+.ProfileStatusDisable:hover{
+    background-color: none;
+    cursor: text;
+}
 .ProfileData_Content{
     display: flex;
     justify-content: space-between;

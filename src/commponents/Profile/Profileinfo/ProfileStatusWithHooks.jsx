@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import s from './Profileinfo.module.css';
 
 const ProfileStatusWithHooks = (props) => {
+    debugger
     //local state
     // useState - возвращиет массив / Деструктуризация
     let [editMode, setEditMode] = useState(false);
@@ -28,16 +29,25 @@ const ProfileStatusWithHooks = (props) => {
 
     return (
         <div>
-            { !editMode &&
-                <div className={s.ProfileStatus}>
-                   <div onClick={activateEditMode}>{props.status || "-----"}</div>
-                </div>
-            }
-            { editMode &&
-                <div className={s.ProfileStatusActiv}>
-                    <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode} value={status} />
-                </div>
-            }         
+           { props.isOwner
+                ? !editMode &&
+                    <div className={s.ProfileStatus}>
+                       <div onClick={activateEditMode}>{props.status || "-----"}</div>
+                    </div> ||
+                    editMode &&
+                    <div className={s.ProfileStatusActiv}>
+                        <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode} value={status} />
+                    </div>
+                
+                : !editMode &&
+                <div className={s.ProfileStatusDisable}>
+                   <div>{props.status || "-----"}</div>
+                </div> 
+           }
+
+            
+             
+                    
         </div>
     )
 }
