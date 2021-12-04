@@ -1,3 +1,4 @@
+// @ts-nocheck
 import UserSmallPhotoContainer from 'commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
@@ -6,8 +7,20 @@ import s from './Header.module.css';
 
 
 const Header = (props) => {
-    
-
+    // Data
+    function go(){
+        // @ts-ignore
+        window.timerId = window.setInterval(timer, 500);
+    }
+    function timer(){
+        var clock = document.getElementById('clock');
+        var date = new Date();
+        clock.innerHTML = addZero(date.getHours())+':'+addZero(date.getMinutes());
+    }
+    function addZero(num){
+        if(num <=9) return '0'+num;
+            else return num;
+    }
 
 return <header className={s.header}>  
     <NavLink to="/profile">
@@ -16,6 +29,9 @@ return <header className={s.header}>
             <div>AxiixA</div> 
     </div>
     </NavLink>
+    <div onLoad={go()} className={s.currentTime}>
+        <p id="clock">00:00:00</p>
+    </div>
     <div>
         <div className={s.HeaderRigth} >
             <UserSmallPhotoContainer /> 
