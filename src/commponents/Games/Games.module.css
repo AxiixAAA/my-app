@@ -1,0 +1,9 @@
+.container{
+    display: flex;
+}
+.game1{
+    width: 100px;
+    height: 100px;
+    border: rgb(255, 59, 59);
+    background-color: cadetblue;
+}

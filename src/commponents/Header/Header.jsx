@@ -30,7 +30,7 @@ return <header className={s.header}>
     </div>
     </NavLink>
     <div onLoad={go()} className={s.currentTime}>
-        <p id="clock">00:00:00</p>
+        <p id="clock">00:00</p>
     </div>
     <div>
         <div className={s.HeaderRigth} >
