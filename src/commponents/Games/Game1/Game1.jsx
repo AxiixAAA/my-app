@@ -1,8 +1,7 @@
 import React from "react";
 import s from "./Game1.module.css"
 
-const Game1 = () => {
-
+const  Game1 = () => {
 
 return <div className={s.body}>
     {/* <!__ Game canvas __> */}
