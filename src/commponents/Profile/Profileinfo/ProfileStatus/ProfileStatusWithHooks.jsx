@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import s from './Profileinfo.module.css';
+import s from '../Profileinfo.module.css';
 
 const ProfileStatusWithHooks = (props) => {
     //local state
