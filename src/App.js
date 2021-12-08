@@ -1,5 +1,5 @@
 import React, { Component, Suspense } from "react";
-import { Route, withRouter } from "react-router-dom";
+import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./commponents/Navbar/Navbar";
 import { connect } from "react-redux";
@@ -15,12 +15,24 @@ const  UsersContainer   = React.lazy(() => import('commponents/Users/UsersContai
 const  LoginPage        = React.lazy(() => import('commponents/Login/Login'));
 
 class App extends Component {
-    
+    // Все необработаные ошибки в помисах
+    catcAllUnhandledErrors = (reason, promise) => {
+        alert("Some error");
+    }
+
+    // инициалтзируем приложение
     componentDidMount() {
         this.props.initializeApp();
+        // Side Effect код выходящий за рамки react, подписались на глобальное событие 
+        window.addEventListener("unhandledrejection", this.catcAllUnhandledErrors);
+    }
+    // Если компаниа вдруг начнёт умирать, ном обязательно нужно сделать отписку
+    componentWillUnmount(){
+        window.removeEventListener("unhandledrejection", this.catcAllUnhandledErrors);
     }
 
     render(){
+        // Показываем Preloader пока наше приложение инициализируется
         if (!this.props.initialized){
         return <Preloader />
         }
@@ -32,10 +44,14 @@ class App extends Component {
                 <HeaderContainer />
                 <Navbar />
                     <section className="app-wrapper-content">
-                        <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>   
-                        <Route path="/dialogs" render={() => <DialogsContainer />}/>
-                        <Route path="/users"   render={() => <UsersContainer />} />
-                        <Route path="/login"   render={() => <LoginPage />} />
+                        <Switch >
+                            <Redirect exact from="/" to="/profile" />
+                            <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>   
+                            <Route path="/dialogs" render={() => <DialogsContainer />}/>
+                            <Route path="/users"   render={() => <UsersContainer />} />
+                            <Route path="/login"   render={() => <LoginPage />} />
+                            <Route path="*"        render={() =>  <div>404 NOTE FOUND</div>}/>
+                        </Switch>
                     </section>
                 </Suspense>
             </div>

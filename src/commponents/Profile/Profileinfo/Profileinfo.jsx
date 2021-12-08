@@ -57,7 +57,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
 
             </div>
             <div> 
-                <MyPostsContainer />
+                <MyPostsContainer isOwner={isOwner}/>
             </div>
         </div>
     )

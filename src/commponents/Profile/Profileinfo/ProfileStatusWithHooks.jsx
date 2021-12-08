@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import s from './Profileinfo.module.css';
 
 const ProfileStatusWithHooks = (props) => {
-    debugger
     //local state
     // useState - возвращиет массив / Деструктуризация
     let [editMode, setEditMode] = useState(false);

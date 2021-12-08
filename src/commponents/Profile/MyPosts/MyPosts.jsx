@@ -34,8 +34,13 @@ const AddNewPostForm = (props) => {
                     <UserSmallPhotoContainer />
                 </div>
                 <div>
-                    <Field name="newPostText" component={Textarea}
-                           placeholder={"Что у вас нового ?"} />
+                    {props.isOwner
+                        ? <Field name="newPostText" component={Textarea}
+                        placeholder={"Что у вас нового ?"} />
+                        : <Field name="newPostText" component={Textarea}
+                        placeholder={"Напишите что-нибудь..."} />
+                    }
+                   
                 </div>
                 <div>
                      <button>Опубликовать</button>
