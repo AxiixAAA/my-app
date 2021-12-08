@@ -7,7 +7,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
-.Kartinka, .ProfileBoxFriends{
+.Kartinka{
     align-self: flex-start;
     width: 210px;
     max-height: 250px;
@@ -21,6 +21,7 @@
     position: relative;
     top: -110px; left: 0px;
     height: 250px;
+    width: 210px;
 }
 .Kartinka img{
     border-radius: 10px;

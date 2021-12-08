@@ -9,13 +9,10 @@ import { compose } from "redux";
 import Preloader from "commponents/Common/Preloader/Preloader";
 import HeaderContainer from "commponents/Header/HeaderContainer";
 
-import Game1 from "commponents/Games/Game1/Game1.jsx";
-
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'));
 const  ProfileContainer = React.lazy(() => import('commponents/Profile/ProfileContainer'));
 const  UsersContainer   = React.lazy(() => import('commponents/Users/UsersContainer'));
 const  LoginPage        = React.lazy(() => import('commponents/Login/Login'));
-const  Games            = React.lazy(() => import('commponents/Games/Games'));
 
 class App extends Component {
     
@@ -39,8 +36,6 @@ class App extends Component {
                         <Route path="/dialogs" render={() => <DialogsContainer />}/>
                         <Route path="/users"   render={() => <UsersContainer />} />
                         <Route path="/login"   render={() => <LoginPage />} />
-                        <Route path="/games"   render={() => <Games />} />
-                        <Route path="/game1"   render={() => <Game1 />} />
                     </section>
                 </Suspense>
             </div>
