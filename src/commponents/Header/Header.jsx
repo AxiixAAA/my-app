@@ -34,8 +34,7 @@ return <header className={s.header}>
     </div>
     <div>
         <div className={s.HeaderRigth} >
-            <UserSmallPhotoContainer /> 
-        
+            <div></div>
             <div className={s.loginBlock} >
                     {props.isAuth
                     ? <button onClick={props.logout} >Выйти</button>
