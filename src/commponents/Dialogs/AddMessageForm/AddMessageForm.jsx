@@ -1,4 +1,4 @@
-import { Textarea } from "commponents/Common/FormsControls/FormsControls";
+import { Textarea } from "../../Common/FormsControls/FormsControls";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import s from "../Dialogs.module.css";

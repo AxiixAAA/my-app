@@ -1,10 +1,10 @@
-import { createField, Input } from "commponents/Common/FormsControls/FormsControls";
-import { required } from "commponents/utils/validators/validators";
+import { createField, Input } from "../../commponents/Common/FormsControls/FormsControls";
+import { required } from "../../commponents/utils/validators/validators";
 import React from "react";
 import { connect } from "react-redux";
 import { Redirect } from "react-router";
 import { reduxForm } from "redux-form";
-import { login } from "redux/auth-reducer";
+import { login } from "../../redux/auth-reducer";
 import style from "./Login.module.css";
 
 const LoginForm = ({handleSubmit, error}) => {

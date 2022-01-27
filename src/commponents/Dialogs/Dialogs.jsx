@@ -1,4 +1,4 @@
-import Search from "commponents/Common/Search/Search";
+import Search from "../../commponents/Common/Search/Search";
 import React from "react";
 import { Redirect,Route } from "react-router-dom";
 import { AddMessageFormRedux } from "./AddMessageForm/AddMessageForm";

@@ -1,4 +1,4 @@
-import { createField, Input, Textarea } from "commponents/Common/FormsControls/FormsControls"
+import { createField, Input, Textarea } from "../../../../commponents/Common/FormsControls/FormsControls"
 import React from "react"
 import { reduxForm } from "redux-form"
 import s from './ProfileDataForm.module.css';

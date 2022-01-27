@@ -1,4 +1,4 @@
-import UserSmallPhotoContainer from 'commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
+import UserSmallPhotoContainer from '../../../../commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 

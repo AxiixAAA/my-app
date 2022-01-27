@@ -1,5 +1,5 @@
 // @ts-nocheck
-import Preloader from 'commponents/Common/Preloader/Preloader';
+import Preloader from '../../../commponents/Common/Preloader/Preloader';
 import React, { useState } from 'react';
 import s from './Profileinfo.module.css';
 import userPhoto from "../../../assets/images/avatar.png";

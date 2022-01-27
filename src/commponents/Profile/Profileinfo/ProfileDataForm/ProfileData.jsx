@@ -1,4 +1,4 @@
-import { Online } from "commponents/Common/NavigatorOnline/NavigatorOnline"
+import { Online } from "../../../../commponents/Common/NavigatorOnline/NavigatorOnline"
 import React from "react"
 import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks"
 import s from '../Profileinfo.module.css';

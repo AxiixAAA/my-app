@@ -2,7 +2,7 @@ import React from "react";
 // import Paginator from "commponents/Common/Paginator/Paginator";
 import User from "./User";
 import s from "./Users.module.css"
-import Search from "commponents/Common/Search/Search";
+import Search from "../../commponents/Common/Search/Search";
 import UserNavbar from "./UserNavbar/UserNavbar";
 
 let Users = ({totalUsersCount,pageSize, currentPage,onPageChanged,users,...props}) => {

@@ -1,6 +1,4 @@
-// @ts-nocheck
-import UserSmallPhotoContainer from 'commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
-import React from 'react';
+// import UserSmallPhotoContainer from 'commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
 import { NavLink } from 'react-router-dom';
 import s from './Header.module.css';
 

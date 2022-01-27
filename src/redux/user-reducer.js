@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { usersAPI } from "api/api";
+import { usersAPI } from "../api/api";
 import {updateObjectInArray} from "../commponents/utils/object-helpers";
 
 //Action type

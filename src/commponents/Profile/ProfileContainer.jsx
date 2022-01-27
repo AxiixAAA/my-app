@@ -1,9 +1,9 @@
-import { withAuthRedirect } from "hoc/withAuthRedirect";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { compose } from "redux";
-import { getStatus, getUserProfile, savePhoto, saveProfile, updateStatus } from "redux/profile-reducer";
+import { getStatus, getUserProfile, savePhoto, saveProfile, updateStatus } from "../../redux/profile-reducer";
 import Profile from "./Profile";
 
 

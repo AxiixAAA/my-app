@@ -9,7 +9,7 @@ let initialState = {
 };
 
 // Reducer
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action:any) => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
         return {
@@ -26,7 +26,7 @@ export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS});
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Диспатчим Авторизованного пользователя
-export const  initializeApp = () => (dispatch) => {
+export const  initializeApp = () => (dispatch:any) => {
     let promise = dispatch(getAuthUserData());
     Promise.all([promise]) 
     .then(() => {

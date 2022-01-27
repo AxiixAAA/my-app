@@ -3,16 +3,16 @@ import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./commponents/Navbar/Navbar";
 import { connect } from "react-redux";
-import { initializeApp } from "redux/app-reducer";
+import { initializeApp } from "./redux/app-reducer";
 import { compose } from "redux";
 
-import Preloader from "commponents/Common/Preloader/Preloader";
-import HeaderContainer from "commponents/Header/HeaderContainer";
+import Preloader from "./commponents/Common/Preloader/Preloader";
+import HeaderContainer from "./commponents/Header/HeaderContainer";
 
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'));
-const  ProfileContainer = React.lazy(() => import('commponents/Profile/ProfileContainer'));
-const  UsersContainer   = React.lazy(() => import('commponents/Users/UsersContainer'));
-const  LoginPage        = React.lazy(() => import('commponents/Login/Login'));
+const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'));
+const  UsersContainer   = React.lazy(() => import('./commponents/Users/UsersContainer'));
+const  LoginPage        = React.lazy(() => import('./commponents/Login/Login'));
 
 class App extends Component {
     // Все необработаные ошибки в помисах

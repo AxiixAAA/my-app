@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { profileAPI, usersAPI } from "api/api";
+import { profileAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 
 // Action type 
