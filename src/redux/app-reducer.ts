@@ -3,13 +3,16 @@ import { getAuthUserData } from "./auth-reducer";
 // установить пользовательские данные
 const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
 
+export type InitialStateType = {
+    initialized: boolean
+}
 // state
 let initialState = {
     initialized: false
 };
 
 // Reducer
-const appReducer = (state = initialState, action:any) => {
+const appReducer = (state = initialState, action:any): InitialStateType => {
     switch (action.type) {
         case INITIALIZED_SUCCESS:
         return {
@@ -21,8 +24,12 @@ const appReducer = (state = initialState, action:any) => {
     }
 }
 
+type InitializedSuccessActionType = {
+    type: typeof INITIALIZED_SUCCESS
+}
+
 // Action creator чистая функция которая возвращает action
-export const initializedSuccess = () => ({ type: INITIALIZED_SUCCESS});
+export const initializedSuccess = (): InitializedSuccessActionType => ({ type: INITIALIZED_SUCCESS});
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Диспатчим Авторизованного пользователя

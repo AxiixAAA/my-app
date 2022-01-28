@@ -1,6 +1,6 @@
-// @ts-nocheck
 import { profileAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
+import { PhotosType, PostType, ProfileType } from "../Types/types";
 
 // Action type 
 const ADD_POST = "ADD-POST";
@@ -9,18 +9,21 @@ const SET_STATUS = "SET_STATUS ";
 const DELETE_POST = "DELETE_POST";
 const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 
+
 // kolhoz state
 let initialState = {
   posts: [
     { id: 1, fullName: null, message: "Привет мир!", likesCount: 12 },
-  ],
+  ] as Array<PostType>,
   
-  profile: null,
-  status: ""
+  profile: null as ProfileType|null,
+  status: '',
+  newPostText: ''
 };
 
+export type InitialStateType = typeof initialState
 // Reducer
-const profileReducer = (state = initialState, action) => {
+const profileReducer = (state = initialState, action:any):InitialStateType => {
     switch (action.type) {
         // Добавить запись
         case ADD_POST: {
@@ -46,35 +49,55 @@ const profileReducer = (state = initialState, action) => {
         case SET_STATUS: return{...state,status: action.status}
 
         //
-        case SAVE_PHOTO_SUCCESS: return{...state,profile:{...state.profile, photos: action.photos}}
+        case SAVE_PHOTO_SUCCESS: return{...state,profile:{...state.profile, photos: action.photos} as ProfileType}
 
         default: return state;
     };
 };
 
+type addPostActionCreatorActionType = {
+    type: typeof ADD_POST
+    newPostText: string
+}
 // Action creator чистая функция которая возвращает action
-export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostText });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile});
-export const setStatus = (status) => ({ type: SET_STATUS, status});
-export const deletePost = (postId) => ({type:  DELETE_POST, postId})
-export const savePhotoSuccess = (photos) => ({type:  SAVE_PHOTO_SUCCESS, photos})
+export const addPostActionCreator = (newPostText:string):addPostActionCreatorActionType => ({ type: ADD_POST, newPostText });
+type SetUserProfileActionType = {
+    type: typeof SET_USER_PROFILE
+    profile:ProfileType
+}
+export const setUserProfile = (profile:ProfileType):SetUserProfileActionType => ({ type: SET_USER_PROFILE, profile});
+type SetStatusActionType = {
+    type: typeof SET_STATUS
+    status:string
+}
+export const setStatus = (status:string):SetStatusActionType => ({ type: SET_STATUS, status});
+type DeletePostActionType = {
+    type: typeof DELETE_POST
+    postId:number
+}
+export const deletePost = (postId:number):DeletePostActionType => ({type:  DELETE_POST, postId})
+type SavePhotoSuccessActionType = {
+    type: typeof SAVE_PHOTO_SUCCESS
+    photos:PhotosType
+}
+export const savePhotoSuccess = (photos:PhotosType):SavePhotoSuccessActionType => ({type:  SAVE_PHOTO_SUCCESS, photos})
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Поучаем все данные о пользователе
-export const getUserProfile = (userId) => async (dispatch) => {
+export const getUserProfile = (userId:number) => async (dispatch:any) => {
     // В response будет сидеть результат которым зарезолвится промис
     let response = await usersAPI.getProfile(userId);
     dispatch(setUserProfile(response.data));
 }
 
 //  Получаем статус
-export const getStatus = (userId) => async (dispatch) => {
+export const getStatus = (userId:number) => async (dispatch:any) => {
     let response = await profileAPI.getStatus(userId);
     dispatch(setStatus(response.data));
 }
 
 // Изменяем статус
-export const updateStatus = (status) => async (dispatch) => {
+export const updateStatus = (status:string) => async (dispatch:any) => {
     let response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === 0){
         dispatch(setStatus(status))
@@ -82,7 +105,7 @@ export const updateStatus = (status) => async (dispatch) => {
 }
 
 // Изменяем фото профиля
-export const savePhoto = (file) => async (dispatch) => {
+export const savePhoto = (file:any) => async (dispatch:any) => {
     let response = await profileAPI.savePhoto(file);
     if (response.data.resultCode === 0){
         dispatch(savePhotoSuccess(response.data.data.photos))
@@ -90,7 +113,7 @@ export const savePhoto = (file) => async (dispatch) => {
 }
 
 // Изменяем фото профиля
-export const saveProfile = (profile) => async (dispatch, getState) => {
+export const saveProfile = (profile:ProfileType) => async (dispatch:any, getState:any) => {
     const userId = getState().auth.userId;
     const response = await profileAPI.saveProfile(profile);
 

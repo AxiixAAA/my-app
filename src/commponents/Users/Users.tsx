@@ -1,11 +1,24 @@
-import React from "react";
+import React, { FC } from "react";
 // import Paginator from "commponents/Common/Paginator/Paginator";
 import User from "./User";
 import s from "./Users.module.css"
-import Search from "../../commponents/Common/Search/Search";
+import Search from "../Common/Search/Search";
 import UserNavbar from "./UserNavbar/UserNavbar";
+import { UserType } from "../../Types/types";
 
-let Users = ({totalUsersCount,pageSize, currentPage,onPageChanged,users,...props}) => {
+//PropsType
+type PropsType = {
+    totalUsersCount: number
+    pageSize:number
+    currentPage:number
+    onPageChanged:number
+    users: Array<UserType>
+    followingInProgress: Array<number>
+    unfollow: () => void
+    follow: () => void
+    
+}
+let Users: FC<PropsType> = ({totalUsersCount,pageSize, currentPage,onPageChanged,users,...props}) => {
 
     return <>
         {/* Список пользователей */}

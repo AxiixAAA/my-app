@@ -1,12 +1,19 @@
-// @ts-nocheck
 import { authAPI} from "../api/api";
 import { stopSubmit } from "redux-form";
+import { InitialStateType } from "./app-reducer";
 
 // Action type
 const SET_USER_DATA = "React/auth/SET_USER_DATA";
 
+// 
+export type InitialState = {
+    userId: number |null,
+    email:  string |null,
+    login:  string |null,
+    isAuth: boolean
+}
 // state
-let initialState = {
+let initialState : InitialState = {
   userId: null,
   email: null,
   login: null,
@@ -14,7 +21,7 @@ let initialState = {
 };
 
 // Reducer
-const authReducer = (state = initialState, action) => {
+const authReducer = (state = initialState, action:any): InitialStateType => {
      switch (action.type) {
         //Получаем данные о пользователе 
         case SET_USER_DATA:
@@ -27,12 +34,26 @@ const authReducer = (state = initialState, action) => {
     }
 }
 
+type SetAuthUserDaraActionPayloadType = {
+    userId: number| null,
+    email:  string| null,
+    login:  string| null,
+    isAuth: boolean|null
+}
+
+type SetAuthUserDaraActionType = {
+    type: typeof SET_USER_DATA,
+    payload: SetAuthUserDaraActionPayloadType
+        
+}
 // Action creator чистая функция которая возвращает action
-export const setAuthUserData = (userId, email, login, isAuth) => ({ type: SET_USER_DATA, payload: {userId, email, login, isAuth} })
+export const setAuthUserData = (userId:number | null, email:string | null, login:string | null, isAuth:boolean | null):SetAuthUserDaraActionType => ({ 
+    type: SET_USER_DATA, 
+    payload:{userId, email, login, isAuth} })
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Получаем данные о пользователе 
-export const getAuthUserData = () => async (dispatch) => {
+export const getAuthUserData = () => async (dispatch:any) => {
     let response = await authAPI.me();
 
     if (response.data.resultCode === 0) {         
@@ -42,7 +63,7 @@ export const getAuthUserData = () => async (dispatch) => {
 }
 
 // Логинемся
-export const login = (email, password, rememberMe) => async (dispatch) => {
+export const login = (email, password, rememberMe) => async (dispatch:any) => {
     let response = await authAPI.login(email, password, rememberMe);
          
     if (response.data.resultCode === 0) {
@@ -55,7 +76,7 @@ export const login = (email, password, rememberMe) => async (dispatch) => {
 }
 
 // Вылогиневаемся
-export const logout = () => async (dispatch) => {
+export const logout = () => async (dispatch:any) => {
     let response = await authAPI.logout();
          
     if (response.data.resultCode === 0) {
