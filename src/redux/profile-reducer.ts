@@ -91,7 +91,7 @@ export const savePhotoSuccess = (photos:PhotosType):SavePhotoSuccessActionType =
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Поучаем все данные о пользователе
 //
-type GetStateType = () => AppStateType
+// type GetStateType = () => AppStateType
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 export const getUserProfile = (userId:number):ThunkType =>
  async (dispatch) => {

@@ -1,4 +1,4 @@
-import { authAPI} from "../api/api";
+import { authAPI, ResultCodesEnum} from "../api/api";
 import { stopSubmit } from "redux-form";
 import { AppStateType } from "./redux-store";
 import { ThunkAction } from "redux-thunk";
@@ -59,11 +59,9 @@ export const setAuthUserData = (userId:number | null, email:string | null, login
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 export const getAuthUserData = (): ThunkType =>
  async (dispatch) => {
-    let response = await authAPI.me();
-    //@ts-ignore
-    if (response.data.resultCode === 0) {        
-        //@ts-ignore 
-        let {id, email, login} = response.data.data;
+    let meData = await authAPI.me();
+    if (meData.resultCode === ResultCodesEnum.Success) {        
+        let {id, email, login} = meData.data;
         dispatch(setAuthUserData(id, email, login, true));
     }
 }
@@ -71,14 +69,13 @@ export const getAuthUserData = (): ThunkType =>
 // Логинемся
 export const login = (email:string, password:string, rememberMe:boolean):ThunkType =>
  async (dispatch) => {
-    let response = await authAPI.login(email, password, rememberMe);
-    //@ts-ignore
-    if (response.data.resultCode === 0) {
+    let loginData = await authAPI.login(email, password, rememberMe);
+
+    if (loginData.resultCode === ResultCodesEnum.Success) {
         dispatch(getAuthUserData())
     }
     else{
-        //@ts-ignore
-        let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error"; 
+        let message = loginData.messages.length > 0 ? loginData.messages[0] : "Some error"; 
         //@ts-ignore
         dispatch(stopSubmit("login", {_error: message}));
     }
@@ -87,9 +84,9 @@ export const login = (email:string, password:string, rememberMe:boolean):ThunkTy
 // Вылогиневаемся
 export const logout = ():ThunkType =>
  async (dispatch) => {
-    let response = await authAPI.logout();
-     //@ts-ignore    
-    if (response.data.resultCode === 0) {
+    let logoutData = await authAPI.logout();
+   
+    if (logoutData.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, false));
     }
 }
