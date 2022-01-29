@@ -1,6 +1,8 @@
 import { profileAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 import { PhotosType, PostType, ProfileType } from "../Types/types";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "./redux-store";
 
 // Action type 
 const ADD_POST = "ADD-POST";
@@ -55,6 +57,10 @@ const profileReducer = (state = initialState, action:any):InitialStateType => {
     };
 };
 
+//Action type
+type ActionsType = addPostActionCreatorActionType|SetUserProfileActionType|SetStatusActionType|
+                   DeletePostActionType|SavePhotoSuccessActionType
+
 type addPostActionCreatorActionType = {
     type: typeof ADD_POST
     newPostText: string
@@ -84,44 +90,60 @@ export const savePhotoSuccess = (photos:PhotosType):SavePhotoSuccessActionType =
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи
 // Поучаем все данные о пользователе
-export const getUserProfile = (userId:number) => async (dispatch:any) => {
+//
+type GetStateType = () => AppStateType
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
+export const getUserProfile = (userId:number):ThunkType =>
+ async (dispatch) => {
     // В response будет сидеть результат которым зарезолвится промис
     let response = await usersAPI.getProfile(userId);
+    //@ts-ignore
     dispatch(setUserProfile(response.data));
 }
 
 //  Получаем статус
-export const getStatus = (userId:number) => async (dispatch:any) => {
+export const getStatus = (userId:number):ThunkType =>
+ async (dispatch) => {
     let response = await profileAPI.getStatus(userId);
+    //@ts-ignore
     dispatch(setStatus(response.data));
 }
 
 // Изменяем статус
-export const updateStatus = (status:string) => async (dispatch:any) => {
+export const updateStatus = (status:string):ThunkType =>
+ async (dispatch) => {
     let response = await profileAPI.updateStatus(status);
+    //@ts-ignore
     if (response.data.resultCode === 0){
         dispatch(setStatus(status))
     }
 }
 
 // Изменяем фото профиля
-export const savePhoto = (file:any) => async (dispatch:any) => {
+export const savePhoto = (file:any):ThunkType =>
+ async (dispatch) => {
     let response = await profileAPI.savePhoto(file);
+    //@ts-ignore
     if (response.data.resultCode === 0){
+        //@ts-ignore
         dispatch(savePhotoSuccess(response.data.data.photos))
     }
 }
 
 // Изменяем фото профиля
-export const saveProfile = (profile:ProfileType) => async (dispatch:any, getState:any) => {
+export const saveProfile = (profile:ProfileType):ThunkType =>
+ async (dispatch, getState) => {
     const userId = getState().auth.userId;
     const response = await profileAPI.saveProfile(profile);
-
+    //@ts-ignore
     if (response.data.resultCode === 0){
-        dispatch(getUserProfile(userId));
+        //@ts-ignore 
+        dispatch(getUserProfile(userId));//????????????????? 
     }else{
         // dispatch(stopSubmit("edit-profile", {"contacts": {"facebook": response.data.messages[0]} }));
+        //@ts-ignore
         dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0] }));
+        //@ts-ignore
         return Promise.reject(response.data.message);
     }
 }

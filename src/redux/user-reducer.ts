@@ -1,6 +1,9 @@
+import { ThunkAction } from 'redux-thunk';
+import { Dispatch } from "redux";
 import { usersAPI } from "../api/api";
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../Types/types";
+import { AppStateType } from "./redux-store";
 
 //Action type
 const FOLLOW 						= "FOLLOW";
@@ -25,7 +28,7 @@ type InitialState = typeof initialState
 //Action приходит в store всего один, а дальше раскидывается по reducer, заходя в reduser если action не применялся в case, reducer возвращает не изменёную разметку 
 //reduser это чистая функция которая принимает state,action и если нужно применяет этот action к state и возвращает новый state, либо возвращает не изменёный state если action не подошёл
 //Следом после изменения всех reducer, возвращается новый актуальный state
-const userReducer = (state = initialState, action:any):InitialState => {
+const userReducer = (state = initialState, action:ActionsType):InitialState => {
 	switch (action.type) {
 
 		//Подписаться
@@ -66,6 +69,11 @@ const userReducer = (state = initialState, action:any):InitialState => {
 		default:return state;
 	}
 };
+
+// Action который ждёт наш Reducer
+type ActionsType = FollowSuccessActionType | UnfollowSuccessActionType | SetUsersActionType |
+        SetCurrentPageActionType | SetTotalUsersCountActionType | ToggleIsFetchingActionType|
+        ToggleFollowingProgressActionType
 
 //Экшены — это структуры, которые передают данные из приложения в store.
 // Они являются единственными источниками информации для store. Мы отправляете их в стор, используя метод store.dispatch().
@@ -110,20 +118,27 @@ export const toggleFollowingProgress = (isFetching:boolean, userId:number):Toggl
 
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи 
 // Получить пользователей
-export const getUsers  = (page:number,pageSize:number) => { // Thank Creater 
-	return async (dispatch:any) =>{               // Thank - благодаря замыканиям в Thank Creater,
-		dispatch(toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
+//ThunkAction<void, RootState, unknown, AnyAction>
+type GetStateType = () => AppStateType
+type DispatchType = Dispatch<ActionsType>
+type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
+// ThunkAction<void, RootState, unknown, AnyAction>
+export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank Creater 
+	return async (dispatch, getState: () => AppStateType) =>{               // Thank - благодаря замыканиям в Thank Creater,
+		// dispatch(toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
 		dispatch(setCurrentPage(page));       // Thank - работает как-то иначе
 
 		let data = await usersAPI.getUsers (page,pageSize);
 		dispatch(toggleIsFetching(false));
+         //@ts-ignore
 		dispatch(setUsers(data.items));
+         //@ts-ignore
 		dispatch(setTotalUsersCount(data.totalCount));
 	}
 }
 
 // Общая функция для подписки и отписки 
-const followUnfollowFlow = async (dispatch:any, userId:number, apiMethod:any, actionCreater:any) => {
+const followUnfollowFlow = async (dispatch:DispatchType, userId:number, apiMethod:any, actionCreater: (userId: number) => FollowSuccessActionType | UnfollowSuccessActionType) => {
     dispatch(toggleFollowingProgress(true, userId));
         let response = await apiMethod(userId)
         if (response.data.resultCode === 0) {
@@ -133,15 +148,15 @@ const followUnfollowFlow = async (dispatch:any, userId:number, apiMethod:any, ac
 }
 
 // Подписаться
-export const follow = (userId:number) => {
-    return async (dispatch:any) =>{
+export const follow = (userId:number):ThunkType => {
+    return async (dispatch) =>{
         followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
     }
  }
 
  // Отписаться
-export const unfollow = (userId:number) => {
-  return async (dispatch:any) =>{
+export const unfollow = (userId:number):ThunkType => {
+  return async (dispatch) =>{
         followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
 	}
 }
