@@ -3,16 +3,7 @@ import { Dispatch } from "redux";
 import { usersAPI } from "../api/api";
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../Types/types";
-import { AppStateType } from "./redux-store";
-
-//Action type
-const FOLLOW 						= "FOLLOW";
-const UNFOLLOW						= "UNFOLLOW";
-const SET_USERS 					= "SET_USERS";
-const SET_CURRENT_PAGE 				= "SET_CURRENT_PAGE";
-const SET_TOTAL_USERS_COUNT 		= "SET_TOTAL_USERS_COUNT";
-const TOGGLE_IS_FETCHING 			= "TOGGLE_IS_FETCHING";
-const TOGGLE_IS_FOLLOWING_PROGRESS  = "TOGGLE_IS_FOLLOWING_PROGRESS";
+import { AppStateType, InferActionsTypes } from "./redux-store";
 
 // state
 let initialState = {
@@ -32,32 +23,32 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 	switch (action.type) {
 
 		//Подписаться
-		case FOLLOW:
+		case 'FOLLOW':
 		return {
 			...state,
 			users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
 		}
 		//Отписаться
-		case UNFOLLOW:
+		case 'UNFOLLOW':
 		return {
 			...state,
 			users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
 		}
 
 		//Инициализировать пользователей
-		case SET_USERS: {return { ...state, users:action.users }}
+		case 'SET_USERS': {return { ...state, users:action.users }}
 
 		//установить текущую страницу
-		case SET_CURRENT_PAGE: {return { ...state, currentPage: action.currentPage}}
+		case 'SET_CURRENT_PAGE': {return { ...state, currentPage: action.currentPage}}
 
 		//установить общее количество пользоватлей
-		case SET_TOTAL_USERS_COUNT: {return { ...state, totalUsersCount: action.count}}
+		case 'SET_TOTAL_USERS_COUNT': {return { ...state, totalUsersCount: action.count}}
 
 		//Показывает preloader~
-		case TOGGLE_IS_FETCHING: {return { ...state, isFetching: action.isFetching}}
+		case 'TOGGLE_IS_FETCHING': {return { ...state, isFetching: action.isFetching}}
 
 		// для дизейбла кнопки во вреям аодписки ~ отписки
-		case TOGGLE_IS_FOLLOWING_PROGRESS: {
+		case 'TOGGLE_IS_FOLLOWING_PROGRESS': {
 		return { 
 			...state, 
 			followingInProgress: action.isFetching 
@@ -71,65 +62,35 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 };
 
 // Action который ждёт наш Reducer
-type ActionsType = FollowSuccessActionType | UnfollowSuccessActionType | SetUsersActionType |
-        SetCurrentPageActionType | SetTotalUsersCountActionType | ToggleIsFetchingActionType|
-        ToggleFollowingProgressActionType
+type ActionsType = InferActionsTypes<typeof actions>
 
 //Экшены — это структуры, которые передают данные из приложения в store.
 // Они являются единственными источниками информации для store. Мы отправляете их в стор, используя метод store.dispatch().
 
-// Action creator чистая функция которая возвращает action
-type FollowSuccessActionType ={
-    type: typeof FOLLOW
-    userId:number
+// Actions
+export const actions = {
+    followSuccess      :     (userId:number)		 => ({ type: 'FOLLOW', userId } as const),
+    unfollowSuccess    :     (userId:number)		 => ({ type: 'UNFOLLOW', userId } as const),
+    setUsers 		   :     (users:Array<UserType>) => ({ type: 'SET_USERS', users } as const),
+    setCurrentPage     :     (currentPage:number)    => ({ type: 'SET_CURRENT_PAGE', currentPage} as const),
+    setTotalUsersCount :     (totalCount:number)     => ({ type: 'SET_TOTAL_USERS_COUNT', count:totalCount} as const),
+    toggleIsFetching   :     (isFetching:boolean)    => ({ type: 'TOGGLE_IS_FETCHING', isFetching} as const),
+    toggleFollowingProgress: (isFetching:boolean, userId:number)=> ({ type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId} as const)
 }
-export const followSuccess 		=   (userId:number):FollowSuccessActionType 		=> ({ type: FOLLOW, userId })
-type UnfollowSuccessActionType ={
-    type: typeof UNFOLLOW
-    userId:number
-}
-export const unfollowSuccess    =   (userId:number):UnfollowSuccessActionType 		=> ({ type: UNFOLLOW, userId })
-type SetUsersActionType ={
-    type: typeof SET_USERS
-    users: Array<UserType>
-}
-export const setUsers 			=   (users:Array<UserType>):SetUsersActionType => ({ type: SET_USERS, users })
-type SetCurrentPageActionType ={
-    type: typeof SET_CURRENT_PAGE
-    currentPage: number
-}
-export const setCurrentPage     =   (currentPage:number):SetCurrentPageActionType    => ({ type: SET_CURRENT_PAGE, currentPage})
-type SetTotalUsersCountActionType ={
-    type: typeof SET_TOTAL_USERS_COUNT
-    count: number
-}
-export const setTotalUsersCount =   (totalCount:number):SetTotalUsersCountActionType     => ({ type: SET_TOTAL_USERS_COUNT, count:totalCount})
-type ToggleIsFetchingActionType ={
-    type: typeof TOGGLE_IS_FETCHING
-    isFetching: boolean
-}
-export const toggleIsFetching   =   (isFetching:boolean):ToggleIsFetchingActionType    => ({ type: TOGGLE_IS_FETCHING, isFetching})
-type ToggleFollowingProgressActionType ={
-    type: typeof TOGGLE_IS_FOLLOWING_PROGRESS
-    isFetching: boolean
-    userId:number
-}
-export const toggleFollowingProgress = (isFetching:boolean, userId:number):ToggleFollowingProgressActionType => ({ type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId})
-
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи 
 // Получить пользователей
 //ThunkAction<void, RootState, unknown, AnyAction>
-type GetStateType = () => AppStateType
+// type GetStateType = () => AppStateType
 type DispatchType = Dispatch<ActionsType>
 type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 // ThunkAction<void, RootState, unknown, AnyAction>
 export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank Creater 
 	return async (dispatch, getState: () => AppStateType) =>{               // Thank - благодаря замыканиям в Thank Creater,
 		// dispatch(toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
-		dispatch(setCurrentPage(page));       // Thank - работает как-то иначе
+		dispatch(actions.setCurrentPage(page));       // Thank - работает как-то иначе
 
 		let data = await usersAPI.getUsers (page,pageSize);
-		dispatch(toggleIsFetching(false));
+		dispatch(actions.toggleIsFetching(false));
          //@ts-ignore
 		dispatch(setUsers(data.items));
          //@ts-ignore
@@ -138,26 +99,26 @@ export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank
 }
 
 // Общая функция для подписки и отписки 
-const followUnfollowFlow = async (dispatch:DispatchType, userId:number, apiMethod:any, actionCreater: (userId: number) => FollowSuccessActionType | UnfollowSuccessActionType) => {
-    dispatch(toggleFollowingProgress(true, userId));
+const followUnfollowFlow = async (dispatch:DispatchType, userId:number, apiMethod:any, actionCreater: (userId: number) => ActionsType) => {
+    dispatch(actions.toggleFollowingProgress(true, userId));
         let response = await apiMethod(userId)
         if (response.data.resultCode === 0) {
             dispatch(actionCreater(userId)); 
         }
-        dispatch(toggleFollowingProgress(false, userId));
+        dispatch(actions.toggleFollowingProgress(false, userId));
 }
 
 // Подписаться
 export const follow = (userId:number):ThunkType => {
     return async (dispatch) =>{
-        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), followSuccess);
+        followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), actions.followSuccess);
     }
  }
 
  // Отписаться
 export const unfollow = (userId:number):ThunkType => {
   return async (dispatch) =>{
-        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), unfollowSuccess);
+        followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), actions.unfollowSuccess);
 	}
 }
 

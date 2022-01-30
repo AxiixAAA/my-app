@@ -23,6 +23,9 @@ let rootReducer = combineReducers({
 type RootReducerType = typeof rootReducer // (globalstate: AppDtateType) => AppStateType
 //экспортируем весь тип приложения
 export type AppStateType = ReturnType<RootReducerType>
+
+type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
+export type InferActionsTypes<T extends {[key: string]: (...args: any[])=>any}> = ReturnType<PropertiesTypes<T>>
 // createStore - Создает Redux стор которое хранит полное дерево состояния приложения. Оно должно быть единственным стором в приложении.
 //
 // Параметры:
