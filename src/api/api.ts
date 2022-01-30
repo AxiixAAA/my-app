@@ -71,13 +71,22 @@ type LogoutResponseType = {
 //  auth - авторизация
 export const authAPI = {
     me(){return instance.get<MeResponseType>(`auth/me`).then(res => res.data)},
-    login(email:string, password:string, rememberMe = false) {
-        return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe })
+    login(email:string, password:string, rememberMe = false, captcha = null) {
+        return instance.post<LoginResponseType>(`auth/login`, {email, password, rememberMe,captcha })
             .then(res => res.data)
     },
     logout() {return instance.delete<LogoutResponseType>(`auth/login`)
             .then(res => res.data)
     },
 };
+
+type securityAPIType = {
+   url:string
+}
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get<securityAPIType>(`security/get-captcha-url`)
+    }
+}
 
 
