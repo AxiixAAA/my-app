@@ -1,8 +1,10 @@
-import { profileAPI, usersAPI } from "../api/api";
 import { stopSubmit } from "redux-form";
 import { PhotosType, PostType, ProfileType } from "../Types/types";
 import { ThunkAction } from "redux-thunk";
 import { AppStateType } from "./redux-store";
+
+import { profileAPI } from "../api/profile-api";
+import { ResultCodesEnum } from "../api/api";
 
 // Action type 
 const ADD_POST = "ADD-POST";
@@ -96,25 +98,22 @@ type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 export const getUserProfile = (userId:number):ThunkType =>
  async (dispatch) => {
     // В response будет сидеть результат которым зарезолвится промис
-    let response = await usersAPI.getProfile(userId);
-    //@ts-ignore
-    dispatch(setUserProfile(response.data));
+    let data = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(data));
 }
 
 //  Получаем статус
 export const getStatus = (userId:number):ThunkType =>
  async (dispatch) => {
-    let response = await profileAPI.getStatus(userId);
-    //@ts-ignore
-    dispatch(setStatus(response.data));
+    let data = await profileAPI.getStatus(userId);
+    dispatch(setStatus(data));
 }
 
 // Изменяем статус
 export const updateStatus = (status:string):ThunkType =>
  async (dispatch) => {
-    let response = await profileAPI.updateStatus(status);
-    //@ts-ignore
-    if (response.data.resultCode === 0){
+    let data = await profileAPI.updateStatus(status);
+    if (data.resultCode === 0){
         dispatch(setStatus(status))
     }
 }
@@ -122,11 +121,10 @@ export const updateStatus = (status:string):ThunkType =>
 // Изменяем фото профиля
 export const savePhoto = (file:any):ThunkType =>
  async (dispatch) => {
-    let response = await profileAPI.savePhoto(file);
-    //@ts-ignore
-    if (response.data.resultCode === 0){
-        //@ts-ignore
-        dispatch(savePhotoSuccess(response.data.data.photos))
+    let data = await profileAPI.savePhoto(file);
+
+    if (data.resultCode === ResultCodesEnum.Success){
+        dispatch(savePhotoSuccess(data.data.photos))
     }
 }
 
@@ -134,17 +132,17 @@ export const savePhoto = (file:any):ThunkType =>
 export const saveProfile = (profile:ProfileType):ThunkType =>
  async (dispatch, getState) => {
     const userId = getState().auth.userId;
-    const response = await profileAPI.saveProfile(profile);
-    //@ts-ignore
-    if (response.data.resultCode === 0){
-        //@ts-ignore 
+    const data = await profileAPI.saveProfile(profile);
+
+    if (data.resultCode === ResultCodesEnum.Success){
+        //@ts-ignore
         dispatch(getUserProfile(userId));//????????????????? 
     }else{
         // dispatch(stopSubmit("edit-profile", {"contacts": {"facebook": response.data.messages[0]} }));
         //@ts-ignore
-        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0] }));
+        dispatch(stopSubmit("edit-profile", {_error: data.messages[0] }));
         //@ts-ignore
-        return Promise.reject(response.data.message);
+        return Promise.reject(data.messages[0]);
     }
 }
 

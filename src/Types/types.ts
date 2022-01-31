@@ -19,6 +19,7 @@ export type PhotosType = {
     large: string|null
 }
 export type ProfileType = {
+    data:any
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string

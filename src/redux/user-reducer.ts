@@ -1,9 +1,10 @@
 import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from "redux";
-import { usersAPI } from "../api/api";
+
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../Types/types";
 import { AppStateType, InferActionsTypes } from "./redux-store";
+import { usersAPI } from '../api/users-api';
 
 // state
 let initialState = {
@@ -91,10 +92,8 @@ export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank
 
 		let data = await usersAPI.getUsers (page,pageSize);
 		dispatch(actions.toggleIsFetching(false));
-         //@ts-ignore
-		dispatch(setUsers(data.items));
-         //@ts-ignore
-		dispatch(setTotalUsersCount(data.totalCount));
+		dispatch(actions.setUsers(data.items));
+		dispatch(actions.setTotalUsersCount(data.totalCount));
 	}
 }
 
