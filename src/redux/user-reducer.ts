@@ -1,9 +1,7 @@
-import { ThunkAction } from 'redux-thunk';
 import { Dispatch } from "redux";
-
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../Types/types";
-import { AppStateType, InferActionsTypes } from "./redux-store";
+import { AppStateType, BaseThunkType, InferActionsTypes } from "./redux-store";
 import { usersAPI } from '../api/users-api';
 
 // state
@@ -24,32 +22,32 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 	switch (action.type) {
 
 		//Подписаться
-		case 'FOLLOW':
+		case 'SN/USERS/FOLLOW':
 		return {
 			...state,
 			users: updateObjectInArray(state.users, action.userId, "id", {followed: true})
 		}
 		//Отписаться
-		case 'UNFOLLOW':
+		case 'SN/USERS/UNFOLLOW':
 		return {
 			...state,
 			users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
 		}
 
 		//Инициализировать пользователей
-		case 'SET_USERS': {return { ...state, users:action.users }}
+		case 'SN/USERS/SET_USERS': {return { ...state, users:action.users }}
 
 		//установить текущую страницу
-		case 'SET_CURRENT_PAGE': {return { ...state, currentPage: action.currentPage}}
+		case 'SN/USERS/SET_CURRENT_PAGE': {return { ...state, currentPage: action.currentPage}}
 
 		//установить общее количество пользоватлей
-		case 'SET_TOTAL_USERS_COUNT': {return { ...state, totalUsersCount: action.count}}
+		case 'SN/USERS/SET_TOTAL_USERS_COUNT': {return { ...state, totalUsersCount: action.count}}
 
 		//Показывает preloader~
-		case 'TOGGLE_IS_FETCHING': {return { ...state, isFetching: action.isFetching}}
+		case 'SN/USERS/TOGGLE_IS_FETCHING': {return { ...state, isFetching: action.isFetching}}
 
 		// для дизейбла кнопки во вреям аодписки ~ отписки
-		case 'TOGGLE_IS_FOLLOWING_PROGRESS': {
+		case 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS': {
 		return { 
 			...state, 
 			followingInProgress: action.isFetching 
@@ -62,28 +60,21 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 	}
 };
 
-// Action который ждёт наш Reducer
-type ActionsType = InferActionsTypes<typeof actions>
-
 //Экшены — это структуры, которые передают данные из приложения в store.
 // Они являются единственными источниками информации для store. Мы отправляете их в стор, используя метод store.dispatch().
 
 // Actions
 export const actions = {
-    followSuccess      :     (userId:number)		 => ({ type: 'FOLLOW', userId } as const),
-    unfollowSuccess    :     (userId:number)		 => ({ type: 'UNFOLLOW', userId } as const),
-    setUsers 		   :     (users:Array<UserType>) => ({ type: 'SET_USERS', users } as const),
-    setCurrentPage     :     (currentPage:number)    => ({ type: 'SET_CURRENT_PAGE', currentPage} as const),
-    setTotalUsersCount :     (totalCount:number)     => ({ type: 'SET_TOTAL_USERS_COUNT', count:totalCount} as const),
-    toggleIsFetching   :     (isFetching:boolean)    => ({ type: 'TOGGLE_IS_FETCHING', isFetching} as const),
-    toggleFollowingProgress: (isFetching:boolean, userId:number)=> ({ type: 'TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId} as const)
+    followSuccess      :     (userId:number)		 => ({ type: 'SN/USERS/FOLLOW', userId } as const),
+    unfollowSuccess    :     (userId:number)		 => ({ type: 'SN/USERS/UNFOLLOW', userId } as const),
+    setUsers 		   :     (users:Array<UserType>) => ({ type: 'SN/USERS/SET_USERS', users } as const),
+    setCurrentPage     :     (currentPage:number)    => ({ type: 'SN/USERS/SET_CURRENT_PAGE', currentPage} as const),
+    setTotalUsersCount :     (totalCount:number)     => ({ type: 'SN/USERS/SET_TOTAL_USERS_COUNT', count:totalCount} as const),
+    toggleIsFetching   :     (isFetching:boolean)    => ({ type: 'SN/USERS/TOGGLE_IS_FETCHING', isFetching} as const),
+    toggleFollowingProgress: (isFetching:boolean, userId:number)=> ({ type: 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId} as const)
 }
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи 
 // Получить пользователей
-//ThunkAction<void, RootState, unknown, AnyAction>
-// type GetStateType = () => AppStateType
-type DispatchType = Dispatch<ActionsType>
-type ThunkType = ThunkAction<Promise<void>, AppStateType, unknown, ActionsType>
 // ThunkAction<void, RootState, unknown, AnyAction>
 export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank Creater 
 	return async (dispatch, getState: () => AppStateType) =>{               // Thank - благодаря замыканиям в Thank Creater,
@@ -121,4 +112,8 @@ export const unfollow = (userId:number):ThunkType => {
 	}
 }
 
-export default userReducer;
+export default userReducer
+
+type ActionsType = InferActionsTypes<typeof actions>
+type DispatchType = Dispatch<ActionsType>
+type ThunkType = BaseThunkType<ActionsType>

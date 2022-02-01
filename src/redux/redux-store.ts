@@ -1,11 +1,11 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
+import { Action, applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import authReducer from "./auth-reducer";
 import dialogsReducer from "./dialogs-reducer";
 import profileReducer from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import userReducer from "./user-reducer";
-import thunkMiddleware from "redux-thunk"
+import thunkMiddleware, { ThunkAction } from "redux-thunk"
 import appReducer from "./app-reducer";
 
 //combineReducers. Это метод, который позволяет вместо того, чтобы создавать один огромный reducer для всего состояния приложения сразу, разбивать его на отдельные модули.
@@ -26,6 +26,9 @@ export type AppStateType = ReturnType<RootReducerType>
 
 type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
 export type InferActionsTypes<T extends {[key: string]: (...args: any[])=>any}> = ReturnType<PropertiesTypes<T>>
+
+export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
+
 // createStore - Создает Redux стор которое хранит полное дерево состояния приложения. Оно должно быть единственным стором в приложении.
 //
 // Параметры:

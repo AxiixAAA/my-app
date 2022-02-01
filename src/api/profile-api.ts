@@ -20,7 +20,7 @@ export const profileAPI = {
             }
          }).then(res => res.data)
     },
-    saveProfile(profile:ProfileType){
+    saveProfile(profile: File){
         return instance.put<ResponseType>('profile', profile).then(res => res.data)
     }
 };
