@@ -21,12 +21,11 @@ let rootReducer = combineReducers({
 
 
 type RootReducerType = typeof rootReducer // (globalstate: AppDtateType) => AppStateType
-//экспортируем весь тип приложения
+//экспортируем весь тип состояния приложения
 export type AppStateType = ReturnType<RootReducerType>
-
-type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
-export type InferActionsTypes<T extends {[key: string]: (...args: any[])=>any}> = ReturnType<PropertiesTypes<T>>
-
+// общий тип для Actions
+export type InferActionsTypes<T> = T extends {[key: string]: (...args: any[])=> infer U} ? U : never
+// базовый тип для санок
 export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>
 
 // createStore - Создает Redux стор которое хранит полное дерево состояния приложения. Оно должно быть единственным стором в приложении.
