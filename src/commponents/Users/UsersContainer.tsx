@@ -35,7 +35,7 @@ class UsersContainer extends React.Component<PropsType> {
         this.props.getUsers(currentPage, pageSize, "")
     };
     onPageChanged = (pageNumber:number) => {
-        const {pageSize, filter} = this.props;
+        const {pageSize, filter} = this.props
         // Запрос за пользователями
         this.props.getUsers(pageNumber, pageSize, filter.term)
     };
