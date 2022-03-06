@@ -1,3 +1,4 @@
+// Селектор это функция которая принимает state целиком и из этого стейта чего-то достаёт
 import { AppStateType } from "./redux-store";
 
 export const getPageSize = (state:AppStateType) => {
@@ -18,4 +19,7 @@ export const getIsFetching = (state:AppStateType) => {
 
 export const getFollowingInProgress = (state:AppStateType) => {
     return state.usersPage.followingInProgress;
+}
+export const getUsersFilter = (state:AppStateType) => {
+    return state.usersPage.filter;
 }

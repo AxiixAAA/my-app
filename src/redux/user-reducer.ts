@@ -6,15 +6,17 @@ import { usersAPI } from '../api/users-api';
 
 // state
 let initialState = {
-  users: [] as Array<UserType>, // Массив пользователей
-  pageSize: 40, 		   	   // Размер выдаваемых пользователей на 1 страницу
-  totalUsersCount: 0, 		  // Общее количество пользователей
-  currentPage: 1, 	   	     // Устанавливаем страницу по умолчанию 1 
-  isFetching: true,    	    // preloader~
-  followingInProgress: [] as Array<number> // Для дизейбла кнопки // arrai of user ids
+    users: [] as Array<UserType>, // Массив пользователей
+    pageSize: 40, 		   	   // Размер выдаваемых пользователей на 1 страницу
+    totalUsersCount: 0, 		  // Общее количество пользователей
+    currentPage: 1, 	   	     // Устанавливаем страницу по умолчанию 1 
+    isFetching: true,    	    // preloader~
+    followingInProgress: [] as Array<number>, // Для дизейбла кнопки // arrai of user ids
+    filter: {
+        term : ''
+    }    
 }
 
-type InitialState = typeof initialState
 //Action приходит в store всего один, а дальше раскидывается по reducer, заходя в reduser если action не применялся в case, reducer возвращает не изменёную разметку 
 //reduser это чистая функция которая принимает state,action и если нужно применяет этот action к state и возвращает новый state, либо возвращает не изменёный state если action не подошёл
 //Следом после изменения всех reducer, возвращается новый актуальный state
@@ -39,6 +41,9 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 
 		//установить текущую страницу
 		case 'SN/USERS/SET_CURRENT_PAGE': {return { ...state, currentPage: action.currentPage}}
+		
+        // Фильтр
+        case 'SN/USERS/SET_FILTER': {return { ...state, filter: action.payload }}
 
 		//установить общее количество пользоватлей
 		case 'SN/USERS/SET_TOTAL_USERS_COUNT': {return { ...state, totalUsersCount: action.count}}
@@ -69,6 +74,7 @@ export const actions = {
     unfollowSuccess    :     (userId:number)		 => ({ type: 'SN/USERS/UNFOLLOW', userId } as const),
     setUsers 		   :     (users:Array<UserType>) => ({ type: 'SN/USERS/SET_USERS', users } as const),
     setCurrentPage     :     (currentPage:number)    => ({ type: 'SN/USERS/SET_CURRENT_PAGE', currentPage} as const),
+    setFilter          :     (term:string)           => ({ type: 'SN/USERS/SET_FILTER', payload:{term}} as const),
     setTotalUsersCount :     (totalCount:number)     => ({ type: 'SN/USERS/SET_TOTAL_USERS_COUNT', count:totalCount} as const),
     toggleIsFetching   :     (isFetching:boolean)    => ({ type: 'SN/USERS/TOGGLE_IS_FETCHING', isFetching} as const),
     toggleFollowingProgress: (isFetching:boolean, userId:number)=> ({ type: 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId} as const)
@@ -76,12 +82,14 @@ export const actions = {
 // Thank - функция которая делает ассинхронную операцию и которая делает дисптчи 
 // Получить пользователей
 // ThunkAction<void, RootState, unknown, AnyAction>
-export const getUsers  = (page:number,pageSize:number, ):ThunkType => { // Thank Creater 
+// getUsers === requestUsers
+export const getUsers  = (page:number,pageSize:number, term: string):ThunkType => { // Thank Creater 
 	return async (dispatch, getState: () => AppStateType) =>{               // Thank - благодаря замыканиям в Thank Creater,
-		// dispatch(toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
+		dispatch(actions.toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
 		dispatch(actions.setCurrentPage(page));       // Thank - работает как-то иначе
+		dispatch(actions.setFilter(term));       // Thank - работает как-то иначе
 
-		let data = await usersAPI.getUsers (page,pageSize);
+		let data = await usersAPI.getUsers (page,pageSize,term);
 		dispatch(actions.toggleIsFetching(false));
 		dispatch(actions.setUsers(data.items));
 		dispatch(actions.setTotalUsersCount(data.totalCount));
@@ -114,6 +122,8 @@ export const unfollow = (userId:number):ThunkType => {
 
 export default userReducer
 
+type InitialState = typeof initialState
+export type FilterType = typeof initialState.filter
 type ActionsType = InferActionsTypes<typeof actions>
 type DispatchType = Dispatch<ActionsType>
 type ThunkType = BaseThunkType<ActionsType>
