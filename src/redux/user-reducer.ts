@@ -1,7 +1,7 @@
 import { Dispatch } from "redux";
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../Types/types";
-import { AppStateType, BaseThunkType, InferActionsTypes } from "./redux-store";
+import { BaseThunkType, InferActionsTypes } from "./redux-store";
 import { usersAPI } from '../api/users-api';
 
 // state
@@ -11,9 +11,10 @@ let initialState = {
     totalUsersCount: 0, 		  // Общее количество пользователей
     currentPage: 1, 	   	     // Устанавливаем страницу по умолчанию 1 
     isFetching: true,    	    // preloader~
-    followingInProgress: [] as Array<number>, // Для дизейбла кнопки // arrai of user ids
+    followingInProgress: [] as Array<number>, // 1 подписан 0 не подписан 
     filter: {
-        term : ''
+        term : '',
+        friend: null as null | boolean
     }    
 }
 
@@ -51,7 +52,7 @@ const userReducer = (state = initialState, action:ActionsType):InitialState => {
 		//Показывает preloader~
 		case 'SN/USERS/TOGGLE_IS_FETCHING': {return { ...state, isFetching: action.isFetching}}
 
-		// для дизейбла кнопки во вреям аодписки ~ отписки
+		// Подписан или нет
 		case 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS': {
 		return { 
 			...state, 
@@ -74,7 +75,7 @@ export const actions = {
     unfollowSuccess    :     (userId:number)		 => ({ type: 'SN/USERS/UNFOLLOW', userId } as const),
     setUsers 		   :     (users:Array<UserType>) => ({ type: 'SN/USERS/SET_USERS', users } as const),
     setCurrentPage     :     (currentPage:number)    => ({ type: 'SN/USERS/SET_CURRENT_PAGE', currentPage} as const),
-    setFilter          :     (term:string)           => ({ type: 'SN/USERS/SET_FILTER', payload:{term}} as const),
+    setFilter          :     (filter: FilterType)    => ({ type: 'SN/USERS/SET_FILTER', payload:filter} as const),
     setTotalUsersCount :     (totalCount:number)     => ({ type: 'SN/USERS/SET_TOTAL_USERS_COUNT', count:totalCount} as const),
     toggleIsFetching   :     (isFetching:boolean)    => ({ type: 'SN/USERS/TOGGLE_IS_FETCHING', isFetching} as const),
     toggleFollowingProgress: (isFetching:boolean, userId:number)=> ({ type: 'SN/USERS/TOGGLE_IS_FOLLOWING_PROGRESS', isFetching, userId} as const)
@@ -83,13 +84,13 @@ export const actions = {
 // Получить пользователей
 // ThunkAction<void, RootState, unknown, AnyAction>
 // getUsers === requestUsers
-export const getUsers  = (page:number,pageSize:number, term: string):ThunkType => { // Thank Creater 
-	return async (dispatch, getState: () => AppStateType) =>{               // Thank - благодаря замыканиям в Thank Creater,
-		dispatch(actions.toggleIsFetching(true));     // благодаря переданным параметрам в Thank Creater,
+export const getUsers  = (page:number,pageSize:number, filter: FilterType):ThunkType => { // Thank Creater 
+	return async (dispatch) =>{                         // Thank - благодаря замыканиям в Thank Creater,
+		dispatch(actions.toggleIsFetching(true));      // благодаря переданным параметрам в Thank Creater,
 		dispatch(actions.setCurrentPage(page));       // Thank - работает как-то иначе
-		dispatch(actions.setFilter(term));       // Thank - работает как-то иначе
+		dispatch(actions.setFilter(filter));           // Thank - работает как-то иначе
 
-		let data = await usersAPI.getUsers (page,pageSize,term);
+		let data = await usersAPI.getUsers (page,pageSize,filter.term, filter.friend);
 		dispatch(actions.toggleIsFetching(false));
 		dispatch(actions.setUsers(data.items));
 		dispatch(actions.setTotalUsersCount(data.totalCount));

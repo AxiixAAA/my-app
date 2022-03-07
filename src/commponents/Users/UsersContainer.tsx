@@ -20,7 +20,7 @@ type MapStatePropsType = {
     filter:FilterType
 }
 type MapDispatchPropsType = {
-    getUsers: (currentPage:number, pageSize:number, term: string) => void
+    getUsers: (currentPage:number, pageSize:number, friend: FilterType) => void
     unfollow: (userId: number) => void
     follow: (userId: number) => void
 }
@@ -31,23 +31,23 @@ type PropsType = MapStatePropsType & MapDispatchPropsType & OwnPropsType
 
 class UsersContainer extends React.Component<PropsType> {
     componentDidMount() {
-        const {currentPage,pageSize} = this.props;
-        this.props.getUsers(currentPage, pageSize, "")
-    };
+        const {currentPage,pageSize,filter} = this.props
+        this.props.getUsers(currentPage, pageSize, filter)
+    }
     onPageChanged = (pageNumber:number) => {
         const {pageSize, filter} = this.props
         // Запрос за пользователями
-        this.props.getUsers(pageNumber, pageSize, filter.term)
-    };
+        this.props.getUsers(pageNumber, pageSize, filter)
+    }
     // Обработчик события Фильтр   
     onFilterChenged = (filter:FilterType) => {
         const {pageSize} = this.props;
-        this.props.getUsers(1, pageSize, filter.term)
+        this.props.getUsers(1, pageSize, filter)
     }
 
     render() {
       return <>
-      <h2>{this.props.pageTitle}</h2>
+      {/* <h2>{this.props.pageTitle}</h2> */}
         {this.props.isFetching  ?   <Preloader /> : null}
         <Users  
             totalUsersCount     =   {this.props.totalUsersCount} 
@@ -80,7 +80,7 @@ let mapStateToProps = (state:AppStateType):MapStatePropsType => {
 export default compose(
     connect<MapStatePropsType, MapDispatchPropsType, OwnPropsType, AppStateType>
     (mapStateToProps, 
-    {follow, unfollow, getUsers: getUsers}),
+    {follow, unfollow, getUsers:getUsers}),
     // Защита~Редирект, от незарегистрированного пользователя
     withAuthRedirect
 )(UsersContainer);
