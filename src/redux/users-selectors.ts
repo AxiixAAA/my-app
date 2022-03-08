@@ -1,6 +1,9 @@
 // Селектор это функция которая принимает state целиком и из этого стейта чего-то достаёт
 import { AppStateType } from "./redux-store";
 
+export const SelectorUsers = (state:AppStateType) => {
+    return state.usersPage.users;
+}
 export const getPageSize = (state:AppStateType) => {
     return state.usersPage.pageSize;
 }

@@ -12,9 +12,7 @@ let mapStateToProps = (state: AppStateType) => {
 };
 
 export default compose(
-  connect(mapStateToProps,{
-    sendMessageCreator:actions.sendMessageCreator
-  }),
+  connect(mapStateToProps,{...actions}),
   // Защита~Редирект, от незарегистрированного пользователя
   withAuthRedirect
 )(Dialogs);

@@ -1,18 +1,18 @@
-import React, { Component, Suspense } from "react";
-import { Redirect, Route, Switch, withRouter } from "react-router-dom";
-import "./App.css";
-import Navbar from "./commponents/Navbar/Navbar";
-import { connect } from "react-redux";
-import { initializeApp } from "./redux/app-reducer";
-import { compose } from "redux";
+import React, { Component, Suspense } from "react"
+import { Redirect, Route, Switch, withRouter } from "react-router-dom"
+import "./App.css"
+import Navbar from "./commponents/Navbar/Navbar"
+import { connect } from "react-redux"
+import { initializeApp } from "./redux/app-reducer"
+import { compose } from "redux"
 
-import Preloader from "./commponents/Common/Preloader/Preloader";
-import HeaderContainer from "./commponents/Header/HeaderContainer";
+import Preloader from "./commponents/Common/Preloader/Preloader"
+import HeaderContainer from "./commponents/Header/HeaderContainer"
+import { UsersPage } from "./commponents/Users/UsersContainer"
+import { LoginPage } from "./commponents/Login/Login"
 
-const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'));
-const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'));
-const  UsersContainer   = React.lazy(() => import('./commponents/Users/UsersContainer'));
-const  LoginPage        = React.lazy(() => import('./commponents/Login/Login'));
+const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
+const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
 
 class App extends Component {
     // Все необработаные ошибки в помисах
@@ -48,7 +48,7 @@ class App extends Component {
                             <Redirect exact from="/" to="/profile" />
                             <Route path="/profile/:userId?" render={() => <ProfileContainer />}/>   
                             <Route path="/dialogs" render={() => <DialogsContainer />}/>
-                            <Route path="/users"   render={() => <UsersContainer pageTitle={"friends"} />} />
+                            <Route path="/users"   render={() => <UsersPage pageTitle={"friends"} />} />
                             <Route path="/login"   render={() => <LoginPage />} />
                             <Route path="*"        render={() =>  <div>404 NOTE FOUND</div>}/>
                         </Switch>

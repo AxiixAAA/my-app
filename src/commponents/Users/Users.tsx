@@ -1,29 +1,41 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import User from "./User";
 import s from "./Users.module.css"
 import Search from "../Common/Search/Search";
 import UserNavbar from "./UserNavbar/UserNavbar";
-import { UserType } from "../../Types/types";
 import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
-import { FilterType } from "../../redux/user-reducer";
+import { FilterType, getUsers } from "../../redux/user-reducer";
+import { useDispatch, useSelector } from "react-redux";
+import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
 
-//PropsType
-type PropsType = {
-    totalUsersCount: number
-    pageSize:number
-    currentPage:number
-    onPageChanged: (pageNumber:number) => void
-    onFilterChenged: (filter:FilterType) => void
-    users: Array<UserType>
-    followingInProgress: Array<number>
-    unfollow: (userId: number) => void
-    follow: (userId: number) => void
-}
-let Users: FC<PropsType> = ({totalUsersCount,pageSize, currentPage,onPageChanged,users,...props}) => {
+export const Users: FC = (props) => {
+
+    const users = useSelector(SelectorUsers)
+    const currentPage = useSelector(getCurrentPage)
+    const pageSize = useSelector(getPageSize)
+    const filter = useSelector(getUsersFilter)
+    const followingInProgress = useSelector(getFollowingInProgress)
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getUsers(currentPage, pageSize, filter))
+    },[])
+
+    // Обработчик события Фильтр   
+    const onFilterChenged = (filter:FilterType) => {
+        dispatch(getUsers(1, pageSize, filter))
+    }
+
+    const follow = (userId: number) => {
+        dispatch(follow(userId))
+    }
+    const unfollow = (userId: number) => {
+        dispatch(unfollow(userId))
+    }
 
     return <>
-
-    <UsersSearchForm onFilterChenged={props.onFilterChenged} />
+    <UsersSearchForm onFilterChenged={onFilterChenged} />
         {/* Список пользователей */}
         <div className={s.userPosition}>
             <div className={s.userContainer}>
@@ -33,10 +45,10 @@ let Users: FC<PropsType> = ({totalUsersCount,pageSize, currentPage,onPageChanged
                 {users.map(u => 
                 <User 
                     user={u} 
-                    followingInProgress={props.followingInProgress}
+                    followingInProgress={followingInProgress}
                     key={u.id}
-                    unfollow={props.unfollow}
-                    follow={props.follow}
+                    unfollow={unfollow}
+                    follow={follow}
                 />)}
             </div>
             <div className={s.UserNavbar}>
@@ -45,6 +57,4 @@ let Users: FC<PropsType> = ({totalUsersCount,pageSize, currentPage,onPageChanged
         </div>
    </>
 }
-
-export default Users
 
