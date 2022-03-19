@@ -7,6 +7,8 @@ import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
 import { FilterType, getUsers } from "../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
+import { useHistory, useLocation } from "react-router-dom";
+
 
 export const Users: FC = (props) => {
 
@@ -17,11 +19,39 @@ export const Users: FC = (props) => {
     const followingInProgress = useSelector(getFollowingInProgress)
 
     const dispatch = useDispatch()
+    const history = useHistory();
+    const location = useLocation();
 
     useEffect(() => {
-        dispatch(getUsers(currentPage, pageSize, filter))
+        const queryString = require('query-string');
+        const parsed = queryString.parse(location.search) as {term: string; page:string; friend:string }
+        // console.log(parsed);
+        // console.log(location.search);
+        let actualPage = currentPage
+        let actualFilter = filter
+
+        if (!!parsed.page) actualPage = Number(parsed.page)
+
+        if (!!parsed.term) actualFilter = {...actualFilter, term:parsed.term as string}
+        if (!!parsed.friend) actualFilter = {...actualFilter, 
+            friend:parsed.friend === "null" ? null
+                  : parsed.friend === "true" ? true : false
+            }
+
+
+        dispatch(getUsers(actualPage, pageSize, actualFilter))
     },[])
 
+    useEffect(() => {
+        const query: any = {}
+        if (!!filter.term) query.term = filter.term
+        if (filter.friend !== null) query.friend = String(filter.friend) 
+
+        history.push({
+            pathname: '/users',
+            search: `?term=${filter.term}&friend=${filter.friend}`
+        })
+    }, [filter])
     // Обработчик события Фильтр   
     const onFilterChenged = (filter:FilterType) => {
         dispatch(getUsers(1, pageSize, filter))
