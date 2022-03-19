@@ -13,6 +13,7 @@ import { LoginPage } from "./commponents/Login/Login"
 
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
+const  ChatPage = React.lazy(() => import('./pages/chat/ChatPage'))
 
 class App extends Component {
     // Все необработаные ошибки в помисах
@@ -50,6 +51,7 @@ class App extends Component {
                             <Route path="/dialogs" render={() => <DialogsContainer />}/>
                             <Route path="/users"   render={() => <UsersPage pageTitle={"friends"} />} />
                             <Route path="/login"   render={() => <LoginPage />} />
+                            <Route path="/chat"   render={() => <ChatPage />} />
                             <Route path="*"        render={() =>  <div>404 NOTE FOUND</div>}/>
                         </Switch>
                     </section>

@@ -25,8 +25,6 @@ export const Users: FC = (props) => {
     useEffect(() => {
         const queryString = require('query-string');
         const parsed = queryString.parse(location.search) as {term: string; page:string; friend:string }
-        // console.log(parsed);
-        // console.log(location.search);
         let actualPage = currentPage
         let actualFilter = filter
 
