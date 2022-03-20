@@ -4,7 +4,7 @@ import s from "./Users.module.css"
 import Search from "../Common/Search/Search";
 import UserNavbar from "./UserNavbar/UserNavbar";
 import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
-import { FilterType, getUsers } from "../../redux/user-reducer";
+import { FilterType, follow, getUsers, unfollow } from "../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
 import { useHistory, useLocation } from "react-router-dom";
@@ -55,10 +55,10 @@ export const Users: FC = (props) => {
         dispatch(getUsers(1, pageSize, filter))
     }
 
-    const follow = (userId: number) => {
+    const followw = (userId: number) => {
         dispatch(follow(userId))
     }
-    const unfollow = (userId: number) => {
+    const unfolloww = (userId: number) => {
         dispatch(unfollow(userId))
     }
 
@@ -75,8 +75,8 @@ export const Users: FC = (props) => {
                     user={u} 
                     followingInProgress={followingInProgress}
                     key={u.id}
-                    unfollow={unfollow}
-                    follow={follow}
+                    unfolloww={unfolloww}
+                    followw={followw}
                 />)}
             </div>
             <div className={s.UserNavbar}>
