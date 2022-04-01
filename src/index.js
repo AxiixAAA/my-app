@@ -3,9 +3,12 @@ import store from "./redux/redux-store";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import MyApp from "./MyApp";
+
+// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
 
 ReactDOM.render(
 // StrictMode — инструмент для обнаружения потенциальных проблем в приложении.
@@ -15,7 +18,7 @@ ReactDOM.render(
     <HashRouter >
 {/* Provider - выступает в роле проводника, в качестве аргумента мы передаём созданный нами store, теперь этот store будет доступен в child компонетнте App */}
       <Provider store={store}>
-        <App />
+        <MyApp />
       </Provider>
     </HashRouter>
     {/* </BrowserRouter> */}

@@ -10,6 +10,7 @@ import Preloader from "./commponents/Common/Preloader/Preloader"
 import HeaderContainer from "./commponents/Header/HeaderContainer"
 import { UsersPage } from "./commponents/Users/UsersContainer"
 import { LoginPage } from "./commponents/Login/Login"
+import { Box } from "@mui/material"
 
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
@@ -37,7 +38,7 @@ class App extends Component {
         return <Preloader />
         }
         return (
-            <div className="app-wrapper">
+            <Box className="app-wrapper"  sx={{bgcolor: 'background.default', color: 'text.primary'}}>
 
                 <Suspense fallback={<div>Загрузка...</div>}>
 
@@ -54,7 +55,7 @@ class App extends Component {
                         </Switch>
                     </section>
                 </Suspense>
-            </div>
+            </Box>
         )
     }
 }
@@ -64,4 +65,4 @@ const mapStateToProps = (state) => ({
 
 export default compose(
 withRouter,
-connect(mapStateToProps, { initializeApp}))(App);
+connect(mapStateToProps, {initializeApp}))(App);

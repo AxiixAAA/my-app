@@ -1,6 +1,4 @@
-import React from "react";
 import Profileinfo from "./Profileinfo/Profileinfo";
-import ProfileStatusWithHooks from "./Profileinfo/ProfileStatus/ProfileStatusWithHooks";
 
 const Profile = (props) => {
   return (
