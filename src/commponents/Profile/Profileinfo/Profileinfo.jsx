@@ -6,6 +6,7 @@ import userPhoto from "../../../assets/images/avatar.png";
 import { ProfileDataFormReduxForm } from './ProfileDataForm/ProfileDataForm';
 import MyPostsContainer from '../MyPosts/MyPostsContainer';
 import ProfileData from './ProfileDataForm/ProfileData';
+import { Box } from '@mui/material';
 
 
 
@@ -32,7 +33,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
     }
 
     return (
-        <div className={s.container}>
+        <Box className={s.container} sx={{bgcolor: 'background.default', color: 'text.primary'}} >
             {/* Основное фото */}
             <div className={s.Kartinka}>
                 
@@ -58,7 +59,7 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
             <div> 
                 <MyPostsContainer isOwner={isOwner}/>
             </div>
-        </div>
+        </Box>
     )
   
 }
