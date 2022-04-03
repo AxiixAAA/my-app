@@ -7,14 +7,14 @@ import { usersAPI } from '../api/users-api';
 // state
 let initialState = {
     users: [] as Array<UserType>, // Массив пользователей
-    pageSize: 20, 		   	   // Размер выдаваемых пользователей на 1 страницу
+    pageSize: 10, 		   	   // Размер выдаваемых пользователей на 1 страницу
     totalUsersCount: 0, 		  // Общее количество пользователей
     currentPage: 1, 	   	     // Устанавливаем страницу по умолчанию 1 
     isFetching: true,    	    // preloader~
     followingInProgress: [] as Array<number>, // 1 подписан 0 не подписан 
     filter: {
         term : '',
-        friend: null as null | boolean
+        friend: null as null | boolean  
     }    
 }
 
@@ -100,8 +100,8 @@ export const getUsers  = (page:number,pageSize:number, filter: FilterType):Thunk
 // Общая функция для подписки и отписки 
 const followUnfollowFlow = async (dispatch:DispatchType, userId:number, apiMethod:any, actionCreater: (userId: number) => ActionsType) => {
     dispatch(actions.toggleFollowingProgress(true, userId));
-        let response = await apiMethod(userId)
-        if (response.data.resultCode === 0) {
+        let data = await apiMethod(userId)
+        if (data.resultCode === 0) {
             dispatch(actionCreater(userId)); 
         }
         dispatch(actions.toggleFollowingProgress(false, userId));

@@ -1,3 +1,4 @@
+import { chatReducer } from './chat-reducer';
 import { Action, applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import authReducer from "./auth-reducer";
@@ -8,6 +9,7 @@ import userReducer from "./user-reducer";
 import thunkMiddleware, { ThunkAction } from "redux-thunk"
 import appReducer from "./app-reducer";
 
+
 //combineReducers. Это метод, который позволяет вместо того, чтобы создавать один огромный reducer для всего состояния приложения сразу, разбивать его на отдельные модули.
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -16,7 +18,8 @@ let rootReducer = combineReducers({
     usersPage:   userReducer,
     auth:        authReducer,
     form:        formReducer,
-    app:         appReducer
+    app:         appReducer,
+    chat: chatReducer
 })
 
 

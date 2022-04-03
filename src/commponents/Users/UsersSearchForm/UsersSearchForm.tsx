@@ -1,13 +1,14 @@
 import { Formik, Form, Field } from 'formik';
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { FilterType } from "../../../redux/user-reducer"
+import { getUsersFilter } from '../../../redux/users-selectors';
 
 // Валидация
 const usersSearchFormValidate = (values:any) => {
     const errors = {}
     return errors
 }
-
 
 type PropsType = {
     onFilterChenged: (filter:FilterType) => void
@@ -16,6 +17,8 @@ type PropsType = {
 // Поисковик на странице пользователей
 const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
 
+    const filter = useSelector(getUsersFilter)
+
     // Настройка кнопки
     const submit = (values:FilterType, {setSubmitting}: {setSubmitting:(isSubmitting:boolean) => void}) => {
         props.onFilterChenged(values)
@@ -23,7 +26,8 @@ const UsersSearchForm: React.FC<PropsType> = React.memo((props) => {
     }
     return <div>
         <Formik
-            initialValues={{ term: '', friend:null }}
+        enableReinitialize
+            initialValues={{ term: filter.term, friend: filter.friend  }}
             validate={usersSearchFormValidate}
             onSubmit={submit}
     >
