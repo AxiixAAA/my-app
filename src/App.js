@@ -44,11 +44,11 @@ class App extends Component {
                     <Grid item xs={12}>
                         <HeaderContainer />
                     </Grid>
-                    <Grid item xs={12} container>
-                        <Grid item xs={3}>
+                    <Grid item xs={12} container  spacing={2}>
+                        <Grid item xs={2.5}>
                             <Navbar />  
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={9.5}>
                             <Suspense fallback={<div>Загрузка...</div>}> 
                                 <section className="app-wrapper-content">
                                     <Switch >

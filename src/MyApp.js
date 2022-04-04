@@ -41,8 +41,8 @@ const theme = React.useMemo(
 			},
 			...(mode === 'light' && {
 				background: {
-					default: '#dfe4ea',
-					paper: '#ffffff'
+					default: '#FFE61B',
+					paper: '#FFE61B'
 				}
 			})
         }
@@ -61,7 +61,7 @@ const useStyles = makeStyles(() =>
           background:'#0a0a0a',
       }),
         ...(mode==='light'&&{
-        background:'#ffffff',
+        background:'#062C30',
       })
      
       }
