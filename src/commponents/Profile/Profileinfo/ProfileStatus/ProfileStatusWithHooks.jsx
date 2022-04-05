@@ -1,7 +1,49 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import s from '../Profileinfo.module.css';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+
+    ProfileStatus:{
+        color: theme.palette.text.primary,
+        cursor: 'pointer',
+        width: '500px',
+        height: '26px', 
+        fontSize: '14px',
+        lineHeight: '26px',
+        paddingLeft: '2px',
+        fontFamily: 'monospace',
+        letterSpacing: '1px',
+    },
+    '& > div:hover':{
+        // backgroundColor: '#2B2B2B'
+    },
+
+    ProfileStatusActiv:{ 
+    '& > input':{
+        border: 'none',
+        boxShadow: theme.palette.boxShadow,
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
+        width: '99%',
+        borderRadius: '0px',
+        outline:'none',
+        fontSize: '14px',
+        height: '24px',
+        lineHeight: '24px',
+        fontFamily: 'monospace',
+        letterSpacing: '1px',
+    }},
+    ProfileStatusDisable:{
+    '& > div:hover':{
+        backgroundColor: 'none',
+        cursor: 'text',
+    }}
+  }),
+);
 
 const ProfileStatusWithHooks = (props) => {
+const classes = useStyles();  
     //local state
     // useState - возвращиет массив / Деструктуризация
     let [editMode, setEditMode] = useState(false);
@@ -30,23 +72,18 @@ const ProfileStatusWithHooks = (props) => {
         <div>
            { props.isOwner
                 ? !editMode &&
-                    <div className={s.ProfileStatus}>
+                    <div className={classes.ProfileStatus}>
                        <div onClick={activateEditMode}>{props.status || "-----"}</div>
                     </div> ||
                     editMode &&
-                    <div className={s.ProfileStatusActiv}>
+                    <div className={classes.ProfileStatusActiv}>
                         <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode} value={status} />
                     </div>
-                
                 : !editMode &&
-                <div className={s.ProfileStatusDisable}>
+                <div className={classes.ProfileStatusDisable}>
                    <div>{props.status || "-----"}</div>
                 </div> 
-           }
-
-            
-             
-                    
+           }          
         </div>
     )
 }

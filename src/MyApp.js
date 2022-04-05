@@ -23,29 +23,61 @@ const theme = React.useMemo(
       createTheme({
         palette: {
           	...(mode==='dark'&&{
-				background:{
-				default: '#0a0a0a',
-				paper: '#1f1f1f',
-				},
-          	}),
-			text:{
-				...(mode === 'light'
-				? {
-				  primary: '#0a0a0a',
-				  secondary: '#0a0a0a',
-				}
-				: {
-				  primary: '#dfe4ea',
-				  paper: '#ffffff',
-				}),
-			},
-			...(mode === 'light' && {
-				background: {
-					default: '#FFE61B',
-					paper: '#FFE61B'
-				}
-			})
-        }
+          background:{
+            header: '#1F1F1F',
+            default: '#0a0a0a',
+            paper: '#1f1f1f',
+            button: '#1F1F1F'
+          },
+          boxShadow: '0px 0px 2px wheat',
+          borderBottom: '1px solid #2B2B2B',  	
+        }),
+        ...(mode === 'light' && {
+          background: {
+            header: '#247881',
+            default: '#FFD124',
+            paper: '#DFDFDE',
+            button: '#D82148'
+          },
+          boxShadow: '0px 0px 2px #FD5D5D',
+          borderBottom: '1px solid #2B2B2B',  	
+        }),
+        // ...(mode === 'color' && {
+        //   background: {
+        //     header: '#FFD93D',
+        //     default: '#FFD124',
+        //     paper: '#05595B',
+        //     button: '#D82148'
+        //   },
+        //   boxShadow: '0px 0px 2px #F5F5F5',
+        //   borderBottom: '1px solid #2B2B2B',  	
+        // }),
+
+        text:{
+          ...(mode === 'light' && {
+            primary: 'black',
+            secondary: 'white',
+            paper: '#ffffff',
+            hover: 'white',
+            auxiliary: 'black'
+          }),
+          ...(mode==='dark'&&{
+            primary: 'white',
+            secondary: 'black',
+            paper: '#ffffff',
+            hover: 'white',
+            auxiliary: 'red'
+          }),
+          // ...(mode==='color'&&{
+          //   primary: 'white',
+          //   secondary: 'black',
+          //   paper: '#ffffff',
+          //   hover: 'white',
+          //   auxiliary: 'red'
+          // }),
+        },
+			
+}
     }),
     [mode],
   );
@@ -55,15 +87,16 @@ const theme = React.useMemo(
 const useStyles = makeStyles(() =>
   createStyles({
     '@global': {
-      
       body: {
-        ...(mode==='dark'&&{
+      ...(mode==='dark'&&{
           background:'#0a0a0a',
       }),
-        ...(mode==='light'&&{
-        background:'#062C30',
-      })
-     
+      ...(mode==='light'&&{
+        background:'#F5F5F5',
+      }),
+      // ...(mode==='cplor'&&{
+      //   background:'#062C30',
+      // }),  
       }
     }
   })

@@ -7,11 +7,39 @@ import { ProfileDataFormReduxForm } from './ProfileDataForm/ProfileDataForm';
 import MyPostsContainer from '../MyPosts/MyPostsContainer';
 import ProfileData from './ProfileDataForm/ProfileData';
 import { Box, Grid } from '@mui/material';
+import { makeStyles } from '@mui/styles';
 
+const useStyles = makeStyles((theme) => ({
+  
+    NewPhotoText:{
+        color: theme.palette.text.paper,
+        backgroundColor: theme.palette.background.button,
+        boxShadow: theme.palette.boxShadow,
+        display: 'block',
+        textAlign: 'center',
+        paddingBottom: '5px',
+        fontFamily: 'monospace',
+        fontSize: '15px',
+        cursor: 'pointer',
+        lineHeight: '200%',
+        borderRadius: '8px',
+    },
+    sss:{
+        '& > label:hover':{
+            color: theme.palette.text.hover
+        }
+    },
+    mainFoto:{
+        width: '100%',
+        borderRadius: '8px',
+        boxShadow: theme.palette.boxShadow,
+    }
+  }),
+);
 
 
 const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfile}) => {
-    
+const classes = useStyles();   
     let [editMode, setEditMode] = useState(false);
     
     if (!profile) {
@@ -33,80 +61,57 @@ const  Profileinfo = ({profile,status,updateStatus,isOwner,savePhoto, saveProfil
     }
 
     return (<>
-        <Grid container>
+        <Grid 
+            container
+            // direction="row"
+            // justifyContent="center"
+            // alignItems="flex-start"
+            spacing={2}
+        >
             {/* Lev */}
-            <Grid container xs={3.5} >
+            <Grid item xs={3.5} >
                 {/* Photo */}
-                <Grid container > 
-                    <Grid 
-                        container 
-                        direction="column"
-                        alignItems="center"
-                        
-                    >
-                        <Grid item >
-                            <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
-                        </Grid>
-                        <Grid item style={{width: '100%'}}>
-                            {isOwner 
-                                ? <Box  className={s.NewPhotoText} htmlFor={"img"}>обновить фотографию</Box>
-                                : null
-                            }
-                            <div className={s.NewPhoto}>{isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} id={"img"}/>}</div>
-                        </Grid>
+                <Grid 
+                    container 
+                    direction="column"
+                    alignItems="center"
+                >
+                    <Grid item >
+                    <div >               
+                        <img src={profile.photos.large || userPhoto} className={classes.mainFoto} />
+                        {isOwner 
+                          ? <Box className={classes.sss}><label htmlFor={"img"} className={classes.NewPhotoText}>обновить фотографию</label></Box>
+                          : <label> </label>
+                        }
+                        <div className={s.NewPhoto}>{isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} id={"img"}/>}</div>
+                    </div>
                     </Grid>
-                </Grid>
-                <Grid container>
-                    Друзья
+                    <Grid item >
+                        Друзья
+                    </Grid>
                 </Grid>
             </Grid>
             {/* Prav */}
-            <Grid container xs={8.5} style={{border: '1px solid green'}}>
-                <Grid item xs>
-                    <div className={s.ProfileDataForm}>
-                        {editMode 
-                            ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
-                            : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>
-                        }
-                    </div>
-                </Grid>
-                {/* <Grid >
-                    <div> 
+            <Grid item xs={8.5} >
+                <Grid container>
+                    <Grid item xs >
+                        <Box className={s.ProfileDataForm} sx={{bgcolor: 'background.paper'}}>
+                            {editMode 
+                                ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
+                                : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>
+                            }
+                        </Box>
+                    </Grid>
+                    <Grid style={{width: '100%'}}>
                         <MyPostsContainer isOwner={isOwner}/>
-                    </div>
-                </Grid> */}
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
-
-         {/* <Box className={s.container} sx={{bgcolor: 'background.default', color: 'text.primary'}} >
-            {/* Основное фото */}
-            {/* <div className={s.Kartinka}>
-                
-                 <img src={profile.photos.large || userPhoto} className={s.mainFoto}/>
-                 {/* Загрузить новое фото */}
-                 {/* {isOwner 
-                    ? <label  className={s.NewPhotoText} htmlFor={"img"}>обновить фотографию</label>
-                    : <label> </label>
-                 }
-                 <div className={s.NewPhoto}>{isOwner &&  <input type={"file"} onChange={onMainPhotoSelected} id={"img"}/>}</div>
-                 
-                 
-           </div>  */}
-            {/* Form */}
-            {/* <div className={s.ProfileDataForm}>
-                {editMode 
-                    ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
-                    : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>}
-            </div>
-            <div className={s.ProfileBoxFriends}>
-
-            </div>
-            <div> 
-                <MyPostsContainer isOwner={isOwner}/>
-            </div>
-        </Box>  */}
     </>)
   
 }
 
 export default Profileinfo
+
+

@@ -9,7 +9,7 @@ import { makeStyles } from '@mui/styles';
 const useStyles = makeStyles((theme) => ({
   
   nav: {
-      backgroundColor: theme.palette.background.paper,
+      backgroundColor: theme.palette.background.header,
       paddingRight: '10px',
 
       borderRadius:'20px',

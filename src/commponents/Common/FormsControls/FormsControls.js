@@ -5,7 +5,7 @@ import s from "./FormsControls.module.css"
 export const FormControl = ({input,meta: {touched,error}, children,}) => {
     const hasError = touched && error;
         return(
-            <div className={s.FormsControl + " " + (hasError ? s.error : "")}>
+            <div className={s.FormsControl + " " + (hasError ? s.error : "")} >
                 <div>{children} </div>
                 {/* Если этот элемент был тронут touched и meta.error то покажет спан*/}
                 { hasError && <span>{error}</span> }
@@ -15,7 +15,7 @@ export const FormControl = ({input,meta: {touched,error}, children,}) => {
 
 export const Textarea = (props) => {
     const {input, meta, child, ...restProps} = props;
-    return <FormControl {...props}><textarea {...input} {...restProps} /></FormControl>
+    return <FormControl {...props}><textarea {...input} {...restProps}  /></FormControl>
 }
 
 export const Input = (props) => {
