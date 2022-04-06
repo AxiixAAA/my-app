@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 
 let User = ({user,followingInProgress,unfolloww,followw}) => {
 
-    return <div className={s.UserContainer}>
+    return <div className={s.UserElem}>
             {/* Фото/follow/unfollow */}
                 <div>
                 {/* Жмякаем на мини фотографию, и переходим на профиль пользователя */}

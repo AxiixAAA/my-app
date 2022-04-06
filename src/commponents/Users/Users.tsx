@@ -8,9 +8,29 @@ import { FilterType, follow, getUsers, unfollow } from "../../redux/user-reducer
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
 import { useHistory, useLocation } from "react-router-dom";
+import { Box } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+
+
+type Theme = {
+    palette : any
+}
+const useStyles = makeStyles((theme: Theme) => ({
+userContainer:{
+    display: 'flex',
+    flexDirection: 'column',
+    width: '70%',
+    boxShadow:  theme.palette.boxShadow,
+    backgroundColor: theme.palette.background.paper,
+
+    borderRadius: '20px',
+}
+    
+}));
 
 
 export const Users: FC = (props) => {
+const classes = useStyles();   
 
     const users = useSelector(SelectorUsers)
     const currentPage = useSelector(getCurrentPage)
@@ -35,7 +55,6 @@ export const Users: FC = (props) => {
             friend:parsed.friend === "null" ? null
                   : parsed.friend === "true" ? true : false
             }
-
 
         dispatch(getUsers(actualPage, pageSize, actualFilter))
     },[])
@@ -63,12 +82,11 @@ export const Users: FC = (props) => {
     }
 
     return <>
-    <UsersSearchForm onFilterChenged={onFilterChenged} />
         {/* Список пользователей */}
-        <div className={s.userPosition}>
-            <div className={s.userContainer}>
+        <Box className={s.userPosition}>
+            <Box className={classes.userContainer}>
                 {/* Поисковик */}
-                <Search/>
+                <UsersSearchForm onFilterChenged={onFilterChenged} />
                 {/* Пользователь */}
                 {users.map(u => 
                 <User 
@@ -78,11 +96,11 @@ export const Users: FC = (props) => {
                     unfolloww={unfolloww}
                     followw={followw}
                 />)}
-            </div>
-            <div className={s.UserNavbar}>
+            </Box>
+            <Box className={s.UserNavbar}>
                 < UserNavbar />
-            </div>
-        </div>
+            </Box>
+        </Box>
    </>
 }
 
