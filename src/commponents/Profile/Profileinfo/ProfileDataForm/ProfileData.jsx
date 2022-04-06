@@ -13,10 +13,14 @@ const useStyles = makeStyles((theme) => ({
         fontFamily:'Arial',
         padding: '7px 0px 5px 0px',
     
-    '& > span': {
-        fontSize: '14px',
-        color: theme.palette.text.primary,
-    }
+        '& > * span': {
+            fontSize: '14px',
+            color: theme.palette.text.primary,
+        },
+        '& > div:nth-child(2)': {
+            fontSize: '14px',
+            color: theme.palette.text.primary,
+        },
     },
     ProfileData_NameAndOnline:{
         display: 'flex',
@@ -82,10 +86,9 @@ const classes = useStyles();
         <Box className={classes.ProfileData_Top}>
             <Box className={classes.ProfileData_NameAndOnline}>
                 <Box>{profile.fullName}</Box>
-                <span><Online /></span>
-                
+                <span><Online /></span>  
             </Box>
-                <Box><ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/></Box>
+            <Box className={classes.status}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/></Box>
         </Box>
     
         <Box className={classes.ProfileData_Content}>

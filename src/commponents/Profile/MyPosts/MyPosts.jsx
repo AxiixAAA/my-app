@@ -2,7 +2,7 @@
 import { Textarea } from "../../../commponents/Common/FormsControls/FormsControls";
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import s from "./MyPosts.module.css";
+
 import Post from "./Post/Post";
 import UserSmallPhotoContainer from "../../Common/UserSmallPhoto/UserSmallPhotoContainer";
 import { Box, Grid } from "@mui/material";
@@ -16,14 +16,48 @@ sss: {
     '& > button':{
         color: theme.palette.text.primary,
         backgroundColor: theme.palette.background.button,
-        borderRadius: '8px',
+        borderRadius: '4px',
     },
     '& > * textarea':{
       backgroundColor: theme.palette.background.paper,
       color: theme.palette.text.primary
+    }
+},
+
+AddNewPostForm:{
+    boxShadow:theme.palette.boxShadow,
+    backgroundColor: theme.palette.background.paper,
+    width: '100%',
+    marginTop: '18px',
+    borderRadius: '15px',
+    padding: '10px 0px 10px 0px',
+    fontSize: '15px',
+
+    '& > * img': {
+        width: '35px',
+        borderRadius: '100%',
+        margin: '0',
     },
+    '& > * textarea':{
+        width: '100%',
+        fontSize: '15px',
+        resize:'none', /*указывает, может ли размер элемента изменяться пользователем.*/
+        outline: 'none;', /*Уберает подсветку у textaria*/
+        border: 'none',
     },
-  }),
+    '& > * button':{
+        fontFamily: 'monospace',
+        fontSize: '1em',
+        cursor: 'pointer',
+        boxShadow: '0px 0px 2px wheat',
+        border: 'none',
+        lineHeight: '150%',
+    },
+    '& > * button:hover':{
+        color: 'white',
+    },
+}
+}),
 );
 
 const MyPosts = React.memo(props => {
@@ -34,9 +68,9 @@ let onAddPost = (values) => {
 }
 
 return (
-    <Box className={s.container}>
+    <Box>
       <AddNewPostFormRedux onSubmit={onAddPost}/>
-      <Box className={s.posts}>
+      <Box>
         {postsElements}
       </Box>
     </Box>
@@ -47,7 +81,7 @@ const AddNewPostForm = (props) => {
 const classes = useStyles();
 
     return(
-        <Grid container xs={12} className={s.AddNewPostForm} sx={{bgcolor: 'background.paper'}}>
+        <Grid container xs={12} className={classes.AddNewPostForm}>
             {/* Top */}
             <Grid xs={12}
                 container

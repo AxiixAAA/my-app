@@ -7,18 +7,13 @@ const useStyles = makeStyles((theme) => ({
     ProfileStatus:{
         color: theme.palette.text.primary,
         cursor: 'pointer',
-        width: '500px',
         height: '26px', 
         fontSize: '14px',
-        lineHeight: '26px',
+        lineHeight: '200%',
         paddingLeft: '2px',
         fontFamily: 'monospace',
         letterSpacing: '1px',
     },
-    '& > div:hover':{
-        // backgroundColor: '#2B2B2B'
-    },
-
     ProfileStatusActiv:{ 
     '& > input':{
         border: 'none',
@@ -30,16 +25,20 @@ const useStyles = makeStyles((theme) => ({
         outline:'none',
         fontSize: '14px',
         height: '24px',
-        lineHeight: '24px',
+        lineHeight: '150%',
         fontFamily: 'monospace',
         letterSpacing: '1px',
     }},
     ProfileStatusDisable:{
-    '& > div:hover':{
-        backgroundColor: 'none',
-        cursor: 'text',
-    }}
-  }),
+        color: theme.palette.text.primary,
+        height: '26px', 
+        fontSize: '14px',
+        lineHeight: '200%',
+        paddingLeft: '2px',
+        fontFamily: 'monospace',
+        letterSpacing: '1px',
+  }
+}),
 );
 
 const ProfileStatusWithHooks = (props) => {
@@ -75,7 +74,7 @@ const classes = useStyles();
                     <div className={classes.ProfileStatus}>
                        <div onClick={activateEditMode}>{props.status || "-----"}</div>
                     </div> ||
-                    editMode &&
+                  editMode &&
                     <div className={classes.ProfileStatusActiv}>
                         <input onChange={onStatusChange} autoFocus={true} onBlur={ deactivateEditMode} value={status} />
                     </div>

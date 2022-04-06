@@ -3,9 +3,36 @@ import React from "react"
 import { reduxForm } from "redux-form"
 import s from './ProfileDataForm.module.css';
 import style from '../../../Common/FormsControls/FormsControls.module.css';
+import { makeStyles } from '@mui/styles';
 
+const useStyles = makeStyles((theme) => ({
+    button:{ 
+        '& > button':{
+            backgroundColor: theme.palette.background.button,
+            color: theme.palette.text.primary,
+            width: '100%',
+            marginTop: '7px',
+            paddingBottom: '5px',
+            fontFamily: 'monospace',
+            fontSize: '15px',
+            lineHeight: '150%',
+            borderRadius: '4px',
+            cursor: 'pointer',
+            boxShadow: '0px 0px 2px wheat',
+            border: 'none',
+        },
+        '& > button:hover':{
+            color: 'white',
+            boxShadow: '0px 0px 2px rgb(252, 242, 223)',
+        },
+    },    
+ 
+}),
+);
 
 const ProfileDataForm = ({handleSubmit, profile, error}) =>{
+const classes = useStyles();   
+
     return <form onSubmit={handleSubmit}>
 
      {error && <div className={style.formSummaryError}>{error}</div>}
@@ -18,7 +45,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) =>{
             <div></div> 
         </div>
 
-        <div className={s.Data}>
+        <div className={s.Data} sx={{ }}>
             {createField("Full name", "fullName", [], Input)}
             {createField("", "lookingForAJob", [], Input, {type:"checkbox"})}
             {createField("My professional skills", "lookingForAJobDescription", [], Textarea)}
@@ -43,7 +70,7 @@ const ProfileDataForm = ({handleSubmit, profile, error}) =>{
             })}
         </div> 
     
-        <div className={s.button}><button>save</button> </div>
+        <div className={classes.button}><button>save</button> </div>
  </form>
 } 
 

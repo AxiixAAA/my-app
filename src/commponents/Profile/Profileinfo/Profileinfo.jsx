@@ -33,6 +33,22 @@ const useStyles = makeStyles((theme) => ({
         width: '100%',
         borderRadius: '8px',
         boxShadow: theme.palette.boxShadow,
+    },
+    ProfileDataForm:{
+        backgroundColor: theme.palette.background.paper,
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: theme.palette.boxShadow,
+        borderRadius: '20px',
+        padding: '2.4%',
+        width: '95%',
+        fontSize: '13px',
+        fontFamily: 'sans-serif',
+        paddingTop: '5px',
+    
+        '& > * b': {
+            color: '#848484',
+        }
     }
   }),
 );
@@ -95,7 +111,7 @@ const classes = useStyles();
             <Grid item xs={8.5} >
                 <Grid container>
                     <Grid item xs >
-                        <Box className={s.ProfileDataForm} sx={{bgcolor: 'background.paper'}}>
+                        <Box className={classes.ProfileDataForm}>
                             {editMode 
                                 ? <ProfileDataFormReduxForm initialValues={profile} profile={profile} onSubmit={onSubmit}/> 
                                 : <ProfileData goToEditMode={() => {setEditMode(true)}} profile={profile} isOwner={isOwner}  status={status} updateStatus={updateStatus}/>

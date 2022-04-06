@@ -59,7 +59,7 @@ const theme = React.useMemo(
             secondary: 'white',
             paper: '#ffffff',
             hover: 'white',
-            auxiliary: 'black'
+            auxiliary: '#C69B7B'
           }),
           ...(mode==='dark'&&{
             primary: 'white',

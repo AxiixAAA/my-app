@@ -49,24 +49,6 @@
 .contact{
     margin-left: 15px;
 }
-.ProfileDataForm{
-    display: flex;
-    flex-direction: column;
-
-    box-shadow: 0px 0px 2px wheat;
-    border-radius: 20px;
-    /* background-color: #1F1F1F; */
-    padding: 2.4%;
-    /* width: 500px; */
-    width: 95%;
-    
-    font-size: 13px;
-    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
-    padding-top: 5px;
-}
-.ProfileDataForm b {
-    color: #848484;
-}
 .ProfileData button{
     width: 100%;
     margin-top: 7px;
