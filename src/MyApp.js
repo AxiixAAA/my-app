@@ -30,6 +30,7 @@ const theme = React.useMemo(
             button: '#3d3d3d'
           },
           boxShadow: '0px 0px 2px wheat',
+          boxShadowSearch: '0px -7px 15px -9px wheat',
           borderBottom: '1px solid #2B2B2B',  	
         }),
         ...(mode === 'light' && {
@@ -40,6 +41,7 @@ const theme = React.useMemo(
             button: '#D82148'
           },
           boxShadow: '0px 0px 2px #FD5D5D',
+          boxShadowSearch: '0px -7px 10px -9px #FD5D5D',
           borderBottom: '1px solid #2B2B2B',  	
         }),
         // ...(mode === 'color' && {

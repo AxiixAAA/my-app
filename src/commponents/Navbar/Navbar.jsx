@@ -6,9 +6,9 @@ const useStyles = makeStyles((theme) => ({
   
 nav: {
 	backgroundColor: theme.palette.background.header,
+	boxShadow: theme.palette.boxShadow,
 	padding: '10px',
 	borderRadius:'20px',
-	boxShadow: '0px 0px 2px wheat',
 	marginBottom: '15px',
 	fontSize: '1.2em',
 

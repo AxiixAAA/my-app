@@ -1,14 +1,13 @@
 import { FC, useEffect } from "react";
 import User from "./User";
 import s from "./Users.module.css"
-import Search from "../Common/Search/Search";
 import UserNavbar from "./UserNavbar/UserNavbar";
 import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
 import { FilterType, follow, getUsers, unfollow } from "../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
 import { useHistory, useLocation } from "react-router-dom";
-import { Box } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 
 
@@ -19,10 +18,10 @@ const useStyles = makeStyles((theme: Theme) => ({
 userContainer:{
     display: 'flex',
     flexDirection: 'column',
-    width: '70%',
+    // width: '100%',
     boxShadow:  theme.palette.boxShadow,
     backgroundColor: theme.palette.background.paper,
-
+    marginRight: '2%',
     borderRadius: '20px',
 }
     
@@ -83,24 +82,23 @@ const classes = useStyles();
 
     return <>
         {/* Список пользователей */}
-        <Box className={s.userPosition}>
-            <Box className={classes.userContainer}>
-                {/* Поисковик */}
-                <UsersSearchForm onFilterChenged={onFilterChenged} />
-                {/* Пользователь */}
-                {users.map(u => 
-                <User 
-                    user={u} 
-                    followingInProgress={followingInProgress}
-                    key={u.id}
-                    unfolloww={unfolloww}
-                    followw={followw}
-                />)}
-            </Box>
-            <Box className={s.UserNavbar}>
+        <Grid container>
+            <Grid item xs={8.7} className={classes.userContainer}>
+                    <UsersSearchForm onFilterChenged={onFilterChenged} />
+                    {users.map(u => 
+                    <User 
+                        user={u} 
+                        followingInProgress={followingInProgress}
+                        key={u.id}
+                        unfolloww={unfolloww}
+                        followw={followw}
+                    />)}
+            </Grid>
+         
+            <Grid item xs={3} className={s.UserNavbar}>
                 < UserNavbar />
-            </Box>
-        </Box>
+            </Grid>
+        </Grid>
    </>
 }
 

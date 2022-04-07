@@ -25,7 +25,7 @@ let Dialogs = (props) => {
     return (
         <div className={s.dialogs}>
         {/* Строка пойска  */}
-        <Search />
+        {/* <Search /> */}
 
         <div className={s.dialogsItems}>
             {dialogsElements}
