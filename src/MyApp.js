@@ -27,7 +27,9 @@ const theme = React.useMemo(
             header: '#1F1F1F',
             default: '#0a0a0a',
             paper: '#1f1f1f',
-            button: '#3d3d3d'
+            button: '#3d3d3d',
+            buttonHover: '#444445'
+
           },
           boxShadow: '0px 0px 2px wheat',
           boxShadowSearch: '0px -7px 15px -9px wheat',
@@ -38,9 +40,10 @@ const theme = React.useMemo(
             header: '#247881',
             default: '#FFD124',
             paper: '#DFDFDE',
-            button: '#D82148'
+            button: '#D82148',
+            buttonHover: '#ff0036'
           },
-          boxShadow: '0px 0px 2px #FD5D5D',
+          boxShadow: '0px 0px 2px #ff0036',
           boxShadowSearch: '0px -7px 10px -9px #FD5D5D',
           borderBottom: '1px solid #2B2B2B',  	
         }),
@@ -94,9 +97,11 @@ const useStyles = makeStyles(() =>
       body: {
       ...(mode==='dark'&&{
           background:'#0a0a0a',
+          color: 'white',
       }),
       ...(mode==='light'&&{
         background:'#F5F5F5',
+        color: 'black',
       }),
       // ...(mode==='cplor'&&{
       //   background:'#062C30',

@@ -1,11 +1,15 @@
 import SettingsIcon from '@mui/icons-material/Settings';
+import { Grid } from '@mui/material';
 let Setings = (props) =>{
-    return(
-        <div>Setings
-            <SettingsIcon />
 
-        </div>
-    );
+
+    return(<>
+    <Grid container>
+        ddddddddddddd
+    </Grid>
+    
+
+</>);
 }
 
 

@@ -2,8 +2,39 @@ import React from "react";
 import s from "./Users.module.css";
 import userPhoto from "../../assets/images/avatar.png";
 import { NavLink } from "react-router-dom";
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+    button:{
+        '& > button':{
+            width: '120px',
+            height: '30px',
+         
+            backgroundColor: theme.palette.background.button,
+            color: theme.palette.text.primary,
+            borderRadius: '7px',
+            border: 'none',
+            cursor: 'pointer',
+        
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        '& > svg':{
+            marginRight: '5px',
+        },
+        '& > button:hover':{
+            backgroundColor: theme.palette.background.buttonHover,
+            color: 'white',
+        }
+        
+    }
+  }),
+);
+
 
 let User = ({user,followingInProgress,unfolloww,followw}) => {
+const classes = useStyles();   
 
     return <div className={s.UserElem}>
             {/* Фото/follow/unfollow */}
@@ -26,7 +57,7 @@ let User = ({user,followingInProgress,unfolloww,followw}) => {
                     </div>
 
                     {/* follow /  unfollow*/}
-                    <div className={s.button}>
+                    <div className={classes.button}>
                         {user.followed
                         ?
                         <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {unfolloww(user.id) }}>    

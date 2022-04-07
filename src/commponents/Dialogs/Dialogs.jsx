@@ -37,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
 let Dialogs = (props) => {
 const classes = useStyles();   
 
@@ -62,10 +60,10 @@ const classes = useStyles();
             <Box className={classes.dialogsItems}>
                 {dialogsElements}
             </Box>
-            {/* <Box className={classes.massages}>
+            <Box className={classes.massages}>
                 <Box>{messagesElements}</Box>       
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
-            </Box> */}
+            </Box>
         </Box>
     );
 }

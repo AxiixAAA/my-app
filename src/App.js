@@ -11,6 +11,7 @@ import HeaderContainer from "./commponents/Header/HeaderContainer"
 import { UsersPage } from "./commponents/Users/UsersContainer"
 import { LoginPage } from "./commponents/Login/Login"
 import { Box, Grid } from "@mui/material"
+import Setings from "./commponents/Setings/Setings"
 
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
@@ -40,7 +41,7 @@ class App extends Component {
         }
         return (
             <Grid container className="app-wrapper" >
-                <Grid item xs={7}>
+                <Grid container xs={10} style={{maxWidth: '1000px'}} >
                     <Grid item xs={12}>
                         <HeaderContainer />
                     </Grid>
@@ -58,6 +59,7 @@ class App extends Component {
                                         <Route path="/users"   render={() => <UsersPage pageTitle={"friends"} />} />
                                         <Route path="/login"   render={() => <LoginPage />} />
                                         <Route path="/chat"    render={() => <ChatPage />} />
+                                        <Route path="/settings"render={() => <Setings />} />
                                         <Route path="*"        render={() =>  <div>404 NOTE FOUND</div>}/>
                                     </Switch>
                                 </section>
