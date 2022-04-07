@@ -1,9 +1,10 @@
-import React from 'react';
-import s from './Setings.module.css';
-
+import SettingsIcon from '@mui/icons-material/Settings';
 let Setings = (props) =>{
     return(
-        <div>Setings</div>
+        <div>Setings
+            <SettingsIcon />
+
+        </div>
     );
 }
 

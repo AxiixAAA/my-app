@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { useTheme } from '@mui/material/styles';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
+import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 import { ColorModeContext } from '../../MyApp';
 
@@ -45,7 +46,7 @@ return <Box className={s.header} sx={{bgcolor: 'background.header'}}>
             <div></div>
             <div className={s.loginBlock} >
                     {props.isAuth
-                    ? <button onClick={props.logout} >Выйти</button>
+                    ? <button onClick={props.logout} >Выйти <PowerSettingsNewIcon /> </button>
                     : <NavLink to={'/login'}>Login</NavLink> }
             </div>
         </div>

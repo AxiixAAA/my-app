@@ -50,11 +50,11 @@ const profileReducer = (state = initialState, action:ActionsType):InitialStateTy
 };
 
 export const actions = {
-        addPostActionCreator: (newPostText:string, fullName:string) => ({ type: "SN/PROFILE/ADD-POST", newPostText, fullName } as const),
-        setUserProfile: (profile:ProfileType) => ({ type: "SN/PROFILE/SET_USER_PROFILE ", profile} as const),
-        setStatus: (status:string) => ({ type: "SN/PROFILE/SET_STATUS ", status} as const),
-        deletePost: (postId:number) => ({type:  "SN/PROFILE/DELETE_POST", postId} as const),
-        savePhotoSuccess:(photos:PhotosType) => ({type:  "SN/PROFILE/SAVE_PHOTO_SUCCESS", photos} as const)
+    addPostActionCreator: (newPostText:string, fullName:string) => ({ type: "SN/PROFILE/ADD-POST", newPostText, fullName } as const),
+    setUserProfile: (profile:ProfileType) => ({ type: "SN/PROFILE/SET_USER_PROFILE ", profile} as const),
+    setStatus: (status:string) => ({ type: "SN/PROFILE/SET_STATUS ", status} as const),
+    deletePost: (postId:number) => ({type:  "SN/PROFILE/DELETE_POST", postId} as const),
+    savePhotoSuccess:(photos:PhotosType) => ({type:  "SN/PROFILE/SAVE_PHOTO_SUCCESS", photos} as const)
 }
 
 export const getUserProfile = (userId:number):ThunkType =>

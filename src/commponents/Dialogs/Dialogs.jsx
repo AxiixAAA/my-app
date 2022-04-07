@@ -1,14 +1,46 @@
-import Search from "../../commponents/Common/Search/Search";
-import React from "react";
-import { Redirect,Route } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { AddMessageFormRedux } from "./AddMessageForm/AddMessageForm";
 
 import DialogItem from "./DialogItem.jsx/DialogItem";
-import s from "./Dialogs.module.css";
 import Message from "./Message.jsx/Message";
+import { Box } from "@mui/material";
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles((theme) => ({
+  
+    dialogs:{
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: theme.palette.background.paper,
+        borderRadius: '20px',
+        boxShadow: theme.palette.boxShadow,
+    },
+    allChat:{
+        border: '1px solid red',
+        width: '100%',
+        lineHeight: '200%',
+        borderRadius: '20px 20px 0px 0px',
+        fontSize: '2em',
+        fontWeight:'bold',
+        fontFamily: 'monospace',
+        textAlign: 'center',
+        letterSpacing: '2px',
+        
+        '& > a': {
+            color: theme.palette.text.primary,
+        }
+        // '& > :hover': {
+        //     backgroundColor: '#2B2B2B',
+        //     borderRadius: '0',
+        // },
+    }
+
+}));
+
 
 
 let Dialogs = (props) => {
+const classes = useStyles();   
 
     let state = props.dialogsPage;
 
@@ -23,22 +55,18 @@ let Dialogs = (props) => {
     if (!props.isAuth) return <Redirect to={"/login"}/> ;
 
     return (
-        <div className={s.dialogs}>
-        {/* Строка пойска  */}
-        {/* <Search /> */}
-
-        <div className={s.dialogsItems}>
-            {dialogsElements}
-        </div>
-        <div className={s.massages}>
-            <div>{messagesElements}</div>
-            <div>
-                
-            <AddMessageFormRedux onSubmit={addNewMessage}/>
-
-            </div>
-        </div>
-        </div>
+        <Box className={classes.dialogs}>
+            <Box className={classes.allChat}>
+                <NavLink to="/chat">Общий чат</NavLink>
+            </Box>
+            <Box className={classes.dialogsItems}>
+                {dialogsElements}
+            </Box>
+            {/* <Box className={classes.massages}>
+                <Box>{messagesElements}</Box>       
+                <AddMessageFormRedux onSubmit={addNewMessage}/>
+            </Box> */}
+        </Box>
     );
 }
 
