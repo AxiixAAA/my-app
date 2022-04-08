@@ -4,6 +4,7 @@ import App from './App';
 import { createStyles, makeStyles } from '@mui/styles';
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+// export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
 export default function MyApp() {
   const [mode, setMode] = React.useState('light');

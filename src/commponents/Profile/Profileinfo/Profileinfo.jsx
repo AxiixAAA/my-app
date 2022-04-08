@@ -59,7 +59,7 @@ const classes = useStyles();
     let [editMode, setEditMode] = useState(false);
     
     if (!profile) {
-      return <Preloader />
+      return <Box/>
     }
 
     const onMainPhotoSelected =(e) =>{

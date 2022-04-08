@@ -12,22 +12,9 @@ import PowerSettingsNewIcon from '@mui/icons-material/PowerSettingsNew';
 
 import { ColorModeContext } from '../../MyApp';
 
-const Header = (props) => {
-    // Data
-    function go(){
-        // @ts-ignore
-        window.timerId = window.setInterval(timer, 500);
-    }
-    function timer(){
-        var clock = document.getElementById('clock');
-        var date = new Date();
-        clock.innerHTML = addZero(date.getHours())+':'+addZero(date.getMinutes());
-    }
-    function addZero(num){
-        if(num <=9) return '0'+num;
-            else return num;
-    }
 
+const Header = (props) => {
+   
     const theme = useTheme();
     const colorMode = React.useContext(ColorModeContext);
 
@@ -38,32 +25,8 @@ return <Box className={s.header} sx={{bgcolor: 'background.header'}}>
             <div>AxiixA</div> 
     </div>
     </NavLink>
-    <div onLoad={go()} className={s.currentTime}>
-        <p id="clock"> </p>
-    </div>
-    <div>
-        <div className={s.HeaderRigth} >
-            <div></div>
-            <div className={s.loginBlock} >
-                    {props.isAuth
-                    ? <button onClick={props.logout} >Выйти <PowerSettingsNewIcon /> </button>
-                    : <NavLink to={'/login'}>Login</NavLink> }
-            </div>
-        </div>
-    </div>
-    <Box
-      sx={{
-    //     display: 'flex',
-    //     width: '100%',
-    //     alignItems: 'center',
-    //     justifyContent: 'center',
-        // bgcolor: 'background.default',
-        color: 'text.primary',
-    //     borderRadius: 1,
-    //     p: 3,
-      }}
-    >
-
+   
+    <Box sx={{color: 'text.primary'}}>
       <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>
