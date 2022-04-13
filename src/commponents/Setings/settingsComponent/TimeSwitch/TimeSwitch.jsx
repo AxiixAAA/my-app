@@ -4,14 +4,17 @@ import { GreenSwitch } from './GreenSwitch';
 import Time from './Time';
 import { makeStyles } from '@mui/styles';
 import { Box } from '@mui/material';
+import { MyContext } from '../../../../MyApp';
+
 
 const useStyles = makeStyles((theme) => ({
   sss:{
     color: theme.palette.text.primary,
-    fontSize: '8em',
-    fontWeight: '100',
+    fontSize: '5em',
+    fontWeight: 'lighter',
+    fontFamily: 'Open Sans',
     position: 'absolute',
-    top: '80%', left: '3%',
+    top: '85%', left: '3%',
     userSelect: 'none',
 
   }
@@ -21,22 +24,19 @@ const useStyles = makeStyles((theme) => ({
 
 
 export function TimeSwitch() {
-const classes = useStyles();   
+const {clock, setClock} = React.useContext(MyContext)
+
+ 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const [clock, setClock] = React.useState('true')
 const showTime = React.useCallback(
     () => setClock(!clock),
 );
 
 return <>
-  {clock
-    ? <Box className={classes.sss} ><Time /></Box>
-    : null
-  }
-  
-  <Formik
+
+    <Formik
         initialValues={{
           sell: "N"
         }}
@@ -62,7 +62,18 @@ return <>
             />
           </Form>
         )}
-      </Formik>
+    </Formik>
   </>
 }
 
+
+export const Clock = () =>{
+const {clock} = React.useContext(MyContext)
+const classes = useStyles();  
+    return <>
+    {clock
+        ? <Box className={classes.sss} ><Time /></Box>
+        : null
+    }
+    </>
+}

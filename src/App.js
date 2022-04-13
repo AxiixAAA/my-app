@@ -10,8 +10,9 @@ import Preloader from "./commponents/Common/Preloader/Preloader"
 import HeaderContainer from "./commponents/Header/HeaderContainer"
 import { UsersPage } from "./commponents/Users/UsersContainer"
 import { LoginPage } from "./commponents/Login/Login"
-import { Box, Grid } from "@mui/material"
+import { Grid } from "@mui/material"
 import Setings from "./commponents/Setings/Setings"
+import { Clock } from "./commponents/Setings/settingsComponent/TimeSwitch/TimeSwitch"
 
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
@@ -47,7 +48,9 @@ class App extends Component {
                     </Grid>
                     <Grid item xs={12} container  spacing={2}>
                         <Grid item xs={2.5}>
-                            <Navbar />  
+                            <Navbar />
+  <Clock />
+
                         </Grid>
                         <Grid item xs={9.5}>
                             <Suspense fallback={<div>Загрузка...</div>}> 
