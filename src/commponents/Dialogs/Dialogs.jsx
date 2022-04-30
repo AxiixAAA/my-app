@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 let Dialogs = (props) => {
-const classes = useStyles();   
+const classes = useStyles();
 
     let state = props.dialogsPage;
 

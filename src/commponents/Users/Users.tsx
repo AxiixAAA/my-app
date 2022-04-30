@@ -7,7 +7,7 @@ import { FilterType, follow, getUsers, unfollow } from "../../redux/user-reducer
 import { useDispatch, useSelector } from "react-redux";
 import { getCurrentPage, getFollowingInProgress, getPageSize, getUsersFilter, SelectorUsers } from "../../redux/users-selectors";
 import { useHistory, useLocation } from "react-router-dom";
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { makeStyles } from '@mui/styles';
 
 

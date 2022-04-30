@@ -4,12 +4,10 @@ import App from './App';
 import { createStyles, makeStyles } from '@mui/styles';
 
 export const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
-export const MyContext = React.createContext()
 
 
 export default function MyApp() {
     const [mode, setMode] = React.useState('light');
-    const [clock, setClock] = React.useState('true')
 
 
   const colorMode = React.useMemo(
@@ -21,11 +19,7 @@ export default function MyApp() {
     [],
   );
 
- const value = {
-    clock: clock,
-    setClock:setClock
- }
-
+ 
 const theme = React.useMemo(
     () =>
       createTheme({
@@ -127,12 +121,10 @@ const GlobalStyles = () => {
 
 return (
   <ColorModeContext.Provider value={colorMode}>
-    <MyContext.Provider value={value}>
       <ThemeProvider theme={theme}>
         <App />
         <GlobalStyles />
       </ThemeProvider>
-    </MyContext.Provider>
   </ColorModeContext.Provider>
 );
 }

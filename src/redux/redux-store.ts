@@ -8,7 +8,7 @@ import sidebarReducer from "./sidebar-reducer";
 import userReducer from "./user-reducer";
 import thunkMiddleware, { ThunkAction } from "redux-thunk"
 import appReducer from "./app-reducer";
-
+import TimeReducer from './time-reducer';
 
 //combineReducers. Это метод, который позволяет вместо того, чтобы создавать один огромный reducer для всего состояния приложения сразу, разбивать его на отдельные модули.
 let rootReducer = combineReducers({
@@ -19,7 +19,8 @@ let rootReducer = combineReducers({
     auth:        authReducer,
     form:        formReducer,
     app:         appReducer,
-    chat: chatReducer
+    chat:        chatReducer,
+    time:        TimeReducer
 })
 
 
