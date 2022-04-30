@@ -1,7 +1,7 @@
 
 
 const defaultState ={
-    isTime: true
+    isTime: true | []
 }
 
 const TimeReducer = (state = defaultState, action) => {

@@ -7,17 +7,25 @@ export const ColorModeContext = React.createContext({ toggleColorMode: () => {} 
 
 
 export default function MyApp() {
-    const [mode, setMode] = React.useState('light');
+    const [mode, setMode] = React.useState([]);
 
+    const colorMode = React.useMemo(
+        () => ({
+        toggleColorMode: () => {
+            setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        },
+        }),
+        [],
+    );
 
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    [],
-  );
+    React.useEffect(() => {
+        const localStorageRef = localStorage.getItem('Theme') || []
+        setMode(JSON.parse(localStorageRef))    
+    }, []);
+
+    React.useEffect(() => {
+        localStorage.setItem('Theme', JSON.stringify(mode))
+    }, [mode]);
 
  
 const theme = React.useMemo(
