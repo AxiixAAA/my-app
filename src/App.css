@@ -2,4 +2,6 @@
 .app-wrapper{
  justify-content: center;
 }
-
+::-webkit-scrollbar {
+    width: 0;
+  }

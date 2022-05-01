@@ -1,5 +1,3 @@
-// @ts-nocheck
-import Preloader from "../../../commponents/Common/Preloader/Preloader";
 import React, { useState } from "react";
 import s from "./Profileinfo.module.css";
 import userPhoto from "../../../assets/images/avatar.png";
@@ -10,7 +8,6 @@ import { Box, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import { follow, unfollow } from "../../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
 import { getUsersFriend } from "../../../redux/users-selectors";
 
 const useStyles = makeStyles((theme) => ({

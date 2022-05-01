@@ -38,6 +38,7 @@ const theme = React.useMemo(
             default: '#0a0a0a',
             paper: '#1f1f1f',
             button: '#3d3d3d',
+            buttonEnd: '#D82148',
             buttonHover: '#444445'
 
           },
@@ -51,6 +52,7 @@ const theme = React.useMemo(
             default: '#FFD124',
             paper: '#DFDFDE',
             button: '#D82148',
+            buttonEnd: '#3d3d3d',
             buttonHover: '#ff0036'
           },
           boxShadow: '0px 0px 2px #ff0036',
