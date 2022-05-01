@@ -64,8 +64,10 @@ const useStyles = makeStyles((theme) => ({
     },
     contactValue:{
         width: '80%',
+        '& > a':{
+            color: 'grey',
+        },
         '& > a:hover':{
-            color: theme.palette.text.primary,
             textDecoration: 'underline',
         }
     },

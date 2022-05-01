@@ -37,8 +37,9 @@ export function TimeSwitch() {
 
   const isTime = useSelector((state) => state.time.isTime);
 
+  
   useEffect(() => {
-    const localStorageRef = localStorage.getItem("Time") || [];
+    const localStorageRef = localStorage.getItem("Time")
     dispatch({ type: "UPDATE_TIME", payload: JSON.parse(localStorageRef) });
   }, []);
 

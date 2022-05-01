@@ -19,7 +19,7 @@ export default function MyApp() {
     );
 
     React.useEffect(() => {
-        const localStorageRef = localStorage.getItem('Theme') || []
+        const localStorageRef = localStorage.getItem('Theme');
         setMode(JSON.parse(localStorageRef))    
     }, []);
 
