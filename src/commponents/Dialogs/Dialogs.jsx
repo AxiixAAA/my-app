@@ -45,11 +45,11 @@ const useStyles = makeStyles((theme) => ({
 let Dialogs = (props) => {
   const classes = useStyles();
 
-  let state = props.dialogsPage;
+//   let state = props.dialogsPage;
 
-  let dialogsElements = state.dialogs.map((d) => (
-    <DialogItem name={d.name} icon={d.icon} key={d.id} id={d.id} />
-  ));
+//   let dialogsElements = state.dialogs.map((d) => (
+//     <DialogItem name={d.name} icon={d.icon} key={d.id} id={d.id} />
+//   ));
 
   if (!props.isAuth) return <Redirect to={"/login"} />;
 
@@ -64,7 +64,7 @@ let Dialogs = (props) => {
         </Box>
       </NavLink>
 
-      <Box className={classes.dialogsItems}>{dialogsElements}</Box>
+      {/* <Box className={classes.dialogsItems}>{dialogsElements}</Box> */}
     </Box>
   );
 };

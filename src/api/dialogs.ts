@@ -1,10 +1,50 @@
-import { DialogsType } from "../Types/types"
 import { instance } from "./api"
 
 export const dialogsAPI = {
-    getFriendDialogs  (userId:number) {return instance.put <DialogsType>(`dialogs/` + userId).then(res => res.data)},
-    // getFriendDialogs  (userId) {return instance.get (`dialogs/` + userId).then(res => res.data)},
-    // updateStatus(status) {return instance.put ('profile/status', { status: status}).then(res => res.data)},
+    async getDialogsOpponents() {
+        const response = await instance.get<TOpponent[]>('dialogs')
+        return response.data
+    },
+    async getDialogWithOpponent(userId: number, page?: number, count?: number) {
+        const response = await instance.get<{items: TOpponentMessages[]}>(`dialogs/${userId}/messages?page=${page}&count=${count}`)
+        return response.data
+    },
+    async sendUserMessage(userId: number, message: string) {
+        const response = await instance.post<TOpponentMessages>(`dialogs/${userId}/messages`, { body: message })
+        return response.data
+    },
+    async getMessagesFromUser(userId: number) {
+        const response = await instance.get<TOpponent[]>(`dialogs/${userId}/messages`)
+        return response.data
+    },
+    async startDialog(userId: number) {
+        const response = await instance.post<TOpponentMessages>(`dialogs/${userId}`)
+        return response.data
+    }
+}
 
-   
+
+
+export type TOpponent = {
+    id: number
+    userName: string
+    hasNewMessages: boolean
+    lastDialogActivityDate: string
+    lastUserActivityDate: string
+    newMessagesCount: number
+    photos: {
+        small: string | null
+        large: string | null
+    }
+}
+export type TOpponentMessages = {
+    id: string
+    body: string
+    translatedBody: null | string
+    addedAt: string
+    senderId: number
+    senderName: string
+    recipientId: number
+    viewed: boolean
+    resultCode: number
 }

@@ -1,6 +1,6 @@
 import { Dispatch } from "redux";
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
-import { UserType } from "../Types/types";
+import { UserType } from "../type/types";
 import { BaseThunkType, InferActionsTypes } from "./redux-store";
 import { usersAPI } from '../api/users-api';
 

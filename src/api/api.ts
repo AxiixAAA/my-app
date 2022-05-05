@@ -1,5 +1,5 @@
 import axios from "axios";
-import { UserType } from "../Types/types";
+import { UserType } from "../type/types";
 // axios.create - создаёт экземпляр axios с настраиваемой конфигурацией.
 export const instance = axios.create({
   withCredentials: true,

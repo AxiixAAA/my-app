@@ -1,3 +1,7 @@
+import { Action } from "redux"
+import { ThunkAction } from "redux-thunk"
+import { AppStateType } from "../redux/redux-store"
+
 export type PostType = {
     id:         number
     fullName:   string|null
@@ -36,3 +40,5 @@ export type UserType = {
 export type DialogsType = {
     id: number
 }
+
+export type TThunkAction<A extends Action, R = Promise<void>> = ThunkAction<R, AppStateType, unknown, A>

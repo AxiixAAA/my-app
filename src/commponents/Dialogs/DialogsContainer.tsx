@@ -1,4 +1,4 @@
-import { actions } from "../../redux/dialogs-reducer";
+// import { actions } from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -12,7 +12,7 @@ let mapStateToProps = (state: AppStateType) => {
 };
 
 export default compose(
-  connect(mapStateToProps,{...actions}),
+  connect(mapStateToProps),
   // Защита~Редирект, от незарегистрированного пользователя
   withAuthRedirect
 )(Dialogs);
