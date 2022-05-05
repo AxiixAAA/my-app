@@ -2,7 +2,7 @@ import { Box, InputAdornment, TextField } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { seendMessage } from "../../redux/chat-reducer";
+import { sendMessage } from "../../redux/chat-reducer";
 import SendIcon from "@mui/icons-material/Send";
 
 type Theme = {
@@ -71,7 +71,7 @@ const AddMessageForm: React.FC<{}> = () => {
     if (!message) {
       return;
     }
-    dispatch(seendMessage(message));
+    dispatch(sendMessage(message));
     setMessage("");
   };
 

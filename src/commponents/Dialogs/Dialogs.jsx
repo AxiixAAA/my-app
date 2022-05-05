@@ -1,73 +1,72 @@
 import { NavLink, Redirect } from "react-router-dom";
-import { AddMessageFormRedux } from "./AddMessageForm/AddMessageForm";
-
 import DialogItem from "./DialogItem.jsx/DialogItem";
-import Message from "./Message.jsx/Message";
+import chatPhoto from "../../assets/images/chat.png";
 import { Box } from "@mui/material";
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  
-    dialogs:{
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: theme.palette.background.paper,
-        borderRadius: '20px',
-        boxShadow: theme.palette.boxShadow,
-    },
-    allChat:{
-        border: '1px solid red',
-        width: '100%',
-        lineHeight: '200%',
-        borderRadius: '20px 20px 0px 0px',
-        fontSize: '2em',
-        fontWeight:'bold',
-        fontFamily: 'monospace',
-        textAlign: 'center',
-        letterSpacing: '2px',
-        
-        '& > a': {
-            color: theme.palette.text.primary,
-        }
-        // '& > :hover': {
-        //     backgroundColor: '#2B2B2B',
-        //     borderRadius: '0',
-        // },
-    }
+  dialogs: {
+    display: "flex",
+    flexDirection: "column",
+    backgroundColor: theme.palette.background.paper,
+    borderRadius: "20px",
+    boxShadow: theme.palette.boxShadow,  
+     
+  },
+  chatPhoto: {
+    display: "flex",
+    padding: '10px 10px 5px 10px',
+    cursor: "pointer",
+    flexDirection: "row",
+    fontSize: "14px",
+    fontWeight: "300",
+    // borderBottom: theme.palette.borderBottom,
+    color: theme.palette.text.primary,
+    fontFamily: "Arial",
+    borderRadius: '20px',
+    boxShadow: '0 -10px 10px -10px crimson inset',
 
+    "& * img": {
+      with: "0px",
+      height: "48px",
+      borderRadius: "100%",
+      boxShadow: theme.palette.boxShadow,
+      padding: "5px",
+    },
+    '& > div':{
+        marginRight: '10px'
+    },
+    '&:hover':{
+        backgroundColor: theme.palette.background.backgroundHover
+    }, 
+  },
 }));
 
 let Dialogs = (props) => {
-const classes = useStyles();
+  const classes = useStyles();
 
-    let state = props.dialogsPage;
+  let state = props.dialogsPage;
 
-    let dialogsElements = state.dialogs.map( d => <DialogItem name={d.name} icon={d.icon} key={d.id} id={d.id} /> );
-    let messagesElements = state.messages.map( m => <Message message={m.message} key={m.id} />)
-    
-    
-    let addNewMessage = (values) => {
-        props.sendMessage(values.newMessageBody)
-    }
+  let dialogsElements = state.dialogs.map((d) => (
+    <DialogItem name={d.name} icon={d.icon} key={d.id} id={d.id} />
+  ));
 
-    if (!props.isAuth) return <Redirect to={"/login"}/> ;
+  if (!props.isAuth) return <Redirect to={"/login"} />;
 
-    return (
-        <Box className={classes.dialogs}>
-            <Box className={classes.allChat}>
-                <NavLink to="/chat">Общий чат</NavLink>
-            </Box>
-            <Box className={classes.dialogsItems}>
-                {dialogsElements}
-            </Box>
-            <Box className={classes.massages}>
-                <Box>{messagesElements}</Box>       
-                <AddMessageFormRedux onSubmit={addNewMessage}/>
-            </Box>
+  return (
+    <Box className={classes.dialogs}>
+      <NavLink to="/chat">
+        <Box className={classes.chatPhoto}>
+          <Box>
+            <img src={chatPhoto} alt="" />
+          </Box>
+          <Box>Общий чат</Box>
         </Box>
-    );
-}
+      </NavLink>
+
+      <Box className={classes.dialogsItems}>{dialogsElements}</Box>
+    </Box>
+  );
+};
 
 export default Dialogs;
-
-

@@ -11,31 +11,14 @@ const Messages: FC = () => {
 
   const messages = useSelector((state: AppStateType) => state.chat.messages);
   const messagesAnchorRef = useRef<HTMLDivElement>(null);
-  const [IsAutoScroll, setIsAutoScroll] = useState(false);
-  const scrollHandler = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
-    const element = e.currentTarget;
-    if (
-      Math.abs(
-        element.scrollHeight - element.scrollTop - element.clientHeight
-      ) < 0
-    ) {
-      !IsAutoScroll && setIsAutoScroll(true);
-    }
-    return IsAutoScroll && setIsAutoScroll(false);
-  };
-  //При получении новых сообщений, прокручиваем вниз
+
   useEffect(() => {
-    if (IsAutoScroll) {
-      messagesAnchorRef.current?.scrollIntoView({
-        block: "end",
-        behavior: "smooth",
-      });
-    }
+    messagesAnchorRef.current?.scrollIntoView(true);
   }, [messages]);
 
   return (
     <>
-      <ContainerMessagesMUI onScroll={scrollHandler}>
+      <ContainerMessagesMUI >
         {messages.map((m, index) => (
           <Message key={index} message={m} />
         ))}

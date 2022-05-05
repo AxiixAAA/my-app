@@ -39,12 +39,12 @@ const theme = React.useMemo(
             paper: '#1f1f1f',
             button: '#3d3d3d',
             buttonEnd: '#D82148',
-            buttonHover: '#444445'
-
+            buttonHover: '#444445',
+            backgroundHover: '#444445',
           },
           boxShadow: '0px 0px 2px wheat',
           boxShadowSearch: '0px -7px 15px -9px wheat',
-          borderBottom: '1px solid #2B2B2B',  	
+          borderBottom: '1px dashed #D82148',  	
         }),
         ...(mode === 'light' && {
           background: {
@@ -53,11 +53,12 @@ const theme = React.useMemo(
             paper: '#DFDFDE',
             button: '#D82148',
             buttonEnd: '#3d3d3d',
-            buttonHover: '#ff0036'
+            buttonHover: '#ff0036',
+            backgroundHover: '#DFDFDF',
           },
           boxShadow: '0px 0px 2px #ff0036',
           boxShadowSearch: '0px -7px 10px -9px #FD5D5D',
-          borderBottom: '1px solid #2B2B2B',  	
+          borderBottom: '1px dashed #2B2B2B',  	
         }),
         // ...(mode === 'color' && {
         //   background: {
