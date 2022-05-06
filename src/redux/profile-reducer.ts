@@ -57,6 +57,7 @@ export const actions = {
     savePhotoSuccess:(photos:PhotosType) => ({type:  "SN/PROFILE/SAVE_PHOTO_SUCCESS", photos} as const)
 }
 
+// Получить профиль
 export const getUserProfile = (userId:number):ThunkType =>
  async (dispatch) => {
     // В response будет сидеть результат которым зарезолвится промис

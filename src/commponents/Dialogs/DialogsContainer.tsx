@@ -3,9 +3,9 @@ import Dialogs from "./Dialogs";
 import { connect } from "react-redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
-import { AppStateType } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/redux-store";
 
-let mapStateToProps = (state: AppStateType) => {
+let mapStateToProps = (state: TGlobalState) => {
   return {
     dialogsPage: state.dialogsPage,
   };

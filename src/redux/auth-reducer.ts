@@ -1,6 +1,6 @@
 import { ResultCodeForCapcthaEnum, ResultCodesEnum} from "../api/api";
 import { stopSubmit } from "redux-form";
-import { AppStateType, BaseThunkType, InferActionsTypes } from "./redux-store";
+import { TGlobalState, BaseThunkType, InferActionsTypes } from "./redux-store";
 import { ThunkAction } from "redux-thunk";
 import { authAPI } from '../api/auth-api';
 import { securityAPI } from '../api/security-api';

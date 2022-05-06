@@ -4,13 +4,13 @@ import {
   startMessagesListening,
   stopMessagesListening,
 } from "../../redux/chat-reducer";
-import { AppStateType } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/redux-store";
 import Messages from "./Messages";
 
 // ЧАТ
 const Chat: FC = () => {
   const dispatch = useDispatch();
-  const status = useSelector((state: AppStateType) => state.chat.status);
+  const status = useSelector((state: TGlobalState) => state.chat.status);
 
   useEffect(() => {
     dispatch(startMessagesListening());

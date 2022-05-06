@@ -1,0 +1,40 @@
+.dialogs {
+    display: flex;
+    color: var(--font-grey);
+    width: 700px;
+    border: 5px solid red;
+}
+
+.dialogList {
+    width: 200px;
+    margin-left: 10px;
+    border: 5px solid green;
+
+}
+
+.messages {
+    margin-left: 10px;
+}
+
+
+@media (max-width: 600px) {
+    .dialogs {
+        width: 100%;
+        height: 90vmax;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .dialogList {
+        width: 100%;
+        height: fit-content;
+        overflow-y: auto;
+        margin: 0;
+    }
+
+    .messages {
+        margin: 0px;
+    }
+}
