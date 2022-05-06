@@ -7,7 +7,7 @@
 }
 
 .input {
-    height: 30px;
+    /* height: 30px; */
     width: 100%;
     background-color: transparent;
     outline: none;
@@ -16,7 +16,8 @@
     resize: vertical;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
-    font-size: 15px;
+    font-size: 14px;
+    padding: 5px 0px 6px 10px;
     color: var(--font-grey);
 }
 

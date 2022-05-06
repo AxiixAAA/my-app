@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { TOpponent, TOpponentMessages } from "../../../api/dialogs";
 import userImage from '../../../assets/images/user.png';
 import { TUserProfile } from "../../../type/types";
+import { InputField } from "../InputField/InputField";
 
 type Theme = {
     palette: any;
@@ -13,21 +14,23 @@ type Theme = {
 const useStyles:any = makeStyles((theme:Theme) => ({
     
     wrapper: {
-        height: '80vh',
-        flexGrow: '1',
-        padding: '20px',
+        height: '81vh',
+        padding: '10px 15px',
         backgroundColor: theme.palette.background.paper,
-        borderRadius: '5px',
+        borderRadius: '8px',
         overflowY: 'auto',
         overflowX: 'hidden',
-       
+        width: '535px',
+
+// >>>>>>>>>>>>>>>>>
+        border: '2px solid red',
+// >>>>>>>>>>>>>>>>>
     },
     messageWrapper:{
         padding: '5px',
         display: 'flex',
         alignItems: 'flex-start',
         gap: '20px',
-        backgroundColor: theme.palette.background.paper,
     },
     
     message:{
@@ -48,17 +51,16 @@ const useStyles:any = makeStyles((theme:Theme) => ({
     senderName:{
         margin: '0',
         padding: '0',
-        color: 'var(--font-grey-disactive)',
-        fontSize: '12px',
+        color: '#F53838',
+        fontSize:'20px',
     },
     
     chooseOpponent:{
-        width: '450px',
         color: 'var(--font-grey-disactive)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: '30vh',
+        marginTop: '60%',
     },
     
     
@@ -96,10 +98,12 @@ export const Messages: FC<TProps> = ({ messages, currentOpponent, authProfile })
                         <p className={classes.senderName}>{m.senderName}</p>
                         <p className={classes.message}>{m.body}</p>
                     </Box>
+
                 </Box>
             })
             : <Box className={classes.chooseOpponent}>Выберите собеседника</Box>}
             <Box ref={divRef}></Box> {/* for autosrolling to this div */}
+            <InputField currentOpponent={currentOpponent} />
     </Box>
 }
 

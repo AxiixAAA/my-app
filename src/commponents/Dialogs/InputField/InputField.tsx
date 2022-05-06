@@ -23,8 +23,10 @@ export const InputField: FC<TProps> = ({ currentOpponent }) => {
                         type='textarea'
                         name='textarea'
                         placeholder="Введите сообщение"
-                        className={styles.input} />
-                    <button type='submit' className={styles.button}>Отправить</button>
+                        className={styles.input} 
+                        autocomplete="off"
+                    />
+                    {/* <button type='submit' className={styles.button}>Отправить</button> */}
                 </Form>}
         </Formik>
     )

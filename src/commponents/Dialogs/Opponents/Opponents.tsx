@@ -10,19 +10,23 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles: any = makeStyles((theme: any) => ({
     wrapper:{
-        height: '600px',
+        height: '83vh',
         overflowY: 'auto',
         overflowX: 'hidden',
+        '& :hover':{
+            backgroundColor: theme.palette.background.backgroundHover,
+        }
     },
     opponent:{
-        marginBottom: '5px',
+        marginBottom: '10px',
         display: 'flex',
         alignItems: 'center',
         gap: '10px',
-        backgroundColor: 'var(--bg-content)',
-        borderRadius: '5px',
+        borderRadius: '8px',
         padding: '5px',
         cursor: 'pointer',
+        boxShadow: theme.palette.boxShadow,
+        backgroundColor: theme.palette.background.paper,
     },
     name:{
         margin: '0',
@@ -30,35 +34,6 @@ const useStyles: any = makeStyles((theme: any) => ({
     photo:{
         borderRadius: '50%',
     },
-    // @media (max-width: 600px) {
-    //     .wrapper {
-    //         height: auto;
-    //         display: flex;
-    //         align-items: baseline;
-    //         overflow-x: auto;
-    //     }
-    
-    //     .opponent {
-    //         padding: 0;
-    //         gap: 0px;
-    //         width: 100px;
-    //         margin-bottom: 5px;
-    //         display: flex;
-    //         flex-direction: column;
-    //         background-color: transparent;
-    //         text-align: center;
-    //     }
-    
-    //     .name {
-    //         width: 55px;
-    //         margin: 0;
-    //         margin-left: 2px;
-    //         margin-right: 2px;
-    //         font-size: 10px;
-    //         text-overflow: ellipsis;
-    //         overflow-x: hidden;
-    //     }
-    // }
 
 }));
 

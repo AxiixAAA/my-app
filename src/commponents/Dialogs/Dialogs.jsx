@@ -109,41 +109,23 @@ import { Box } from "@mui/material";
 const useStyles = makeStyles((theme) => ({
     dialogs: {
         display: 'flex',
+        justifyContent: 'space-between',
         color: 'var(--font-grey)',
-        width: '700px',
-        border: '5px solid red',
+        width: '100%',
+        border: '1px solid green'
     },
     dialogList: {
         width: '200px',
-        marginLeft: '10px',
-        backgroundColor: theme.palette.background.paper,
         overflowY: 'auto',
         overflowX: 'hidden',
+
+// >>>>>>>>>>>>>>>>>
+        border: '2px solid green',
+// >>>>>>>>>>>>>>>>>
     },
     messages: {
         marginLeft: '10px',
     },
-    // @media (max-width: 600px) {
-    //     .dialogs {
-    //         width: 100%;
-    //         height: 90vmax;
-    //         display: flex;
-    //         flex-direction: column;
-    //         align-items: center;
-    //         gap: 5px;
-    //     }
-    
-    //     .dialogList {
-    //         width: 100%;
-    //         height: fit-content;
-    //         overflow-y: auto;
-    //         margin: 0;
-    //     }
-    
-    //     .messages {
-    //         margin: 0px;
-    //     }
-    // }
 }));
 
 const Dialogs = () => {
@@ -169,7 +151,6 @@ const Dialogs = () => {
                     currentOpponent={currentOpponent}
                     authProfile={authProfile}
                 />
-                <InputField currentOpponent={currentOpponent} />
             </Box>
         </Box>
     )
