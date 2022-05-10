@@ -25,7 +25,7 @@ const useStyles: any = makeStyles((theme: any) => ({
         borderRadius: '8px',
         padding: '5px',
         cursor: 'pointer',
-        boxShadow: theme.palette.boxShadow,
+        // boxShadow: theme.palette.boxShadow,
         backgroundColor: theme.palette.background.paper,
     },
     name:{
