@@ -6,7 +6,7 @@ import { Redirect } from "react-router";
 import { InjectedFormProps, reduxForm } from "redux-form";
 import { login } from "../../redux/auth-reducer";
 import style from "./Login.module.css";
-import { AppStateType } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/redux-store";
 import { FC } from "react";
 
 type LoginFormOwnProps = {
@@ -50,8 +50,8 @@ type LoginFormValuesType = {
 }
 
 export const LoginPage: FC = () => {
-    const captchaUrl = useSelector((state:AppStateType) => state.auth.captchaUrl)
-    const isAuth = useSelector((state:AppStateType) => state.auth.isAuth)
+    const captchaUrl = useSelector((state:TGlobalState) => state.auth.captchaUrl)
+    const isAuth = useSelector((state:TGlobalState) => state.auth.isAuth)
     const dispatch = useDispatch()
 
   const onSubmit = (formData:LoginFormValuesType) => {

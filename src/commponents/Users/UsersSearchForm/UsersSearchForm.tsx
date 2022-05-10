@@ -13,6 +13,8 @@ type Theme = {
 const useStyles = makeStyles((theme: Theme) => ({
 SearchText:{
     boxShadow: theme.palette.boxShadowSearch,
+    borderRadius: "20px",
+
     '& > * input': {
         color: theme.palette.text.search,
         backgroundColor: theme.palette.background.paper,

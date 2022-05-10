@@ -9,6 +9,7 @@ import { makeStyles } from "@mui/styles";
 import { follow, unfollow } from "../../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersFriend } from "../../../redux/users-selectors";
+import { SendMessage } from "../SendMessage/SendMessage";
 
 const useStyles = makeStyles((theme) => ({
   NewPhotoText: {
@@ -151,6 +152,7 @@ const Profileinfo = ({
             </Grid>
             <Grid item>
               <FriendMiniBloc />
+              <SendMessage userId={profile.userId} isOwner={isOwner} />
             </Grid>
           </Grid>
         </Grid>

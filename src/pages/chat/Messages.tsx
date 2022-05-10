@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { AppStateType } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/redux-store";
 import Message from "./Message";
 import { useMessagesStyles } from "./style";
 
@@ -9,7 +9,7 @@ import { useMessagesStyles } from "./style";
 const Messages: FC = () => {
   const { ContainerMessagesMUI } = useMessagesStyles();
 
-  const messages = useSelector((state: AppStateType) => state.chat.messages);
+  const messages = useSelector((state: TGlobalState) => state.chat.messages);
   const messagesAnchorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

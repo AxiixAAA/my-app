@@ -93,7 +93,8 @@ import {chatAPI, ChatMessageAPIType, StatusType} from '../api/chat-api'
 type ChatMessageType = ChatMessageAPIType 
 let initialState = {
     messages: [] as ChatMessageType[],
-    status: 'pending' as StatusType
+    status: 'pending' as StatusType,
+    isFetching: true
 }
 
 const chatReducer = (state = initialState, action: ActionsType): InitialStateType => {
@@ -101,7 +102,15 @@ const chatReducer = (state = initialState, action: ActionsType): InitialStateTyp
         case 'SN/chat/MESSAGES_RECEVIED':
             return {
                 ...state,
-                messages: [...state.messages, ...action.payload.messages]
+                messages: [...state.messages, ...action.payload.messages],
+                isFetching: false
+            }
+        
+        case 'MESSAGES_REMOVED':
+            return {
+                ...state,
+                messages: [],
+                isFetching: true
             }
         case 'SN/chat/STATUS_CHANGED':
             return {
@@ -119,7 +128,9 @@ export const actions = {
     } as const),
     statusChanged: (status: StatusType) => ({
         type: 'SN/chat/STATUS_CHANGED', payload: {status}
-    } as const)
+    } as const),
+    messagesRemoved: () => ({type: 'MESSAGES_REMOVED'} as const),
+
 }
 
 let _newMessageHandler: ((messages: ChatMessageAPIType[]) => void) | null = null
@@ -152,6 +163,7 @@ export const stopMessagesListening = (): ThunkType => async (dispatch) => {
     chatAPI.unsubscribe('messages-received', newMessageHandlerCreator(dispatch))
     chatAPI.unsubscribe('status-changed', statusChangedHandlerCreator(dispatch))
     chatAPI.stop()
+    dispatch(actions.messagesRemoved())
 }
 
 export const sendMessage = (message: string): ThunkType => async (dispatch) => {
