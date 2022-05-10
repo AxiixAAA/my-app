@@ -10,12 +10,14 @@ import thunkMiddleware, { ThunkAction } from "redux-thunk"
 import appReducer from "./app-reducer";
 import TimeReducer from './time-reducer';
 import chatReducer from "./chat-reducer";
+import friendsReducer from "./reducers/friendsReducer";
 
 //combineReducers. Это метод, который позволяет вместо того, чтобы создавать один огромный reducer для всего состояния приложения сразу, разбивать его на отдельные модули.
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar:     sidebarReducer,
+    friendsSection: friendsReducer,
     usersPage:   userReducer,
     auth:        authReducer,
     form:        formReducer,
@@ -29,7 +31,7 @@ type RootReducerType = typeof rootReducer // (globalstate: AppDtateType) => TGlo
 //экспортируем весь тип состояния приложения
 export type TGlobalState = ReturnType<RootReducerType>
 // общий тип для Actions
-export type InferActionsTypes<T> = T extends {[key: string]: (...args: any[])=> infer U} ? U : never
+export type TReturnActionType<T> = T extends {[key: string]: (...args: any[])=> infer U} ? U : never
 // базовый тип для санок
 export type BaseThunkType<A extends Action, R = Promise<void>> = ThunkAction<R, TGlobalState, unknown, A>
 

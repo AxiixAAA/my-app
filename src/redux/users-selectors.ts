@@ -1,5 +1,5 @@
 // Селектор это функция которая принимает state целиком и из этого стейта чего-то достаёт
-import { TGlobalState } from "./redux-store";
+import { TGlobalState } from "./reduxStore";
 
 export const SelectorUsers = (state:TGlobalState) => {
     return state.usersPage.users
@@ -35,3 +35,5 @@ export const getIsAuth = (state:TGlobalState) => {
 export const getLogin = (state:TGlobalState) => {
     return state.auth.login
 }
+
+

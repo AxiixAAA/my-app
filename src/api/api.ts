@@ -28,3 +28,9 @@ export type ResponseType<D = {}, RC = ResultCodesEnum> = {
   messages: Array<string>;
   resultCode: RC;
 };
+
+export type TResponseData<D = {}> = {
+    data: D
+    resultCode: number
+    messages: string[]
+}

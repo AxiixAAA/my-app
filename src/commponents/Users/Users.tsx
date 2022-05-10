@@ -5,9 +5,9 @@ import UserNavbar from "./UserNavbar/UserNavbar";
 import UsersSearchForm from "./UsersSearchForm/UsersSearchForm";
 import {
   FilterType,
-  follow,
+  followThunk,
   getUsers,
-  unfollow,
+  unfollowThunk,
 } from "../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -93,10 +93,10 @@ export const Users: FC = (props) => {
   };
 
   const followw = (userId: number) => {
-    dispatch(follow(userId));
+    dispatch(followThunk(userId));
   };
   const unfolloww = (userId: number) => {
-    dispatch(unfollow(userId));
+    dispatch(unfollowThunk(userId));
   };
 
   return (
@@ -110,8 +110,8 @@ export const Users: FC = (props) => {
               user={u}
               followingInProgress={followingInProgress}
               key={u.id}
-              unfolloww={unfolloww}
-              followw={followw}
+              unfollowThunk={unfolloww}
+              followThunk={followw}
             />
           ))}
         </Grid>

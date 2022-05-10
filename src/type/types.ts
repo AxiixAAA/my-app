@@ -1,6 +1,6 @@
 import { Action } from "redux"
 import { ThunkAction } from "redux-thunk"
-import { TGlobalState } from "../redux/redux-store"
+import { TGlobalState } from "../redux/reduxStore"
 
 export type PostType = {
     id:         number

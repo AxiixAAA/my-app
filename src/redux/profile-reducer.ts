@@ -1,6 +1,6 @@
 import { FormAction, stopSubmit } from "redux-form";
 import { PhotosType, PostType, ProfileType } from "../type/types";
-import { BaseThunkType, InferActionsTypes } from "./redux-store";
+import { BaseThunkType, TReturnActionType } from "./reduxStore";
 
 import { profileAPI } from "../api/profile-api";
 import { ResultCodesEnum } from "../api/api";
@@ -113,5 +113,5 @@ export const saveProfile = (profile:File):ThunkType =>
 export default profileReducer;
 
 export type InitialStateType = typeof initialState
-type ActionsType = InferActionsTypes<typeof actions>
+type ActionsType = TReturnActionType<typeof actions>
 type ThunkType = BaseThunkType<ActionsType | FormAction> //FormAction позволяет диспатчить санки

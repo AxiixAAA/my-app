@@ -1,6 +1,6 @@
 import { ResultCodeForCapcthaEnum, ResultCodesEnum} from "../api/api";
 import { stopSubmit } from "redux-form";
-import { TGlobalState, BaseThunkType, InferActionsTypes } from "./redux-store";
+import { TGlobalState, BaseThunkType, TReturnActionType } from "./reduxStore";
 import { ThunkAction } from "redux-thunk";
 import { authAPI } from '../api/auth-api';
 import { securityAPI } from '../api/security-api';
@@ -84,5 +84,5 @@ export const logout = ():ThunkType =>
 export default authReducer;
 
 type InitialStateType = typeof initialState
-type ActionsType = InferActionsTypes<typeof actions>
+type ActionsType = TReturnActionType<typeof actions>
 type ThunkType = BaseThunkType<ActionsType | ReturnType<typeof stopSubmit>>

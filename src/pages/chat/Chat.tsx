@@ -4,7 +4,7 @@ import {
   startMessagesListening,
   stopMessagesListening,
 } from "../../redux/chat-reducer";
-import { TGlobalState } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/reduxStore";
 import Messages from "./Messages";
 
 // ЧАТ
