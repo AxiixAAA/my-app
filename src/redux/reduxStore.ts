@@ -1,4 +1,3 @@
-
 import { Action, applyMiddleware, combineReducers, createStore } from "redux";
 import { reducer as formReducer } from 'redux-form';
 import authReducer from "./auth-reducer";
@@ -11,6 +10,7 @@ import appReducer from "./app-reducer";
 import TimeReducer from './time-reducer';
 import chatReducer from "./chat-reducer";
 import friendsReducer from "./reducers/friendsReducer";
+import newsReducer from "./reducers/newsReducer";
 
 //combineReducers. Это метод, который позволяет вместо того, чтобы создавать один огромный reducer для всего состояния приложения сразу, разбивать его на отдельные модули.
 let rootReducer = combineReducers({
@@ -18,6 +18,7 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sidebar:     sidebarReducer,
     friendsSection: friendsReducer,
+    newsPage:    newsReducer,
     usersPage:   userReducer,
     auth:        authReducer,
     form:        formReducer,

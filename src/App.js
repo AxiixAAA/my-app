@@ -17,6 +17,7 @@ import { Clock } from "./commponents/Setings/settingsComponent/TimeSwitch/TimeSw
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
 const  ChatPage = React.lazy(() => import('./pages/chat/ChatPage'))
+const  NewsContainer = React.lazy(() => import('./pages/News/NewsContainer'))
 
 class App extends Component {
     // Все необработаные ошибки в помисах
@@ -62,6 +63,7 @@ class App extends Component {
                                         <Route path="/users"   render={() => <UsersPage pageTitle={"friends"} />} />
                                         <Route path="/login"   render={() => <LoginPage />} />
                                         <Route path="/chat"    render={() => <ChatPage />} />
+                                        <Route path="/news"    render={() => <NewsContainer />} />
                                         <Route path="/settings"render={() => <Setings />} />
                                         <Route path="*"        render={() =>  <div>404 NOTE FOUND</div>}/>
                                     </Switch>

@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.primary,
     fontWeight: "lighter",
     fontFamily: "Open Sans",
-    position: "absolute",
+    position: "fixed",
     top: "80%",
     left: "3%",
     userSelect: "none",

@@ -6,6 +6,7 @@ import ChatIcon from '@mui/icons-material/Chat';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ForumIcon from '@mui/icons-material/Forum';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 const useStyles = makeStyles((theme) => ({
   
 nav: {
@@ -67,6 +68,11 @@ const Navbar = () => {
     <div className={classes.item}>
 	<ForumIcon />
     Forum </div> </NavLink>
+
+    <NavLink to="/news" >
+    <div className={classes.item}>
+	<NewspaperIcon />
+    News </div> </NavLink>
 
     <NavLink to="/settings" >
     <div className={classes.item}>
