@@ -13,7 +13,7 @@ export const UsersPage: React.FC = () => {
         return <Redirect to={"/login"} />;
     }
     return <>
-        {isFetching  ?   <Preloader /> : null}
+        {/* {isFetching  ?   <Preloader /> : null} */}
         <Users />
     </>
 }

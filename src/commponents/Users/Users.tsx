@@ -28,7 +28,9 @@ const useStyles = makeStyles((theme: Theme) => ({
   userContainer: {
     display: "flex",
     flexDirection: "column",
-    // width: '100%',
+    height: '90vh',
+    overflow: "auto",
+
     boxShadow: theme.palette.boxShadow,
     backgroundColor: theme.palette.background.paper,
     marginRight: "2%",
@@ -104,7 +106,7 @@ export const Users: FC = (props) => {
       {/* Список пользователей */}
       <Grid container>
         <Grid item xs={8.7} className={classes.userContainer}>
-          <UsersSearchForm onFilterChenged={onFilterChenged} />
+            <UsersSearchForm onFilterChenged={onFilterChenged} />
           {users.map((u) => (
             <User
               user={u}
@@ -117,7 +119,7 @@ export const Users: FC = (props) => {
         </Grid>
 
         <Grid item xs={3} className={s.UserNavbar}>
-          <UserNavbar />
+          <UserNavbar onFilterChenged={onFilterChenged} />
         </Grid>
       </Grid>
     </>

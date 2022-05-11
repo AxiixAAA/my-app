@@ -58,9 +58,7 @@ const Friends: FC = () => {
           {/* <UpButton /> */}
         </div>
       ) : (
-        <div className={styles.sadness}>
-          <img src={sadImage} alt="Грусть" />
-        </div>
+        null
       )}
     </Box>
   );

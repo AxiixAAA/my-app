@@ -127,7 +127,7 @@ const classes = useStyles();
                         <option value="false">Only unfollowed</option> */}
                     {/* </Field> */}
                 {/* </button>   */}
-                <Box className={classes.usersNuvbar}>
+                {/* <Box className={classes.usersNuvbar}>
                     <button >
                         <Field name="friend" as="select" size="1" multiple={true}>
                             <option value="true">Мои друзья</option>
@@ -138,7 +138,7 @@ const classes = useStyles();
                             <option value="false">Поиск друзей</option>
                         </Field> 
                     </button>
-                </Box>
+                </Box> */}
             </Form>
          
        )}
