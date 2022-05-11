@@ -1,6 +1,6 @@
 import { dialogsAPI, TOpponent, TOpponentMessages } from '../api/dialogs'
 import { TThunkAction } from '../type/types'
-import { InferActionsTypes } from './redux-store'
+import { TReturnActionType } from './reduxStore'
 
 const GET_OPPONENTS = 'dialogs/GET-OPPONENTS'
 const GET_DIALOG_WITH_OPPONENT = 'dialogs/GET-DIALOG-WITH-OPPONENT'
@@ -65,11 +65,11 @@ export default dialogsReducer;
 
 
 type TState = typeof initialState
-type TAction = InferActionsTypes<typeof actionCreators>
+type TAction = TReturnActionType<typeof actionCreators>
 type TThunk = TThunkAction<TAction>
 
 
-// import { InferActionsTypes } from "./redux-store";
+// import { TReturnActionType } from "./reduxStore";
 
 // type DialogsType = {
 //     id: number
@@ -123,5 +123,5 @@ type TThunk = TThunkAction<TAction>
 // export default dialogsReducer
 
 // export type InitialStateType = typeof initialState
-// type ActionsType = InferActionsTypes<typeof actions>
+// type ActionsType = TReturnActionType<typeof actions>
 

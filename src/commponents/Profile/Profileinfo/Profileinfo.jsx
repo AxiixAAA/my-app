@@ -6,10 +6,11 @@ import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import ProfileData from "./ProfileDataForm/ProfileData";
 import { Box, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { follow, unfollow } from "../../../redux/user-reducer";
+import { follow, followThunk, unfollow, unfollowThunk } from "../../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersFriend } from "../../../redux/users-selectors";
 import { SendMessage } from "../SendMessage/SendMessage";
+import Friends from "../../../pages/Friends/Friends";
 
 const useStyles = makeStyles((theme) => ({
   NewPhotoText: {
@@ -151,7 +152,7 @@ const Profileinfo = ({
               </div>
             </Grid>
             <Grid item>
-              <FriendMiniBloc />
+              <Friends />
               <SendMessage userId={profile.userId} isOwner={isOwner} />
             </Grid>
           </Grid>
@@ -197,10 +198,10 @@ const ProfileButtonFollo = ({ profileID }) => {
   const dispatch = useDispatch();
 
   const followw = (userId) => {
-    dispatch(follow(userId));
+    dispatch(followThunk(userId));
   };
   const unfolloww = (userId) => {
-    dispatch(unfollow(userId));
+    dispatch(unfollowThunk(userId));
   };
   return (
     // {/* follow /  unfollow*/}
@@ -227,26 +228,27 @@ const ProfileButtonFollo = ({ profileID }) => {
   );
 };
 
-export const FriendMiniBloc = () => {
-  const classes = useStyles();
-  const filter = useSelector(getUsersFriend)
+// export const FriendMiniBloc = () => {
+//   const classes = useStyles();
+//   const filter = useSelector(getUsersFriend)
 
-  console.log(filter);
-  return (
-    <Box className={classes.containerMiniBloc}>
-        {/* {filter.some(filter => filter === 'true')} */}
-        {filter === 'true'
-        ? 'true'
-        : 'false'
-        }
-        <p>{filter}</p>
-      {/* <NavLink to={"/profile/" + user.id}>
-        <img
-          src={user.photos.small != null ? user.photos.small : userPhoto}
-          alt="картинка"
-          className={s.userPhoto}
-        />
-      </NavLink> */}
-    </Box>
-  );
-};
+//   console.log(filter);
+//   return (
+//     <Box className={classes.containerMiniBloc}>
+//         {/* {filter.some(filter => filter === 'true')} */}
+//         {filter === 'true'
+//         ? 'true'
+//         : 'false'
+//         }
+//         <p>{filter}</p>
+//       {/* <NavLink to={"/profile/" + user.id}>
+//         <img
+//           src={user.photos.small != null ? user.photos.small : userPhoto}
+//           alt="картинка"
+//           className={s.userPhoto}
+//         />
+//       </NavLink> */}
+//       <Friends />
+//     </Box>
+//   );
+// };

@@ -1,6 +1,6 @@
 // import { Dispatch } from 'redux';
 // import { stopSubmit } from "redux-form";
-// import { BaseThunkType, InferActionsTypes } from "./redux-store";
+// import { BaseThunkType, TReturnActionType } from "./reduxStore";
 // import { chatAPI, ChatMessageType, statusType } from "../api/chat-api";
 
 // // State
@@ -80,11 +80,11 @@
 
 // // Type
 // type InitialStateType = typeof initialState
-// type ActionsType = InferActionsTypes<typeof actions>
+// type ActionsType = TReturnActionType<typeof actions>
 // type ThunkType = BaseThunkType<ActionsType | ReturnType<typeof stopSubmit>>
 
 
-import {BaseThunkType, InferActionsTypes} from './redux-store'
+import {BaseThunkType, TReturnActionType} from './reduxStore'
 import {Dispatch} from 'redux'
 import {FormAction} from 'redux-form/lib/actions'
 import {chatAPI, ChatMessageAPIType, StatusType} from '../api/chat-api'
@@ -174,5 +174,5 @@ export const sendMessage = (message: string): ThunkType => async (dispatch) => {
 export default chatReducer
 
 export type InitialStateType = typeof initialState;
-type ActionsType = InferActionsTypes<typeof actions>
+type ActionsType = TReturnActionType<typeof actions>
 type ThunkType = BaseThunkType<ActionsType | FormAction>

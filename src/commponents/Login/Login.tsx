@@ -6,7 +6,7 @@ import { Redirect } from "react-router";
 import { InjectedFormProps, reduxForm } from "redux-form";
 import { login } from "../../redux/auth-reducer";
 import style from "./Login.module.css";
-import { TGlobalState } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/reduxStore";
 import { FC } from "react";
 
 type LoginFormOwnProps = {

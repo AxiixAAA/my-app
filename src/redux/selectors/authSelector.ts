@@ -1,4 +1,4 @@
-import { TGlobalState } from "../redux-store";
+import { TGlobalState } from "../reduxStore";
 
 // export const getIsLogged = (state: TGlobalState) => state.auth.isLogged;
 // export const getErrorMessage = (state: TGlobalState) => state.auth.errorMessage;

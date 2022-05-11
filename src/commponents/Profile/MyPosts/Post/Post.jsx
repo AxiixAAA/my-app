@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     }},
     fullName: {
         paddingLeft: '15px',
-        color: theme.palette.text.auxiliary,
+        color: theme.palette.text.primary,
         cursor: 'pointer',
         fontSize: '15px',
     

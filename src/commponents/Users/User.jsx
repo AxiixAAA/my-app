@@ -1,8 +1,10 @@
 import React from "react";
 import s from "./Users.module.css";
-import userPhoto from "../../assets/images/avatar.png";
+import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from '@mui/styles';
+import { Box } from "@mui/system";
+import { TheatersOutlined } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
     button:{
@@ -28,17 +30,38 @@ const useStyles = makeStyles((theme) => ({
             color: 'white',
         }
         
-    }
+    },
+    userID:{
+        color: theme.palette.text.primary, 
+        fontSize: '13px',
+        marginBottom: '10px',
+
+        '& > span':{
+            color: theme.palette.text.auxiliary
+        }
+    },
+    UserName:{
+        marginTop: '10px',
+        fontSize: '15px',
+        color: theme.palette.text.primary,
+        fontFamily: 'Arial',
+        fontWeight: '400',
+
+        '& :hover':{
+            cursor: 'pointer',
+            textDecoration:  'underline',
+        }
+    },
   }),
 );
 
 
-let User = ({user,followingInProgress,unfolloww,followw}) => {
+let User = ({user,followingInProgress,unfollowThunk,followThunk}) => {
 const classes = useStyles();   
 
-    return <div className={s.UserElem}>
+    return <Box className={s.UserElem}>
             {/* Фото/follow/unfollow */}
-                <div>
+                <Box>
                 {/* Жмякаем на мини фотографию, и переходим на профиль пользователя */}
                 <NavLink to={'/profile/' + user.id}>
                     <img 
@@ -47,31 +70,32 @@ const classes = useStyles();
                     className={s.userPhoto}
                     />
                 </NavLink>
-                </div>
-                <div >  
+                </Box>
+                <Box >  
                     {/* Имя пользователя */}
-                    <div>
+                    <Box>
                         <NavLink to={'/profile/' + user.id}>
-                            <div className={s.UserName}>{user.name}</div>
+                            <Box className={classes.UserName}>{user.name}</Box>
+                            <Box className={classes.userID}><span >ID:</span> {user.id}</Box> 
                         </NavLink>
-                    </div>
+                    </Box>
 
                     {/* follow /  unfollow*/}
-                    <div className={classes.button}>
+                    <Box className={classes.button}>
                         {user.followed
                         ?
-                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {unfolloww(user.id) }}>    
+                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {unfollowThunk(user.id) }}>    
                             Удалить
                         </button>
                         :
-                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {followw(user.id) }}>
+                        <button disabled={followingInProgress.some(id => id === user.id)} onClick={() => {followThunk(user.id) }}>
                             {/* <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="add_16__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="add_16__add_16"><path id="add_16__Rectangle-2" d="M0 0h16v16H0z"></path><path d="M9 9v4a1 1 0 01-2 0V9H3a1 1 0 110-2h4V3a1 1 0 112 0v4h4a1 1 0 010 2H9z"id="add_16__Mask" fill="currentColor"></path></g></g></svg> */}
                             Добавить
                         </button>
                         }
-                    </div>
-            </div>
-        </div>
+                    </Box>
+            </Box>
+        </Box>
 }
 export default User;
 

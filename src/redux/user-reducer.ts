@@ -1,17 +1,17 @@
 import { Dispatch } from "redux";
 import { updateObjectInArray } from "../commponents/utils/object-helpers";
 import { UserType } from "../type/types";
-import { BaseThunkType, InferActionsTypes } from "./redux-store";
+import { BaseThunkType, TReturnActionType } from "./reduxStore";
 import { usersAPI } from '../api/users-api';
 
 // state
 let initialState = {
-    users: [] as Array<UserType>, // Массив пользователей
-    pageSize: 8, 		   	   // Размер выдаваемых пользователей на 1 страницу
+    users: [] as Array<UserType>,   // Массив пользователей
+    pageSize: 100, 		   	       // Размер выдаваемых пользователей на 1 страницу
     totalUsersCount: 0, 		  // Общее количество пользователей
     currentPage: 1, 	   	     // Устанавливаем страницу по умолчанию 1 
     isFetching: true,    	    // preloader~
-    followingInProgress: [] as Array<number>, // 1 подписан 0 не подписан 
+    followingInProgress: [] as number[], // 1 подписан 0 не подписан 
     filter: {
         term : '',
         friend: null as null | boolean  
@@ -108,14 +108,14 @@ const followUnfollowFlow = async (dispatch:DispatchType, userId:number, apiMetho
 }
 
 // Подписаться
-export const follow = (userId:number):ThunkType => {
+export const followThunk = (userId:number):ThunkType => {
     return async (dispatch) =>{
         followUnfollowFlow(dispatch, userId, usersAPI.follow.bind(usersAPI), actions.followSuccess);
     }
  }
 
  // Отписаться
-export const unfollow = (userId:number):ThunkType => {
+export const unfollowThunk = (userId:number):ThunkType => {
   return async (dispatch) =>{
         followUnfollowFlow(dispatch, userId, usersAPI.unfollow.bind(usersAPI), actions.unfollowSuccess);
 	}
@@ -125,6 +125,6 @@ export default userReducer
 
 type InitialState = typeof initialState
 export type FilterType = typeof initialState.filter
-type ActionsType = InferActionsTypes<typeof actions>
+type ActionsType = TReturnActionType<typeof actions>
 type DispatchType = Dispatch<ActionsType>
 type ThunkType = BaseThunkType<ActionsType>

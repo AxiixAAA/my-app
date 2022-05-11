@@ -77,7 +77,7 @@ const theme = React.useMemo(
             secondary: 'white',
             paper: '#ffffff',
             hover: 'white',
-            auxiliary: '#C69B7B',
+            auxiliary: 'black',
             search: '',
           }),
           ...(mode==='dark'&&{
@@ -85,7 +85,7 @@ const theme = React.useMemo(
             secondary: 'black',
             paper: '#ffffff',
             hover: 'white',
-            auxiliary: 'red',
+            auxiliary: '#C69B7B',
             search: 'wheat',
           }),
           // ...(mode==='color'&&{

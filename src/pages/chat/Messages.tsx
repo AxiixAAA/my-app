@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 
-import { TGlobalState } from "../../redux/redux-store";
+import { TGlobalState } from "../../redux/reduxStore";
 import Message from "./Message";
 import { useMessagesStyles } from "./style";
 
