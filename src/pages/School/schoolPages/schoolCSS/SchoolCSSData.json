@@ -1,0 +1,21 @@
+{
+  "CSS": [
+    {
+      "id": "1",
+      "title": "Введение в CSS",
+      "href": "/school/css/1"
+    },
+
+    {
+      "id": "2",
+      "title": "Основная структура страницы CSS",
+      "href": "/school/css/2"
+    },
+    {
+      "id": "3",
+      "title": "Основные теги CSS",
+      "href": "/school/css/3"
+    }
+  ]
+}
+

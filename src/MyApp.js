@@ -41,10 +41,15 @@ const theme = React.useMemo(
             buttonEnd: '#D82148',
             buttonHover: '#444445',
             backgroundHover: '#444445',
-          },
+            blockCode:'repeating-linear-gradient(to bottom, transparent, transparent 10px, #323232 10px, #323232 11px),repeating-linear-gradient(to right, transparent, transparent 10px, #323232 10px, #323232 11px)',
+          
+        },
           boxShadow: '0px 0px 2px wheat',
           boxShadowSearch: '0px -7px 15px -9px wheat',
-          borderBottom: '1px dashed #D82148',  	
+          borderBottom: '1px dashed #D82148', 
+          borderLeft: '2px solid #323232',
+          borderRight: '1px dashed #cdcdcd',	
+
         }),
         ...(mode === 'light' && {
           background: {
@@ -54,11 +59,14 @@ const theme = React.useMemo(
             button: '#D82148',
             buttonEnd: '#3d3d3d',
             buttonHover: '#ff0036',
-            backgroundHover: '#DFDFDF',
-          },
+            backgroundHover: '#b2b2b2',
+            blockCode:'repeating-linear-gradient(to bottom, transparent, transparent 10px, #cccccc 10px, #cccccc 11px),repeating-linear-gradient(to right, transparent, transparent 10px, #cccccc 10px, #cccccc 11px)',  
+        },
           boxShadow: '0px 0px 2px #ff0036',
           boxShadowSearch: '0px -7px 10px -9px #FD5D5D',
-          borderBottom: '1px dashed #2B2B2B',  	
+          borderBottom: '1px dashed #2B2B2B', 
+          borderLeft: '2px solid #cccccc',
+          borderRight: '1px dashed #ff9f80',	
         }),
         // ...(mode === 'color' && {
         //   background: {
@@ -78,7 +86,10 @@ const theme = React.useMemo(
             paper: '#ffffff',
             hover: 'white',
             auxiliary: 'black',
-            search: '',
+            school: '#535353',
+            ol: '#282828',
+            tegMain: '#804000',
+            tegSupport: '#ad300e',
           }),
           ...(mode==='dark'&&{
             primary: 'white',
@@ -87,6 +98,11 @@ const theme = React.useMemo(
             hover: 'white',
             auxiliary: '#C69B7B',
             search: 'wheat',
+            school: '#cccccc',
+            ol: '#da9f65',
+            tegMain: '#14b4b4',
+            tegSupport: '#FFD93D',
+
           }),
           // ...(mode==='color'&&{
           //   primary: 'white',
