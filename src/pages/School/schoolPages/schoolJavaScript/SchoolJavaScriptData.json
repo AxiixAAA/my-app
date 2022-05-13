@@ -3,18 +3,18 @@
     {
       "id": "1",
       "title": "Введение в JS",
-      "href": "/school/Js/1"
+      "href": "/Js/1"
     },
 
     {
       "id": "2",
       "title": "Основная структура страницы JS",
-      "href": "/school/Js/2"
+      "href": "/Js/2"
     },
     {
       "id": "3",
       "title": "Основные теги JS",
-      "href": "/school/Js/3"
+      "href": "/Js/3"
     }
   ]
 }

@@ -49,30 +49,30 @@ const PageHTML2 = () => {
               <span className={classes.tegMaim}>&lt;htm&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;header&gt;</span>
+              <span className={classes.tegMaim}>    &lt;header&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;meta</span>
+                <span className={classes.tegMaim}>        &lt;meta</span>
               <span className={classes.tegSupport}> charset</span>
               <span>="utf-8"</span>
               <span className={classes.tegMaim}>&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;title&gt;</span>
+              <span className={classes.tegMaim}>        &lt;title&gt;</span>
               <span>Это заголовок тайтл</span>
               <span className={classes.tegMaim}>&lt;/title&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;/header&gt;</span>
+              <span className={classes.tegMaim}>    &lt;/header&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;body&gt;</span>
+              <span className={classes.tegMaim}>    &lt;body&gt;</span>
             </li>
             <li>
-              <span>Это основное содержимое страницы.</span>
+              <span>        Это основное содержимое страницы.</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;/body&gt;</span>
+              <span className={classes.tegMaim}>    &lt;/body&gt;</span>
             </li>
             <li>
               <span className={classes.tegMaim}>&lt;/htm&gt;</span>

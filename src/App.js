@@ -14,23 +14,19 @@ import { Grid } from "@mui/material"
 import Setings from "./commponents/Setings/Setings"
 import { Clock } from "./commponents/Setings/settingsComponent/TimeSwitch/TimeSwitch"
 
-// import PageHTML1 from "./pages/School/schoolPages/pages/pageHTML/PageHTML1"
-// import PageHTML2 from "./pages/School/schoolPages/pages/pageHTML/PageHTML2"
-// import PageHTML3 from "./pages/School/schoolPages/pages/pageHTML/PageHTML3"
-
-// import PageHTML1 from "./pages/School/schoolPages/pages/pageHTML/pageHTML1"
-
-
 const  DialogsContainer = React.lazy(() => import('./commponents/Dialogs/DialogsContainer'))
 const  ProfileContainer = React.lazy(() => import('./commponents/Profile/ProfileContainer'))
 const  ChatPage = React.lazy(() => import('./pages/chat/ChatPage'))
 const  NewsContainer = React.lazy(() => import('./pages/News/NewsContainer'))
 const  SchoolContainer = React.lazy(() => import('./pages/School/SchoolContainer'))
+
 const  PageHTML1 = React.lazy(() => import('./pages/School/schoolPages/pages/pageHTML/PageHTML1'))
 const  PageHTML2 = React.lazy(() => import('./pages/School/schoolPages/pages/pageHTML/PageHTML2'))
 const  PageHTML3 = React.lazy(() => import('./pages/School/schoolPages/pages/pageHTML/PageHTML3'))
 
-
+const  PageCSS1 = React.lazy(() => import('./pages/School/schoolPages/pages/paheCSS/PageCSS1'))
+const  PageCSS2 = React.lazy(() => import('./pages/School/schoolPages/pages/paheCSS/PageCSS2'))
+const  PageCSS3 = React.lazy(() => import('./pages/School/schoolPages/pages/paheCSS/PageCSS3'))
 
 class App extends Component {
     // Все необработаные ошибки в помисах
@@ -77,14 +73,14 @@ class App extends Component {
                                         <Route path="/html/1" render={() => <PageHTML1 />}/>
                                         <Route path="/html/2" render={() => <PageHTML2 />}/>
                                         <Route path="/html/3" render={() => <PageHTML3 />}/>
-{/*                                         
-                                        <Route path="/school/CSS/1" render={() => <SchoolContainer />}/>
-                                        <Route path="/school/CSS/2" render={() => <SchoolContainer />}/>
-                                        <Route path="/school/CSS/3" render={() => <SchoolContainer />}/>
+                                     
+                                        <Route path="/css/1" render={() => <PageCSS1 />}/>
+                                        <Route path="/css/2" render={() => <PageCSS2 />}/>
+                                        <Route path="/css/3" render={() => <PageCSS3 />}/>
                                         
-                                        <Route path="/school/JS/1" render={() => <SchoolContainer />}/>
+                                        {/* <Route path="/Js/1" render={() => <SchoolContainer />}/>
                                         <Route path="/school/JS/2" render={() => <SchoolContainer />}/>
-                                        <Route path="/school/JS/3" render={() => <SchoolContainer />}/> */}
+                                        <Route path="/school/JS/3" render={() => <SchoolContainer />}/>   */}
 
 
                                         <Route path="/dialogs" render={() => <DialogsContainer />}/>

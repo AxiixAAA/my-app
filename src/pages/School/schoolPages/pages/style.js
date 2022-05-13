@@ -28,6 +28,7 @@ export const usePageStyles = makeStyles((theme) => ({
     padding: "1px 0px",
     borderLeft: theme.palette.borderLeft,
     margin: "5px 0px",
+    whiteSpace: "pre",
 
     "& > ol": {
       counterReset: "myCounter",
@@ -45,9 +46,8 @@ export const usePageStyles = makeStyles((theme) => ({
           display: "inline-block",
           textAlign: "center",
           marginRight: "10px",
-          lineHeight: "30px",
           width: "30px",
-          height: "30px",
+          height: "20px",
           borderRight: theme.palette.borderRight,
         },
       },
@@ -61,23 +61,23 @@ export const usePageStyles = makeStyles((theme) => ({
   },
 
   blockTask: {
-    height: "150px",
+    minHeight: "150px",
     border: theme.palette.borderRight,
-    marginTop: '15px',
-    padding: '20px',
-    
+    marginTop: "15px",
+    padding: "20px",
+
     "& > h1": {
-        fontFamily: "Times New Roman",
-        fontSize: "40px",
-        fontWeight: "normal",
-        margin: "0px 0px 10px 0px",
-        textAlign: "center",
-      },
-      "& > p": {
-        textAlign: "justify",
-        fontSize: "17px",
-        margin: "0px 0px 10px 0px",
-      },
+      fontFamily: "Times New Roman",
+      fontSize: "40px",
+      fontWeight: "normal",
+      margin: "0px 0px 10px 0px",
+      textAlign: "center",
+    },
+    "& > p": {
+      textAlign: "justify",
+      fontSize: "17px",
+      margin: "0px 0px 10px 0px",
+    },
   },
   footer: {
     height: "50px",
@@ -90,14 +90,23 @@ export const usePageStyles = makeStyles((theme) => ({
     fontSize: "70px",
     lineHeight: "0px",
     "& > a": {
-        color: theme.palette.text.primary,
-      },
+      color: theme.palette.text.primary,
+    },
   },
   footerArrow: {
     paddingTop: "20px",
     cursor: "pointer",
     "&:hover": {
       color: "#FFD93D",
+    },
+  },
+  blockResaltCode: {
+    padding: "20px",
+    // boxShadow: "0 0 7px #ddd",
+
+    "& * td": {
+      width: "200px",
+      height: "100px",
     },
   },
 }));

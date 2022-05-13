@@ -3,18 +3,18 @@
     {
       "id": "1",
       "title": "Введение в CSS",
-      "href": "/school/css/1"
+      "href": "/css/1"
     },
 
     {
       "id": "2",
-      "title": "Основная структура страницы CSS",
-      "href": "/school/css/2"
+      "title": "Работа с цветом",
+      "href": "/css/2"
     },
     {
       "id": "3",
-      "title": "Основные теги CSS",
-      "href": "/school/css/3"
+      "title": "Ширина и высота",
+      "href": "/css/3"
     }
   ]
 }
