@@ -6,7 +6,7 @@ export const UpButton: FC = () => {
     const [buttonState, setButtonState] = useState(false)
 
     const handleScroll = () => {
-        if (window.scrollY > 500) {
+        if (window.scrollY > 300) {
             setButtonState(true)
         } else {
             setButtonState(false)
