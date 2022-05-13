@@ -46,10 +46,10 @@ const PageHTML2 = () => {
               </span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;htm&gt;</span>
+              <span className={classes.tegMaim}>&lt;html&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>    &lt;header&gt;</span>
+              <span className={classes.tegMaim}>    &lt;head&gt;</span>
             </li>
             <li>
                 <span className={classes.tegMaim}>        &lt;meta</span>
@@ -63,7 +63,7 @@ const PageHTML2 = () => {
               <span className={classes.tegMaim}>&lt;/title&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>    &lt;/header&gt;</span>
+              <span className={classes.tegMaim}>    &lt;/head&gt;</span>
             </li>
             <li>
               <span className={classes.tegMaim}>    &lt;body&gt;</span>
@@ -75,7 +75,7 @@ const PageHTML2 = () => {
               <span className={classes.tegMaim}>    &lt;/body&gt;</span>
             </li>
             <li>
-              <span className={classes.tegMaim}>&lt;/htm&gt;</span>
+              <span className={classes.tegMaim}>&lt;/html&gt;</span>
             </li>
           </ol>
         </Box>

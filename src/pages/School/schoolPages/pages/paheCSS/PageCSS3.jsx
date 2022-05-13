@@ -101,21 +101,6 @@ const PageCSS3 = () => {
           </ol>
         </Box>
 
-        <Box className={classes.blockCode}>
-          <ol>
-            <li>
-              <span className={classes.tegMaim}>p </span>
-              <span>{`{`}</span>
-            </li>
-            <li>
-              <span className={classes.tegSupport}> color</span>
-              <span>: red;</span>
-            </li>
-            <li>
-              <span>{`}`}</span>
-            </li>
-          </ol>
-        </Box>
         <p>Результат выполнения кода:</p>
 
         <Box className={classes.blockResaltCode}>
@@ -231,7 +216,7 @@ const PageCSS3 = () => {
           <Link to="/css/2">
             <Box className={classes.footerArrow}>←</Box>
           </Link>
-          <Link to="/css/4">
+          <Link to="/school">
             <Box className={classes.footerArrow}>→</Box>
           </Link>
         </Box>

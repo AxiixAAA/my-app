@@ -198,7 +198,7 @@ const PageHTML3 = () => {
           <Link to="/html/2">
             <Box className={classes.footerArrow}>←</Box>
           </Link>
-          <Link to="/html/4">
+          <Link to="/school">
             <Box className={classes.footerArrow}>→</Box>
           </Link>
         </Box>

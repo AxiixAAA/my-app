@@ -15,6 +15,11 @@ export const usePageStyles = makeStyles((theme) => ({
       margin: "15px 0px 10px 0px",
       textAlign: "center",
     },
+    "& > h4": {
+      fontFamily: "Times New Roman",
+      fontWeight: "normal",
+      margin: "0px",
+    },
     "& > p": {
       textAlign: "justify",
       fontSize: "17px",
@@ -29,6 +34,7 @@ export const usePageStyles = makeStyles((theme) => ({
     borderLeft: theme.palette.borderLeft,
     margin: "5px 0px",
     whiteSpace: "pre",
+    
 
     "& > ol": {
       counterReset: "myCounter",
@@ -37,7 +43,6 @@ export const usePageStyles = makeStyles((theme) => ({
 
       "& > li": {
         listStyle: "none",
-
         "&:before": {
           counterIncrement: "myCounter",
           content: "counter(myCounter)",
