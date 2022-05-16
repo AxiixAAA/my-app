@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import s from "./Profileinfo.module.css";
-import userPhoto from "../../../assets/images/avatar.png";
+import userPhoto from "../../../assets/images/user.png";
 import { ProfileDataFormReduxForm } from "./ProfileDataForm/ProfileDataForm";
 import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import ProfileData from "./ProfileDataForm/ProfileData";
 import { Box, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import { follow, followThunk, unfollow, unfollowThunk } from "../../../redux/user-reducer";
+import {
+  follow,
+  followThunk,
+  unfollow,
+  unfollowThunk,
+} from "../../../redux/user-reducer";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersFriend } from "../../../redux/users-selectors";
 import { SendMessage } from "../SendMessage/SendMessage";
@@ -35,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     borderRadius: "8px",
     boxShadow: theme.palette.boxShadow,
+    backgroundColor: theme.palette.background.paper,
   },
   ProfileDataForm: {
     backgroundColor: theme.palette.background.paper,
@@ -54,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
   },
   button: {
     "& > button": {
-      width: "120px",
+      width: "100%",
       height: "30px",
 
       backgroundColor: theme.palette.background.button,
@@ -93,9 +99,10 @@ const Profileinfo = ({
   savePhoto,
   saveProfile,
 }) => {
+  // console.log(profile);
+
   const classes = useStyles();
   let [editMode, setEditMode] = useState(false);
-
   if (!profile) {
     return <Box />;
   }
@@ -111,7 +118,7 @@ const Profileinfo = ({
       setEditMode(false);
     });
   };
-  console.log(profile.userId);
+  //   console.log(profile.userId);
   return (
     <>
       <Grid
@@ -132,13 +139,20 @@ const Profileinfo = ({
                   className={classes.mainFoto}
                 />
                 {isOwner ? (
-                  <Box className={classes.sss}>
-                    <label htmlFor={"img"} className={classes.NewPhotoText}>
-                      обновить фотографию
-                    </label>
-                  </Box>
+                  <>
+                    <Box className={classes.sss}>
+                      <label htmlFor={"img"} className={classes.NewPhotoText}>
+                        обновить фотографию
+                      </label>
+                    </Box>
+
+                    <Friends />
+                  </>
                 ) : (
-                  <ProfileButtonFollo profileID={profile.userId} />
+                  <>
+                    <ProfileButtonFollo profileID={profile.userId} />
+                    <SendMessage userId={profile.userId} isOwner={isOwner} />
+                  </>
                 )}
                 <div className={s.NewPhoto}>
                   {isOwner && (
@@ -150,10 +164,6 @@ const Profileinfo = ({
                   )}
                 </div>
               </div>
-            </Grid>
-            <Grid item>
-              <Friends />
-              <SendMessage userId={profile.userId} isOwner={isOwner} />
             </Grid>
           </Grid>
         </Grid>
@@ -196,59 +206,32 @@ export default Profileinfo;
 const ProfileButtonFollo = ({ profileID }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [subscribe, setSubscribe] = useState("Подписаться");
+
+  const sss = () => {
+    setSubscribe((prevMode) =>
+      prevMode === "Подписаться" ? "Отписаться" : "Подписаться"
+    );
+  };
 
   const followw = (userId) => {
     dispatch(followThunk(userId));
   };
-  const unfolloww = (userId) => {
-    dispatch(unfollowThunk(userId));
-  };
+
+  //   const unfolloww = (userId) => {
+  //     dispatch(unfollowThunk(userId));
+  //   };
+  console.log(subscribe);
   return (
-    // {/* follow /  unfollow*/}
     <div className={classes.button}>
-      {profileID.followed ? (
-        <button
-          onClick={() => {
-            unfolloww(profileID);
-          }}
-        >
-          Удалить
-        </button>
-      ) : (
-        <button
-          onClick={() => {
-            followw(profileID);
-          }}
-        >
-          {/* <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><g id="add_16__Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="add_16__add_16"><path id="add_16__Rectangle-2" d="M0 0h16v16H0z"></path><path d="M9 9v4a1 1 0 01-2 0V9H3a1 1 0 110-2h4V3a1 1 0 112 0v4h4a1 1 0 010 2H9z"id="add_16__Mask" fill="currentColor"></path></g></g></svg> */}
-          Добавить
-        </button>
-      )}
+      <button
+        onClick={() => {
+          sss();
+          followw(profileID);
+        }}
+      >
+        {subscribe}
+      </button>
     </div>
   );
 };
-
-// export const FriendMiniBloc = () => {
-//   const classes = useStyles();
-//   const filter = useSelector(getUsersFriend)
-
-//   console.log(filter);
-//   return (
-//     <Box className={classes.containerMiniBloc}>
-//         {/* {filter.some(filter => filter === 'true')} */}
-//         {filter === 'true'
-//         ? 'true'
-//         : 'false'
-//         }
-//         <p>{filter}</p>
-//       {/* <NavLink to={"/profile/" + user.id}>
-//         <img
-//           src={user.photos.small != null ? user.photos.small : userPhoto}
-//           alt="картинка"
-//           className={s.userPhoto}
-//         />
-//       </NavLink> */}
-//       <Friends />
-//     </Box>
-//   );
-// };

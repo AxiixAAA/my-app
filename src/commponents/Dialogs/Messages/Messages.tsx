@@ -66,7 +66,6 @@ const useStyles: any = makeStyles((theme: Theme) => ({
     height: "50px",
     width: "100%",
     background: theme.palette.background.paper,
-    boxShadow: theme.palette.boxShadow,
     marginBottom: "15px",
     borderRadius: "8px 8px 8px 8px",
     display: "flex",
@@ -91,6 +90,8 @@ export const Messages: FC<TProps> = ({
   currentOpponent,
   authProfile,
 }) => {
+    console.log(messages);
+    
   const classes = useStyles();
   const divRef = useRef<HTMLDivElement>(null);
 

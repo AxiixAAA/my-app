@@ -38,6 +38,7 @@ const useStyles: any = makeStyles((theme: any) => ({
 }));
 
 export const Opponents: FC<TProps> = ({ opponents }) => {
+    
   const classes = useStyles();
 
   const dispatch = useDispatch();
