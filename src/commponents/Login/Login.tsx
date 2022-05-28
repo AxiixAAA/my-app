@@ -5,38 +5,110 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { InjectedFormProps, reduxForm } from "redux-form";
 import { login } from "../../redux/auth-reducer";
-import style from "./Login.module.css";
 import { TGlobalState } from "../../redux/reduxStore";
 import { FC } from "react";
+import { makeStyles } from "@mui/styles";
+import { Box } from "@mui/material";
 
 type LoginFormOwnProps = {
     captchaUrl: string | null
 }
 
+type Theme = {
+    palette : any
+}
+const useStyles = makeStyles((theme: Theme) => ({
+    SearchText:{
+        boxShadow: theme.palette.boxShadowSearch,
+        borderRadius: "20px",
+
+        '& > * input': {
+            color: theme.palette.text.search,
+            backgroundColor: theme.palette.background.paper,
+            width: '100%',
+            paddingLeft: '15px',
+            margin: '1px 0px 0px 0px',
+            lineHeight: '220%',
+            fontSize: '1em',
+            boxSizing: 'border-box',
+            border: 'none',
+            borderRadius: '20px',
+            resize: 'none',
+            outline: 'none',
+        },
+        '& > * button':{
+            backgroundColor: theme.palette.background.paper,
+            color: theme.palette.text.search,
+            border: 'none',
+            width: '100%',
+            height: '100%',
+            cursor: 'pointer',
+            borderRadius: '20px',
+        }
+        
+    },
+    container: {
+        display: 'flex',
+        flexDirection: 'column',
+        width: '340px',
+    },
+    LoginForm:{
+        display: 'flex',
+        flexDirection: 'column',
+        backgroundColor: theme.palette.background.header,
+        borderRadius: '20px',
+        boxShadow: '0px 0px 2px wheat',
+        padding: '27px',
+
+        '& button':{
+            width: '100%',
+            height: '30px',
+            paddingBottom: '3px',
+            backgroundColor: theme.palette.background.button,
+            color: 'white',
+            borderRadius: '7px',
+            border: 'none',
+            cursor: 'pointer',
+        }
+    },
+    LoginFormInput:{
+        '& input':{
+            width: '270px',
+            height: '35px',
+            marginBottom: '15px',
+            paddingLeft: '10px',
+            outline:'none',
+        }
+    },
+    formError:{
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '15px',
+        marginBottom: '3px',
+        border: '2px solid red',
+        padding: '5px',
+        color: 'red',
+    }
+
+}));
+
+
 const LoginForm: FC<InjectedFormProps<LoginFormValuesType, LoginFormOwnProps> & LoginFormOwnProps> = ({handleSubmit, error, captchaUrl}) => {
+const classes = useStyles();   
  
-  return (<div className={style.container}>
-      <div className={style.LoginForm}>
+  return (<Box className={classes.container}>
+      <Box className={classes.LoginForm}>
         <form onSubmit={handleSubmit}>
-        {/* createField Функция с настройками для полей формы взята из  commponents/Common/FormsControls/FormsControls*/}
-        {/* createField = (placeholder, name, validators, component, props = {}, text = "") */}
-        <div className={style.LoginFormEmail}>{createField("Email","email",[required], Input)}</div>
-        <div className={style.LoginFormPassword}>{createField("Password","password",[required], Input, {type: "password"})}</div>
-        {/* Капча */}
-        {captchaUrl && <img src={captchaUrl} /> }
-        {captchaUrl && createField("Symbols from inage","captcha",[required], Input, {}) }
-        <div className={style.LoginFormFooter}>
-            <div>
-                <button>Войти</button>
-            </div>    
-            <div className={style.LoginFormCheckbox}>
-                 {/* {createField(null,"rememberMe",[], Input, {type: "checkbox"}, "Запомнить?")} */}
-            </div>        
-        </div>
+            <Box className={classes.LoginFormInput}>{createField("Email","email",[required], Input)}</Box>
+            <Box className={classes.LoginFormInput}>{createField("Password","password",[required], Input, {type: "password"})}</Box>
+            {/* Капча */}
+            {captchaUrl && <img src={captchaUrl} /> }
+            {captchaUrl && createField("Symbols from inage","captcha",[required], Input, {}) }
+            <button>Войти</button>
         </form>
-    </div>
-        {error && <div className={style.formError}>{error}</div>}
-  </div>
+    </Box>
+        {error && <Box className={classes.formError}>{error}</Box>}
+  </Box>
   );
 };
 

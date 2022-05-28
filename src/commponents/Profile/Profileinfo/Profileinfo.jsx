@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import s from "./Profileinfo.module.css";
 import userPhoto from "../../../assets/images/user.png";
 import { ProfileDataFormReduxForm } from "./ProfileDataForm/ProfileDataForm";
@@ -6,16 +6,11 @@ import MyPostsContainer from "../MyPosts/MyPostsContainer";
 import ProfileData from "./ProfileDataForm/ProfileData";
 import { Box, Grid } from "@mui/material";
 import { makeStyles } from "@mui/styles";
-import {
-  follow,
-  followThunk,
-  unfollow,
-  unfollowThunk,
-} from "../../../redux/user-reducer";
-import { useDispatch, useSelector } from "react-redux";
-import { getUsersFriend } from "../../../redux/users-selectors";
+import { followThunk } from "../../../redux/user-reducer";
+import { useDispatch } from "react-redux";
 import { SendMessage } from "../SendMessage/SendMessage";
 import Friends from "../../../pages/Friends/Friends";
+
 
 const useStyles = makeStyles((theme) => ({
   NewPhotoText: {
@@ -121,13 +116,7 @@ const Profileinfo = ({
   //   console.log(profile.userId);
   return (
     <>
-      <Grid
-        container
-        // direction="row"
-        // justifyContent="center"
-        // alignItems="flex-start"
-        spacing={2}
-      >
+      <Grid container spacing={2}>
         {/* Lev */}
         <Grid item xs={3.5}>
           {/* Photo */}

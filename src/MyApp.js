@@ -53,7 +53,8 @@ const theme = React.useMemo(
         }),
         ...(mode === 'light' && {
           background: {
-            header: '#247881',
+            // header: '#247881',
+            header: '#485460',
             default: '#FFD124',
             paper: '#DFDFDE',
             button: '#D82148',
