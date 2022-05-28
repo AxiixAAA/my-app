@@ -77,6 +77,7 @@ export const Users: FC = (props) => {
       };
 
     dispatch(getUsers(actualPage, pageSize, actualFilter));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -88,6 +89,7 @@ export const Users: FC = (props) => {
       pathname: "/users",
       search: `?term=${filter.term}&friend=${filter.friend}`,
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filter]);
   // Обработчик события Фильтр
   const onFilterChenged = (filter: FilterType) => {

@@ -1,5 +1,4 @@
 import UserSmallPhotoContainer from '../../../../commponents/Common/UserSmallPhoto/UserSmallPhotoContainer';
-import { NavLink } from 'react-router-dom';
 import { Box, Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
@@ -37,11 +36,10 @@ const useStyles = makeStyles((theme) => ({
     },
     postLikes:{
         alignItems: 'center',
-    },
-    postLikes:{ 
         '& > * svg':{
             width: '20px',
-    }},
+    }
+    },
     postMessage:{
         marginBottom: '5px',
     }

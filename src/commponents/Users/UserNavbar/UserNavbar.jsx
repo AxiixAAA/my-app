@@ -1,4 +1,3 @@
-import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";
 import { useSelector } from "react-redux";

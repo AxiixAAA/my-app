@@ -1,6 +1,6 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { createField, Input } from "../Common/FormsControls/FormsControls";
 import { required } from "../utils/validators/validators";
-
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router";
 import { InjectedFormProps, reduxForm } from "redux-form";
@@ -101,7 +101,7 @@ const classes = useStyles();
         <form onSubmit={handleSubmit}>
             <Box className={classes.LoginFormInput}>{createField("Email","email",[required], Input)}</Box>
             <Box className={classes.LoginFormInput}>{createField("Password","password",[required], Input, {type: "password"})}</Box>
-            {/* Капча */}
+        
             {captchaUrl && <img src={captchaUrl} /> }
             {captchaUrl && createField("Symbols from inage","captcha",[required], Input, {}) }
             <button>Войти</button>

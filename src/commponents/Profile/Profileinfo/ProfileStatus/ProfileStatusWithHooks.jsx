@@ -1,5 +1,5 @@
+/* eslint-disable no-mixed-operators */
 import { useEffect, useState } from "react";
-import s from '../Profileinfo.module.css';
 import { makeStyles } from '@mui/styles';
 
 const useStyles = makeStyles((theme) => ({

@@ -17,6 +17,7 @@ const Chat: FC = () => {
     return () => {
       dispatch(stopMessagesListening());
     };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

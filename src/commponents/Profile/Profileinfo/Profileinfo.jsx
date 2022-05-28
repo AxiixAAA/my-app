@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import { useState } from "react";
 import s from "./Profileinfo.module.css";
 import userPhoto from "../../../assets/images/user.png";

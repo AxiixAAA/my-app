@@ -1,10 +1,8 @@
 import { ResultCodeForCapcthaEnum, ResultCodesEnum} from "../api/api";
 import { stopSubmit } from "redux-form";
-import { TGlobalState, BaseThunkType, TReturnActionType } from "./reduxStore";
-import { ThunkAction } from "redux-thunk";
+import { BaseThunkType, TReturnActionType } from "./reduxStore";
 import { authAPI } from '../api/auth-api';
 import { securityAPI } from '../api/security-api';
-import { Action } from "redux";
 
 let initialState = {
     userId:null as (number | null),
