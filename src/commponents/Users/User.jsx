@@ -4,7 +4,6 @@ import userPhoto from "../../assets/images/user.png";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from '@mui/styles';
 import { Box } from "@mui/system";
-import { TheatersOutlined } from "@mui/icons-material";
 
 const useStyles = makeStyles((theme) => ({
     button:{

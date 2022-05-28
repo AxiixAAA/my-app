@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { TOpponent, TOpponentMessages } from "../../../api/dialogs";
 import userImage from "../../../assets/images/user.png";
 import { TUserProfile } from "../../../type/types";
-import { InputField } from "../InputField/InputField";
 
 type Theme = {
   palette: any;

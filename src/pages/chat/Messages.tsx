@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { FC, useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 
 import { TGlobalState } from "../../redux/reduxStore";

@@ -4,10 +4,6 @@ import { getFollowedFriends } from "../../redux/reducers/friendsReducer";
 import { followThunk, unfollowThunk } from "../../redux/user-reducer";
 import { getFriends } from "../../redux/selectors/friendsSelector";
 import { getFollowingInProgress } from "../../redux/users-selectors";
-// import { UpButton } from '../../components/common/UpButton/UpButton';
-
-import sadImage from "../../assets/images/sad.png";
-import styles from "./Friends.module.css";
 import FriendsMiniBlock from "../../commponents/FriendsMiniBlock/FriendsMiniBlock";
 import { Box } from "@mui/material";
 import { makeStyles } from "@mui/styles";

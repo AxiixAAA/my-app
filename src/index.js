@@ -3,6 +3,7 @@ import store from "./redux/reduxStore";
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+// eslint-disable-next-line no-unused-vars
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import MyApp from "./MyApp";

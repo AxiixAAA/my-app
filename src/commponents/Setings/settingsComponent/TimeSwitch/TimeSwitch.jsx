@@ -41,6 +41,7 @@ export function TimeSwitch() {
   useEffect(() => {
     const localStorageRef = localStorage.getItem("Time")
     dispatch({ type: "UPDATE_TIME", payload: JSON.parse(localStorageRef) });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
