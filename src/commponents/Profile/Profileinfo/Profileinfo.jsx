@@ -12,7 +12,6 @@ import { useDispatch } from "react-redux";
 import { SendMessage } from "../SendMessage/SendMessage";
 import Friends from "../../../pages/Friends/Friends";
 
-
 const useStyles = makeStyles((theme) => ({
   NewPhotoText: {
     color: theme.palette.text.paper,
@@ -60,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
       height: "30px",
 
       backgroundColor: theme.palette.background.button,
-      color: theme.palette.text.primary,
+      color: theme.palette.text.paper,
       borderRadius: "7px",
       border: "none",
       cursor: "pointer",
@@ -182,7 +181,7 @@ const Profileinfo = ({
               </Box>
             </Grid>
             <Grid style={{ width: "100%" }}>
-              <MyPostsContainer isOwner={isOwner} />
+              {isOwner ? <MyPostsContainer isOwner={isOwner} /> : null}
             </Grid>
           </Grid>
         </Grid>

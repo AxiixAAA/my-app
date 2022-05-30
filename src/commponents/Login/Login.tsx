@@ -69,9 +69,11 @@ const useStyles = makeStyles((theme: Theme) => ({
             borderRadius: '7px',
             border: 'none',
             cursor: 'pointer',
-        }
-    },
-    LoginFormInput:{
+        },
+        
+        '& img':{
+            width: '100%',
+        },
         '& input':{
             width: '270px',
             height: '35px',
@@ -81,12 +83,6 @@ const useStyles = makeStyles((theme: Theme) => ({
         }
     },
     formError:{
-        display: 'flex',
-        justifyContent: 'center',
-        marginTop: '15px',
-        marginBottom: '3px',
-        border: '2px solid red',
-        padding: '5px',
         color: 'red',
     }
 
@@ -99,15 +95,15 @@ const classes = useStyles();
   return (<Box className={classes.container}>
       <Box className={classes.LoginForm}>
         <form onSubmit={handleSubmit}>
-            <Box className={classes.LoginFormInput}>{createField("Email","email",[required], Input)}</Box>
-            <Box className={classes.LoginFormInput}>{createField("Password","password",[required], Input, {type: "password"})}</Box>
+            <Box>{createField("Email","email",[required], Input)}</Box>
+            <Box>{createField("Password","password",[required], Input, {type: "password"})}</Box>
         
             {captchaUrl && <img src={captchaUrl} /> }
             {captchaUrl && createField("Symbols from inage","captcha",[required], Input, {}) }
+            {error && <Box className={classes.formError}>{error}</Box>}
             <button>Войти</button>
         </form>
     </Box>
-        {error && <Box className={classes.formError}>{error}</Box>}
   </Box>
   );
 };

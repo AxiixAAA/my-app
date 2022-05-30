@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     "& > button": {
       backgroundColor: theme.palette.background.button,
       boxShadow: theme.palette.boxShadow,
+      color: theme.palette.text.paper,
       display: "flex",
       alignItems: "center",
       border: 0,
@@ -18,9 +19,6 @@ const useStyles = makeStyles((theme) => ({
       padding: "10px",
       cursor: 'pointer',
     },
-    '& > button:hover':{
-        color: theme.palette.text.hover
-    }
   },
 }));
 

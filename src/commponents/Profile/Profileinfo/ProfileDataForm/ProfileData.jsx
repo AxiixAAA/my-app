@@ -1,4 +1,3 @@
-import { Online } from "../../../../commponents/Common/NavigatorOnline/NavigatorOnline"
 import ProfileStatusWithHooks from "../ProfileStatus/ProfileStatusWithHooks"
 import s from '../Profileinfo.module.css';
 import { Box } from "@mui/material";
@@ -74,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     button:{
         '& > button':{
             borderRadius: '4px',
-            color: theme.palette.text.primary,
+            color: theme.palette.text.paper,
             backgroundColor: theme.palette.background.button,
         },
     }
@@ -88,7 +87,6 @@ const classes = useStyles();
         <Box className={classes.ProfileData_Top}>
             <Box className={classes.ProfileData_NameAndOnline}>
                 <Box>{profile.fullName}</Box>
-                <span><Online /></span>  
             </Box>
             <Box className={classes.status}><ProfileStatusWithHooks status={status} updateStatus={updateStatus} isOwner={isOwner}/></Box>
         </Box>
