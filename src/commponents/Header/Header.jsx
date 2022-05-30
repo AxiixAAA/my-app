@@ -25,7 +25,7 @@ return <Box className={s.header} sx={{bgcolor: 'background.header'}}>
     </div>
     </NavLink>
     
-    <Box sx={{color: 'text.primary'}}>
+    <Box sx={{color: 'text.paper'}}>
       <IconButton sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
         {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
       </IconButton>

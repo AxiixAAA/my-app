@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
             height: '30px',
          
             backgroundColor: theme.palette.background.button,
-            color: theme.palette.text.primary,
+            color: theme.palette.text.paper,
             borderRadius: '7px',
             border: 'none',
             cursor: 'pointer',
@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
     },
     userID:{
         color: theme.palette.text.primary, 
-        fontSize: '13px',
         marginBottom: '10px',
 
         '& > span':{
@@ -41,7 +40,8 @@ const useStyles = makeStyles((theme) => ({
     },
     UserName:{
         marginTop: '10px',
-        fontSize: '15px',
+        marginBottom: '25px',
+        fontSize: '17px',
         color: theme.palette.text.primary,
         fontFamily: 'Arial',
         fontWeight: '400',
@@ -71,12 +71,12 @@ const classes = useStyles();
                     />
                 </NavLink>
                 </Box>
-                <Box >  
+                <Box>  
                     {/* Имя пользователя */}
                     <Box>
                         <NavLink to={'/profile/' + user.id}>
                             <Box className={classes.UserName}>{user.name}</Box>
-                            <Box className={classes.userID}><span >ID:</span> {user.id}</Box> 
+                            {/* <Box className={classes.userID}><span >ID:</span> {user.id}</Box>  */}
                         </NavLink>
                     </Box>
 

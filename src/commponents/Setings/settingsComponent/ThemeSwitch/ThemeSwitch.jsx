@@ -57,7 +57,6 @@ export default function ThemeSwitch() {
 
   return (
     <>
-      Theme
       <Formik
         initialValues={{
           sell: "N",

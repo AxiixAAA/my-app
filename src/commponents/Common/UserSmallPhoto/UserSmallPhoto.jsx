@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import userPhoto from "../../../assets/images/avatar.png";
 
 const UserSmallPhoto = ({profile}) => {

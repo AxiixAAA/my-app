@@ -63,7 +63,7 @@ const theme = React.useMemo(
             backgroundHover: '#b2b2b2',
             blockCode:'repeating-linear-gradient(to bottom, transparent, transparent 10px, #cccccc 10px, #cccccc 11px),repeating-linear-gradient(to right, transparent, transparent 10px, #cccccc 10px, #cccccc 11px)',  
         },
-          boxShadow: '0px 0px 2px #ff0036',
+          boxShadow: '0px 0px 2px #485460',
           boxShadowSearch: '0px -7px 10px -9px #FD5D5D',
           borderBottom: '1px dashed #2B2B2B', 
           borderLeft: '2px solid #cccccc',

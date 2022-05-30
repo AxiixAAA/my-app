@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
   
 sss: {
     '& > button':{
-        color: theme.palette.text.primary,
+        color: theme.palette.text.paper,
         backgroundColor: theme.palette.background.button,
         borderRadius: '4px',
     },
