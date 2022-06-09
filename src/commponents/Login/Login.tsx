@@ -128,6 +128,17 @@ export const LoginPage: FC = () => {
   if (isAuth) {
     return <Redirect to={"/profile"} />;
   }
-  return <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
+  return <>
+    <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
+    <div>
+        Для Входа... <br />
+        email: slavae222@gmail.com <br />
+        password: aaaxiixaaa <br />
+        Регистрация нового пользователя проходит на другом сайте :<br />
+        https://social-network.samuraijs.com/ <br /><br /><br />
+        У форма есть проверка на ввод данных<br />
+        А также если ввести не правильно 5 раз данные отобразит капчу.
+    </div>  
+  </>
 }
 
