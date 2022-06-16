@@ -1,4 +1,4 @@
-import avatar from "../../../assets/images/avatar.png";
+import avatar from "../../../assets/images/avatar.svg";
 import { NavLink } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { Box } from "@mui/material";

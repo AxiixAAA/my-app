@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
-import userPhoto from "../../../assets/images/avatar.png";
+import userPhoto from "../../../assets/images/avatar.svg";
 
 const UserSmallPhoto = ({profile}) => {
     // Необходимое условие без которого будет падать ошибка из за того что  profile не успеет обработаться

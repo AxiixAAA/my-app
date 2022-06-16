@@ -28,15 +28,10 @@ const ExitButton = () => {
   const dispatch = useDispatch();
   return (
     <Box className={classes.button}>
-      {isAuth ? (
-        <button onClick={() => dispatch(logout())}>
+      <button onClick={() => dispatch(logout())}>
           Выйти
-          <PowerSettingsNewIcon />{" "}
+          <PowerSettingsNewIcon />
         </button>
-      ) : (
-        <NavLink to={"/login"}>Войти</NavLink>
-      )}
-      {/* onClick={props.logout} */}
     </Box>
   );
 };

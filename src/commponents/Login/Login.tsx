@@ -131,16 +131,8 @@ export const LoginPage: FC = () => {
   return <>
     <LoginReduxForm onSubmit={onSubmit} captchaUrl={captchaUrl}/>
     <div>
-        Для Входа... <br />
         email: slavae222@gmail.com <br />
         password: aaaxiixaaa <br />
-        Регистрация нового пользователя проходит на другом сайте :<br />
-        https://social-network.samuraijs.com/ <br /><br /><br />
-        У формы есть проверка на ввод данных<br />
-        А также если ввести не правильно данные 5 раз, отобразит капчу.<br /><br />
-        При первом посещении пириложения, возможны проблемы с темой<br />
-        для нормализации нажмите на звёздочку в шапке приложения 
-
     </div>  
   </>
 }

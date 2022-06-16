@@ -42,6 +42,7 @@ export const InputField: FC<TProps> = ({ currentOpponent }) => {
                         placeholder="Введите сообщение..."
                         className={styles.input} 
                         autocomplete="off"
+                        autoFocus
                     />
                     {/* <button type='submit' className={styles.button}>Отправить</button> */}
                 </Form>
